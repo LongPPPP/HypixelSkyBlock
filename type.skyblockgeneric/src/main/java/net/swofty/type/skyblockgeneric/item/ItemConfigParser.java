@@ -40,6 +40,7 @@ public class ItemConfigParser {
 		try {
 			String id = safeConfig.getString("id", "");
 			id = id.replaceAll("[^a-zA-Z0-9_]", "");
+			String name = safeConfig.getString("name");
 
 			String materialName = safeConfig.getString("material", "AIR");
 			Material material = Material.values().stream()
@@ -58,7 +59,7 @@ public class ItemConfigParser {
 				}
 			}
 
-			ConfigurableSkyBlockItem item = new ConfigurableSkyBlockItem(id, material, lore, statistics);
+			ConfigurableSkyBlockItem item = new ConfigurableSkyBlockItem(id, material, lore, name, statistics);
 
 			List<Map<String, Object>> components = safeConfig.getMapList("components");
 			for (Map<String, Object> componentConfig : components) {
@@ -638,18 +639,15 @@ public class ItemConfigParser {
 
 					// Parse per level statistics
 					SafeConfig perLevelStatsConfig = safeConfig.getNested("per_level_statistics");
-					Map<Rarity, ItemStatistics> perLevelStatistics = new HashMap<>();
-					for (String rarityKey : perLevelStatsConfig.getKeys()) {
-						SafeConfig rarityStatsConfig = perLevelStatsConfig.getNested(rarityKey);
-						ItemStatistics.Builder rarityBuilder = ItemStatistics.builder();
-
-						for (String statKey : rarityStatsConfig.getKeys()) {
-							double value = rarityStatsConfig.getDouble(statKey);
-							rarityBuilder.withBase(ItemStatistic.valueOf(statKey.toUpperCase()), value);
-						}
-
-						perLevelStatistics.put(Rarity.valueOf(rarityKey.toUpperCase()), rarityBuilder.build());
-					}
+					RarityValue<ItemStatistics> perLevelStatistics = new RarityValue<>(
+							parsePerLevelStatistics(perLevelStatsConfig.getNested("common")),
+							parsePerLevelStatistics(perLevelStatsConfig.getNested("uncommon")),
+							parsePerLevelStatistics(perLevelStatsConfig.getNested("rare")),
+							parsePerLevelStatistics(perLevelStatsConfig.getNested("epic")),
+							parsePerLevelStatistics(perLevelStatsConfig.getNested("legendary")),
+							parsePerLevelStatistics(perLevelStatsConfig.getNested("mythic")),
+							parsePerLevelStatistics(perLevelStatsConfig.getNested("rest"))
+					);
 
 					// Parse other fields
 					int particleIdValue = safeConfig.getInt("particle");
@@ -722,6 +720,14 @@ public class ItemConfigParser {
 			Logger.error(e, "Unexpected error parsing component {} for item {}", id, itemId);
 			return null;
 		}
+	}
+
+	private static ItemStatistics parsePerLevelStatistics(SafeConfig config) {
+		ItemStatistics.Builder builder = ItemStatistics.builder();
+		for (String statKey : config.getKeys()) {
+			builder.withBase(ItemStatistic.valueOf(statKey.toUpperCase()), config.getDouble(statKey));
+		}
+		return builder.build();
 	}
 
 	private static KatUpgrade parseKatUpgrade(Map<String, Object> config) {

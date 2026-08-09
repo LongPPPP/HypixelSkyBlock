@@ -3752,6 +3752,8 @@ public enum ItemType {
 
   SILVER_BLOBFISH(Material.PLAYER_HEAD, Rarity.COMMON),
 
+  SILVER_FANG(Material.IRON_SWORD, Rarity.RARE),
+
   SILVER_FLYFISH(Material.PLAYER_HEAD, Rarity.COMMON),
 
   SILVER_GOLDEN_FISH(Material.PLAYER_HEAD, Rarity.COMMON),
