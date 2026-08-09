@@ -17,8 +17,8 @@ import net.swofty.type.skyblockgeneric.item.SkyBlockItem;
 import net.swofty.type.skyblockgeneric.item.SkyBlockItemComponent;
 import net.swofty.type.skyblockgeneric.item.handlers.lore.LoreConfig;
 import net.swofty.type.skyblockgeneric.item.handlers.pet.KatUpgrade;
+import net.swofty.type.skyblockgeneric.item.handlers.pet.PetAbilityRegistry;
 import net.swofty.type.skyblockgeneric.item.handlers.pet.abstr.PetAbility;
-import net.swofty.type.skyblockgeneric.item.handlers.pet.PetHandler;
 import net.swofty.type.skyblockgeneric.skill.SkillCategories;
 import net.swofty.type.skyblockgeneric.user.SkyBlockPlayer;
 import net.swofty.type.skyblockgeneric.utility.RarityValue;
@@ -93,7 +93,7 @@ public class PetComponent extends SkyBlockItemComponent {
         Rarity rarity = item.getAttributeHandler().getRarity();
         int level = petData.getAsLevel(rarity);
 
-        List<PetAbility> abilities = PetHandler.valueOf(handlerId.toUpperCase()).getAbilities(item);
+        List<PetAbility> abilities = PetAbilityRegistry.getAbilities(item);
 
         lore.add("§8" + skillCategory.asCategory().getName() + " Pet");
         lore.add(" ");
@@ -115,6 +115,11 @@ public class PetComponent extends SkyBlockItemComponent {
             lore.add(" ");
             lore.add("§6" + ability.getName());
             lore.addAll(ability.getDescription(item));
+            String notImplemented = PetAbilityRegistry.notImplementedLine(ability);
+            if (notImplemented != null) {
+                lore.add(" ");
+                lore.add(notImplemented);
+            }
         }
 
         if (level < 100) {

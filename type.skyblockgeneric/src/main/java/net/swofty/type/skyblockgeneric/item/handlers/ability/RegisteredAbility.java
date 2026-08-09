@@ -7,6 +7,7 @@ import net.minestom.server.instance.block.BlockFace;
 import net.swofty.type.generic.data.datapoints.DatapointInteger;
 import net.swofty.type.skyblockgeneric.data.SkyBlockDataHandler;
 import net.swofty.type.skyblockgeneric.item.SkyBlockItem;
+import net.swofty.type.skyblockgeneric.item.handlers.pet.abstr.PetEvent;
 import net.swofty.type.skyblockgeneric.user.SkyBlockActionBar;
 import net.swofty.type.skyblockgeneric.user.SkyBlockPlayer;
 import org.jetbrains.annotations.NotNull;
@@ -48,7 +49,11 @@ public class RegisteredAbility {
         if (!action.execute(player, item, targetedBlock, blockFace)){
             return false;
         }
-        cost.onUse(player, this);
+        SkyBlockItem pet = player.getPetData().getEnabledPet();
+        PetEvent.ManaCost manaCost = player.getPetData()
+                .dispatch(new PetEvent.ManaCost(player, pet, cost.getManaCost()));
+        if (!manaCost.free()) cost.onUse(player, this);
+        player.getPetData().dispatch(new PetEvent.AbilityCast(player, pet));
         return true;
     }
 
@@ -85,6 +90,10 @@ public class RegisteredAbility {
         public abstract void onUse(@NonNull SkyBlockPlayer player, @NonNull RegisteredAbility ability);
         public abstract void onFail(@NonNull SkyBlockPlayer player);
         public abstract @Nullable String getLoreDisplay();
+
+        public int getManaCost() {
+            return 0;
+        }
     }
 
     public static class AbilityManaCost extends AbilityCost {
@@ -122,6 +131,11 @@ public class RegisteredAbility {
                             2
                     )
             );
+        }
+
+        @Override
+        public int getManaCost() {
+            return cost;
         }
 
         @Override
@@ -181,6 +195,11 @@ public class RegisteredAbility {
                             2
                     )
             );
+        }
+
+        @Override
+        public int getManaCost() {
+            return cost;
         }
 
         @Override

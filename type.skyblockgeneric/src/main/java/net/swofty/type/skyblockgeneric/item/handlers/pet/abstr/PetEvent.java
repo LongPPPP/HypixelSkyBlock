@@ -3,48 +3,85 @@ package net.swofty.type.skyblockgeneric.item.handlers.pet.abstr;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.experimental.Accessors;
+import net.minestom.server.entity.damage.DamageType;
 import net.minestom.server.item.Material;
+import net.minestom.server.registry.RegistryKey;
 import net.swofty.type.skyblockgeneric.entity.mob.SkyBlockMob;
 import net.swofty.type.skyblockgeneric.fishing.catches.CatchPayload;
 import net.swofty.type.skyblockgeneric.item.SkyBlockItem;
 import net.swofty.type.skyblockgeneric.user.SkyBlockPlayer;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 public sealed interface PetEvent {
     SkyBlockPlayer player();
 
+    enum XpType {
+        SKILL, SLAYER, HOTM, HOTF
+    }
+
     record Kill(SkyBlockPlayer player, SkyBlockItem pet, SkyBlockMob mob) implements PetEvent {
+    }
+
+    record Jump(SkyBlockPlayer player, SkyBlockItem pet) implements PetEvent {
+    }
+
+    record PetInteract(SkyBlockPlayer player, SkyBlockItem pet) implements PetEvent {
+    }
+
+    record AbilityCast(SkyBlockPlayer player, SkyBlockItem pet) implements PetEvent {
     }
 
     @Getter
     @Accessors(fluent = true)
-    final class DamagedByMob implements PetEvent {
+    final class ManaCost implements PetEvent {
         private final SkyBlockPlayer player;
         private final SkyBlockItem pet;
-        private final SkyBlockMob mob;
+        private final double cost;
+        @Setter
+        private boolean free;
+
+        public ManaCost(SkyBlockPlayer player, SkyBlockItem pet, double cost) {
+            this.player = player;
+            this.pet = pet;
+            this.cost = cost;
+        }
+    }
+
+    @Getter
+    @Accessors(fluent = true)
+    non-sealed class Damaged implements PetEvent {
+        private final SkyBlockPlayer player;
+        private final SkyBlockItem pet;
+        @Nullable
+        private final RegistryKey<@NotNull DamageType> type;
         @Setter
         private double damage;
 
-        public DamagedByMob(SkyBlockPlayer player, SkyBlockItem pet, SkyBlockMob mob, double damage) {
+        public Damaged(SkyBlockPlayer player, SkyBlockItem pet, @Nullable RegistryKey<@NotNull DamageType> type, double damage) {
             this.player = player;
             this.pet = pet;
-            this.mob = mob;
+            this.type = type;
             this.damage = damage;
         }
     }
 
     @Getter
     @Accessors(fluent = true)
-    final class FallDamage implements PetEvent {
-        private final SkyBlockPlayer player;
-        private final SkyBlockItem pet;
-        @Setter
-        private double damage;
+    final class DamagedByMob extends Damaged {
+        private final SkyBlockMob mob;
 
+        public DamagedByMob(SkyBlockPlayer player, SkyBlockItem pet, SkyBlockMob mob, double damage) {
+            super(player, pet, DamageType.MOB_ATTACK, damage);
+            this.mob = mob;
+        }
+    }
+
+    @Getter
+    @Accessors(fluent = true)
+    final class FallDamage extends Damaged {
         public FallDamage(SkyBlockPlayer player, SkyBlockItem pet, double damage) {
-            this.player = player;
-            this.pet = pet;
-            this.damage = damage;
+            super(player, pet, DamageType.FALL, damage);
         }
     }
 
@@ -68,15 +105,6 @@ public sealed interface PetEvent {
         }
     }
 
-    enum XpType {
-        SKILL, SLAYER, HOTM, HOTF
-    }
-
-    record Jump(SkyBlockPlayer player, SkyBlockItem pet) implements PetEvent {
-    }
-
-    record PetInteract(SkyBlockPlayer player, SkyBlockItem pet) implements PetEvent {
-    }
 
     @Getter
     @Accessors(fluent = true)

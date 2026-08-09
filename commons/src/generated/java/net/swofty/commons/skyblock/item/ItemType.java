@@ -172,7 +172,7 @@ public enum ItemType {
 
   AWKWARD_POTION(Material.POTION, Rarity.COMMON),
 
-  AXE_OF_THE_SHREDDED(Material.DIAMOND_AXE, Rarity.LEGENDARY),
+  AXE_OF_THE_SHREDDED(Material.DIAMOND_SWORD, Rarity.LEGENDARY),
 
   AZALEA(Material.AZALEA, Rarity.COMMON),
 
@@ -409,6 +409,8 @@ public enum ItemType {
   BLUE_STAINED_GLASS_PANE(Material.BLUE_STAINED_GLASS_PANE, Rarity.COMMON),
 
   BLUE_TERRACOTTA(Material.BLUE_TERRACOTTA, Rarity.COMMON),
+
+  BLUE_WHALE_PET(Material.PLAYER_HEAD, Rarity.LEGENDARY),
 
   BLUE_WOOL(Material.BLUE_WOOL, Rarity.COMMON),
 
@@ -860,6 +862,8 @@ public enum ItemType {
 
   CROWN_OF_GREED(Material.GOLDEN_HELMET, Rarity.LEGENDARY),
 
+  CROW_PET(Material.PLAYER_HEAD, Rarity.LEGENDARY),
+
   CRYPT_BOW(Material.BOW, Rarity.RARE),
 
   CRYPT_DREADLORD_SWORD(Material.IRON_SWORD, Rarity.RARE),
@@ -1104,6 +1108,8 @@ public enum ItemType {
 
   DIVAN_FRAGMENT(Material.PLAYER_HEAD, Rarity.EPIC),
 
+  DOLPHIN_PET(Material.PLAYER_HEAD, Rarity.LEGENDARY),
+
   DRACONIC_ARTIFACT(Material.PLAYER_HEAD, Rarity.EPIC),
 
   DRACONIC_RING(Material.PLAYER_HEAD, Rarity.RARE),
@@ -1132,6 +1138,8 @@ public enum ItemType {
 
   EDIBLE_MACE(Material.MUTTON, Rarity.RARE),
 
+  EERIE_PET(Material.PLAYER_HEAD, Rarity.LEGENDARY),
+
   EFFICIENT_AXE(Material.IRON_AXE, Rarity.UNCOMMON),
 
   EGG(Material.EGG, Rarity.COMMON),
@@ -1147,6 +1155,8 @@ public enum ItemType {
   ELEGANT_TUXEDO_CHESTPLATE(Material.LEATHER_CHESTPLATE, Rarity.LEGENDARY),
 
   ELEGANT_TUXEDO_LEGGINGS(Material.LEATHER_LEGGINGS, Rarity.LEGENDARY),
+
+  ELEPHANT_PET(Material.PLAYER_HEAD, Rarity.MYTHIC),
 
   EMBER_ROD(Material.BLAZE_ROD, Rarity.EPIC),
 
@@ -1442,11 +1452,15 @@ public enum ItemType {
 
   ENDERMAN_MINION(Material.PLAYER_HEAD, Rarity.COMMON),
 
+  ENDERMAN_PET(Material.PLAYER_HEAD, Rarity.MYTHIC),
+
   ENDER_ARTIFACT(Material.PLAYER_HEAD, Rarity.EPIC),
 
   ENDER_BOW(Material.BOW, Rarity.RARE),
 
   ENDER_CHEST(Material.ENDER_CHEST, Rarity.COMMON),
+
+  ENDER_DRAGON_PET(Material.PLAYER_HEAD, Rarity.LEGENDARY),
 
   ENDER_EYE(Material.ENDER_EYE, Rarity.COMMON),
 

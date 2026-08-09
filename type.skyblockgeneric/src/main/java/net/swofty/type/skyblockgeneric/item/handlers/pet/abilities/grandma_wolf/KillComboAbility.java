@@ -1,4 +1,8 @@
-package net.swofty.type.skyblockgeneric.item.handlers.pet.abilities;
+package net.swofty.type.skyblockgeneric.item.handlers.pet.abilities.grandma_wolf;
+
+import net.swofty.type.skyblockgeneric.item.handlers.pet.PetHandler;
+import net.swofty.type.skyblockgeneric.item.handlers.pet.abstr.PetAbilityRegistration;
+import net.swofty.type.skyblockgeneric.item.handlers.pet.abstr.PetEventHandler;
 
 import net.swofty.commons.skyblock.item.Rarity;
 import net.swofty.commons.skyblock.statistics.ItemStatistic;
@@ -15,6 +19,7 @@ import java.util.List;
 
 import static net.swofty.commons.StringUtility.commaify;
 
+@PetAbilityRegistration(pet = PetHandler.GRANDMA_WOLF, minimumRarity = Rarity.COMMON)
 public final class KillComboAbility implements PetAbility {
     private static final RarityValue<Integer> MAGIC_FIND_5 = new RarityValue<>(1, 1, 2, 2, 3, 3, 0);
     private static final RarityValue<Integer> MAGIC_FIND_15 = new RarityValue<>(1, 1, 2, 2, 3, 3, 0);
@@ -74,17 +79,7 @@ public final class KillComboAbility implements PetAbility {
 
     @Override
     public ItemStatistics getStatistics(SkyBlockPlayer player, SkyBlockItem pet) {
-        return statisticsFor(player.getPetData().getAbilityRuntime(this), pet);
-    }
-
-    @Override
-    public void onEvent(PetEvent event) {
-        if (event instanceof PetEvent.Kill kill) {
-            onKill(kill.player().getPetData().getAbilityRuntime(this), kill);
-        }
-    }
-
-    private ItemStatistics statisticsFor(AbilityRuntime rt, SkyBlockItem pet) {
+        AbilityRuntime rt = player.getPetData().getAbilityRuntime(this);
         int combo = rt.getStacks();
         if (combo <= 0) return ItemStatistics.empty();
 
@@ -118,7 +113,9 @@ public final class KillComboAbility implements PetAbility {
                 .build();
     }
 
-    private void onKill(AbilityRuntime rt, PetEvent.Kill kill) {
+    @PetEventHandler
+    public void onKillEvent(PetEvent.Kill kill) {
+        AbilityRuntime rt = kill.player().getPetData().getAbilityRuntime(this);
         rt.setStacks(rt.getStacks() + 1);
         rt.setLastProc(System.currentTimeMillis());
 

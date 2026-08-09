@@ -19,4 +19,5 @@ public final class AbilityRuntime {
     private int stacks;       // stacking count (Web Battlefield, kill combo)
     private int hits;         // counter (Clubbed Tail every 5th hit)
     private boolean pending;  // one-shot flag (Rolling Miner next gemstone 2x)
+    private final ProcWindow procs = new ProcWindow();  // per-proc expiry window
 }

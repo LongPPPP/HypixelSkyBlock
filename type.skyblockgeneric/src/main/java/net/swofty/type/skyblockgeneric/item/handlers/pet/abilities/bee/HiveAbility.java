@@ -1,4 +1,7 @@
-package net.swofty.type.skyblockgeneric.item.handlers.pet.abilities;
+package net.swofty.type.skyblockgeneric.item.handlers.pet.abilities.bee;
+
+import net.swofty.type.skyblockgeneric.item.handlers.pet.PetHandler;
+import net.swofty.type.skyblockgeneric.item.handlers.pet.abstr.PetAbilityRegistration;
 
 import net.minestom.server.instance.Instance;
 import net.swofty.commons.skyblock.item.Rarity;
@@ -14,6 +17,7 @@ import java.util.List;
 
 import static net.swofty.commons.StringUtility.decimalify;
 
+@PetAbilityRegistration(pet = PetHandler.BEE, minimumRarity = Rarity.COMMON)
 public final class HiveAbility implements PetAbility {
     private static final Integer INTELLIGENCE = 1;
     private static final Integer STRENGTH = 1;

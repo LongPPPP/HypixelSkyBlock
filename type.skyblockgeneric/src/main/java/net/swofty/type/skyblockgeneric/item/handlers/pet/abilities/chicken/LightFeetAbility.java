@@ -1,4 +1,9 @@
-package net.swofty.type.skyblockgeneric.item.handlers.pet.abilities;
+package net.swofty.type.skyblockgeneric.item.handlers.pet.abilities.chicken;
+
+import net.swofty.type.skyblockgeneric.item.handlers.pet.PetHandler;
+import net.swofty.type.skyblockgeneric.item.handlers.pet.abstr.PetAbilityRegistration;
+import net.swofty.type.skyblockgeneric.item.handlers.pet.abstr.PetEventHandler;
+import net.swofty.commons.skyblock.item.Rarity;
 
 import net.swofty.type.skyblockgeneric.item.SkyBlockItem;
 import net.swofty.type.skyblockgeneric.item.handlers.pet.abstr.PetAbility;
@@ -8,6 +13,7 @@ import java.util.List;
 
 import static net.swofty.commons.StringUtility.commaify;
 
+@PetAbilityRegistration(pet = PetHandler.CHICKEN, minimumRarity = Rarity.LEGENDARY)
 public final class LightFeetAbility implements PetAbility {
     @Override
     public String getName() {
@@ -21,12 +27,10 @@ public final class LightFeetAbility implements PetAbility {
         return List.of("§7Reduces fall damage by §a" + commaify(reduction) + "%§7.");
     }
 
-    @Override
-    public void onEvent(PetEvent event) {
-        if (event instanceof PetEvent.FallDamage fall) {
-            double reduction = fall.pet().getAttributeHandler().getPetData()
-                    .getAsLevel(fall.pet().getAttributeHandler().getRarity());
-            fall.damage(fall.damage() * (1 - reduction / 100));
-        }
+    @PetEventHandler
+    public void onFallDamage(PetEvent.FallDamage fall) {
+        double reduction = fall.pet().getAttributeHandler().getPetData()
+                .getAsLevel(fall.pet().getAttributeHandler().getRarity());
+        fall.damage(fall.damage() * (1 - reduction / 100));
     }
 }

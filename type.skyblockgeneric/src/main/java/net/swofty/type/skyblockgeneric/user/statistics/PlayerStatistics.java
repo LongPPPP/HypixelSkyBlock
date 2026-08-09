@@ -202,7 +202,7 @@ public class PlayerStatistics {
         int level = pet.getAttributeHandler().getPetData().getAsLevel(pet.getAttributeHandler().getRarity());
         ItemStatistics stats = ItemStatistics.add(baseStatistics, ItemStatistics.multiply(perLevelStatistics, level));
 
-        for (PetAbility ability : player.getPetData().getCachedAbilities(pet)) {
+        for (PetAbility ability : player.getPetData().getAbilities(pet)) {
             stats = ItemStatistics.add(stats, ability.getStatistics(player, pet));
         }
 

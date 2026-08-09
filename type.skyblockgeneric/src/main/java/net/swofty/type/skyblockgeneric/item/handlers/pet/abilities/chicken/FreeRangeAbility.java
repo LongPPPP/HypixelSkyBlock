@@ -1,4 +1,7 @@
-package net.swofty.type.skyblockgeneric.item.handlers.pet.abilities;
+package net.swofty.type.skyblockgeneric.item.handlers.pet.abilities.chicken;
+
+import net.swofty.type.skyblockgeneric.item.handlers.pet.PetHandler;
+import net.swofty.type.skyblockgeneric.item.handlers.pet.abstr.PetAbilityRegistration;
 
 import net.swofty.commons.skyblock.item.Rarity;
 import net.swofty.commons.skyblock.statistics.ItemStatistic;
@@ -14,6 +17,7 @@ import java.util.List;
 
 import static net.swofty.commons.StringUtility.decimalify;
 
+@PetAbilityRegistration(pet = PetHandler.CHICKEN, minimumRarity = Rarity.COMMON)
 public final class FreeRangeAbility implements PetAbility {
     private static final RarityValue<Double> PER_LEVEL = new RarityValue<>(0.5, 0.75, 1.0, 1.0, 1.0, 1.0, 0.0);
 

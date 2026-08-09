@@ -134,3 +134,216 @@ items:
         skull_texture: e897c5640ccfc68ffb65e331b7070ce5d14439ad2cd7d9612a6feb023eedac18
         handler_id: GRANDMA_WOLF
       - id: TRACKED_UNIQUE
+  - id: CROW_PET
+    material: player_head
+    rarity: LEGENDARY
+    components:
+      - id: PET
+        pet_name: Crow
+        base_statistics: {}
+        per_level_statistics:
+          common:
+            intelligence: 1.5
+            ability_damage: 0.2
+          uncommon:
+            intelligence: 1.5
+            ability_damage: 0.2
+          rare:
+            intelligence: 1.5
+            ability_damage: 0.2
+          epic:
+            intelligence: 1.5
+            ability_damage: 0.2
+          legendary:
+            intelligence: 1.5
+            ability_damage: 0.2
+        particle: 3
+        skill_category: COMBAT
+        skull_texture: ""
+        handler_id: CROW
+      - id: TRACKED_UNIQUE
+  - id: BLUE_WHALE_PET
+    material: player_head
+    rarity: LEGENDARY
+    components:
+      - id: PET
+        pet_name: Blue Whale
+        george_price:
+          common: 5000
+          uncommon: 12500
+          rare: 50000
+          epic: 500000
+          legendary: 5000000
+          rest: 0
+        base_statistics: {}
+        per_level_statistics:
+          common:
+            health: 2
+          uncommon:
+            health: 2
+          rare:
+            health: 2
+          epic:
+            health: 2
+          legendary:
+            health: 2
+        particle: 3
+        skill_category: FISHING
+        skull_texture: ""
+        handler_id: BLUE_WHALE
+      - id: TRACKED_UNIQUE
+  - id: DOLPHIN_PET
+    material: player_head
+    rarity: LEGENDARY
+    components:
+      - id: PET
+        pet_name: Dolphin
+        george_price:
+          common: 10000
+          uncommon: 50000
+          rare: 500000
+          epic: 2500000
+          legendary: 10000000
+          rest: 0
+        base_statistics: {}
+        per_level_statistics:
+          common:
+            intelligence: 1
+            sea_creature_chance: 0.05
+          uncommon:
+            intelligence: 1
+            sea_creature_chance: 0.05
+          rare:
+            intelligence: 1
+            sea_creature_chance: 0.05
+          epic:
+            intelligence: 1
+            sea_creature_chance: 0.05
+          legendary:
+            intelligence: 1
+            sea_creature_chance: 0.05
+        particle: 3
+        skill_category: FISHING
+        skull_texture: ""
+        handler_id: DOLPHIN
+      - id: TRACKED_UNIQUE
+  - id: EERIE_PET
+    material: player_head
+    rarity: LEGENDARY
+    components:
+      - id: PET
+        pet_name: Eerie
+        base_statistics: {}
+        per_level_statistics:
+          common:
+            speed: 0.1
+            intelligence: 0.5
+          rare:
+            speed: 0.1
+            intelligence: 0.5
+          legendary:
+            speed: 0.1
+            intelligence: 0.5
+        particle: 3
+        skill_category: COMBAT
+        skull_texture: ""
+        handler_id: EERIE
+      - id: TRACKED_UNIQUE
+  - id: ELEPHANT_PET
+    material: player_head
+    rarity: MYTHIC
+    components:
+      - id: PET
+        pet_name: Elephant
+        george_price:
+          common: 5000
+          uncommon: 12500
+          rare: 50000
+          epic: 500000
+          legendary: 5000000
+          mythic: 10000000
+          rest: 0
+        base_statistics: {}
+        per_level_statistics:
+          common:
+            health: 1
+            intelligence: 0.75
+          uncommon:
+            health: 1
+            intelligence: 0.75
+          rare:
+            health: 1
+            intelligence: 0.75
+          epic:
+            health: 1
+            intelligence: 0.75
+          legendary:
+            health: 1
+            intelligence: 0.75
+          mythic:
+            health: 1
+            intelligence: 0.75
+            farming_fortune: 0.5
+        particle: 3
+        skill_category: FARMING
+        skull_texture: ""
+        handler_id: ELEPHANT
+      - id: TRACKED_UNIQUE
+  - id: ENDER_DRAGON_PET
+    material: player_head
+    rarity: LEGENDARY
+    components:
+      - id: PET
+        pet_name: Ender Dragon
+        george_price:
+          epic: 500000
+          legendary: 5000000
+          rest: 0
+        base_statistics: {}
+        per_level_statistics:
+          epic:
+            strength: 0.5
+            critical_chance: 0.1
+            critical_damage: 0.5
+          legendary:
+            strength: 0.5
+            critical_chance: 0.1
+            critical_damage: 0.5
+        particle: 3
+        skill_category: COMBAT
+        skull_texture: ""
+        handler_id: ENDER_DRAGON
+      - id: TRACKED_UNIQUE
+  - id: ENDERMAN_PET
+    material: player_head
+    rarity: MYTHIC
+    components:
+      - id: PET
+        pet_name: Enderman
+        george_price:
+          common: 100
+          uncommon: 500
+          rare: 2000
+          epic: 10000
+          legendary: 1000000
+          mythic: 2500000
+          rest: 0
+        base_statistics: {}
+        per_level_statistics:
+          common:
+            critical_damage: 0.75
+          uncommon:
+            critical_damage: 0.75
+          rare:
+            critical_damage: 0.75
+          epic:
+            critical_damage: 0.75
+          legendary:
+            critical_damage: 0.75
+          mythic:
+            critical_damage: 0.75
+        particle: 3
+        skill_category: COMBAT
+        skull_texture: ""
+        handler_id: ENDERMAN
+      - id: TRACKED_UNIQUE

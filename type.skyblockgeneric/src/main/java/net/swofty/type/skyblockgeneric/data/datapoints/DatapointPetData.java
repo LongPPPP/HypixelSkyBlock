@@ -10,9 +10,8 @@ import net.swofty.commons.protocol.serializers.UnderstandableSkyBlockItemSeriali
 import net.swofty.type.skyblockgeneric.data.SkyBlockDatapoint;
 import net.swofty.type.skyblockgeneric.entity.PetEntityImpl;
 import net.swofty.type.skyblockgeneric.item.SkyBlockItem;
-import net.swofty.type.skyblockgeneric.item.components.PetComponent;
 import net.swofty.type.skyblockgeneric.item.components.SkullHeadComponent;
-import net.swofty.type.skyblockgeneric.item.handlers.pet.PetHandler;
+import net.swofty.type.skyblockgeneric.item.handlers.pet.PetAbilityRegistry;
 import net.swofty.type.skyblockgeneric.item.handlers.pet.abstr.AbilityRuntime;
 import net.swofty.type.skyblockgeneric.item.handlers.pet.abstr.PetAbility;
 import net.swofty.type.skyblockgeneric.item.handlers.pet.abstr.PetEvent;
@@ -72,7 +71,6 @@ public class DatapointPetData extends SkyBlockDatapoint<DatapointPetData.UserPet
     public static class UserPetData {
         private HashMap<SkyBlockItem, Boolean> petsMap;
         private PetEntityImpl enabledPetEntityImpl = null;
-        private transient List<PetAbility> cachedAbilities;
         private final transient Map<PetAbility, AbilityRuntime> abilityRuntimes = new HashMap<>();
 
         public UserPetData() {
@@ -96,8 +94,6 @@ public class DatapointPetData extends SkyBlockDatapoint<DatapointPetData.UserPet
 
             if (enabledPetEntityImpl != null)
                 enabledPetEntityImpl.remove();
-
-            refreshCachedAbilities();
         }
 
         public void updatePetEntityImpl(SkyBlockPlayer player) {
@@ -120,19 +116,14 @@ public class DatapointPetData extends SkyBlockDatapoint<DatapointPetData.UserPet
 
         public void deselectCurrent() {
             petsMap.keySet().forEach(pet -> petsMap.put(pet, false));
-            this.cachedAbilities = null;
         }
 
         public @Nullable SkyBlockItem getEnabledPet() {
             return petsMap.keySet().stream().filter(petsMap::get).findFirst().orElse(null);
         }
 
-        public List<PetAbility> getCachedAbilities(SkyBlockItem pet) {
-            if (cachedAbilities == null) {
-                PetComponent component = pet.getComponent(PetComponent.class);
-                cachedAbilities = PetHandler.valueOf(component.getHandlerId().toUpperCase()).getAbilities(pet);
-            }
-            return cachedAbilities;
+        public List<PetAbility> getAbilities(SkyBlockItem pet) {
+            return PetAbilityRegistry.getAbilities(pet);
         }
 
         public AbilityRuntime getAbilityRuntime(PetAbility ability) {
@@ -142,21 +133,10 @@ public class DatapointPetData extends SkyBlockDatapoint<DatapointPetData.UserPet
         public <E extends PetEvent> E dispatch(E event) {
             SkyBlockItem pet = getEnabledPet();
             if (pet == null) return event;
-            for (PetAbility ability : getCachedAbilities(pet)) {
-                ability.onEvent(event);
+            for (PetAbility ability : getAbilities(pet)) {
+                PetAbilityRegistry.invoke(ability, event);
             }
             return event;
-        }
-
-        // TODO: need to be called by Tier Boost
-        public void refreshCachedAbilities() {
-            SkyBlockItem activePet = getEnabledPet();
-            if (activePet != null) {
-                PetComponent component = activePet.getComponent(PetComponent.class);
-                this.cachedAbilities = PetHandler.valueOf(component.getHandlerId().toUpperCase()).getAbilities(activePet);
-            } else {
-                this.cachedAbilities = null;
-            }
         }
 
         public @Nullable SkyBlockItem getPet(ItemType type) {

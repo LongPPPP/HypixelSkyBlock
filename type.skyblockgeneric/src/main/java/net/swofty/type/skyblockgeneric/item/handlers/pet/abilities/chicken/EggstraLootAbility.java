@@ -1,4 +1,8 @@
-package net.swofty.type.skyblockgeneric.item.handlers.pet.abilities;
+package net.swofty.type.skyblockgeneric.item.handlers.pet.abilities.chicken;
+
+import net.swofty.type.skyblockgeneric.item.handlers.pet.PetHandler;
+import net.swofty.type.skyblockgeneric.item.handlers.pet.abstr.PetAbilityRegistration;
+import net.swofty.type.skyblockgeneric.item.handlers.pet.abstr.PetEventHandler;
 
 import net.minestom.server.entity.EntityType;
 import net.minestom.server.item.ItemStack;
@@ -21,6 +25,7 @@ import java.util.Set;
 
 import static net.swofty.commons.StringUtility.decimalify;
 
+@PetAbilityRegistration(pet = PetHandler.CHICKEN, minimumRarity = Rarity.RARE)
 public final class EggstraLootAbility implements PetAbility {
     private static final RarityValue<Double> CHANCE_PER_LEVEL = new RarityValue<>(0.0, 0.0, 0.8, 1.0, 1.0, 1.0, 0.0);
     private static final Set<EntityType> ANIMALS = Set.of(
@@ -46,19 +51,21 @@ public final class EggstraLootAbility implements PetAbility {
         );
     }
 
-    @Override
-    public void onEvent(PetEvent event) {
-        if (event instanceof PetEvent.Kill kill && kill.mob().getEntityType() == EntityType.CHICKEN) {
-            dropItemForPlayer(
-                    kill.player(),
-                    new SkyBlockItem(ItemStack.of(Material.EGG)),
-                    1,
-                    kill.mob()
-            );
-        }
-        if (event instanceof PetEvent.Kill kill && ANIMALS.contains(kill.mob().getEntityType())) {
-            dropExtraLoot(kill);
-        }
+    @PetEventHandler
+    public void onChickenKill(PetEvent.Kill kill) {
+        if (kill.mob().getEntityType() != EntityType.CHICKEN) return;
+        dropItemForPlayer(
+                kill.player(),
+                new SkyBlockItem(ItemStack.of(Material.EGG)),
+                1,
+                kill.mob()
+        );
+    }
+
+    @PetEventHandler
+    public void onAnimalKill(PetEvent.Kill kill) {
+        if (!ANIMALS.contains(kill.mob().getEntityType())) return;
+        dropExtraLoot(kill);
     }
 
     private void dropExtraLoot(PetEvent.Kill context) {
