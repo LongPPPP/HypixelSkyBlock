@@ -1,0 +1,44 @@
+package net.swofty.type.skyblockgeneric.item.handlers.pet.abilities.blue_whale;
+
+import net.swofty.commons.skyblock.item.Rarity;
+import net.swofty.commons.skyblock.statistics.ItemStatistic;
+import net.swofty.commons.skyblock.statistics.ItemStatistics;
+import net.swofty.type.skyblockgeneric.item.SkyBlockItem;
+import net.swofty.type.skyblockgeneric.item.handlers.pet.PetHandler;
+import net.swofty.type.skyblockgeneric.item.handlers.pet.abstr.PetAbility;
+import net.swofty.type.skyblockgeneric.item.handlers.pet.abstr.PetAbilityRegistration;
+import net.swofty.type.skyblockgeneric.user.SkyBlockPlayer;
+
+import java.util.List;
+
+import static net.swofty.commons.StringUtility.decimalify;
+
+@PetAbilityRegistration(pet = PetHandler.BLUE_WHALE, minimumRarity = Rarity.LEGENDARY)
+public final class ArchimedesAbility implements PetAbility {
+    @Override
+    public String getName() {
+        return "Archimedes";
+    }
+
+    @Override
+    public List<String> getDescription(SkyBlockItem pet) {
+        Rarity rarity = pet.getAttributeHandler().getRarity();
+        int level = pet.getAttributeHandler().getPetData().getAsLevel(rarity);
+        double maxHealth = level * 0.2;
+
+        return List.of(
+                "§7Gain §c+" + decimalify(maxHealth, 2) + "% Max" + ItemStatistic.HEALTH.getFullDisplayName() + "§7."
+        );
+    }
+
+    @Override
+    public ItemStatistics getStatistics(SkyBlockPlayer player, SkyBlockItem pet) {
+        Rarity rarity = pet.getAttributeHandler().getRarity();
+        int level = pet.getAttributeHandler().getPetData().getAsLevel(rarity);
+        double maxHealth = level * 0.2;
+
+        return ItemStatistics.builder()
+                .withAdditivePercentage(ItemStatistic.HEALTH, maxHealth)
+                .build();
+    }
+}
