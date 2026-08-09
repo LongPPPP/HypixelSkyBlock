@@ -50,6 +50,23 @@ public sealed interface PetEvent {
 
     @Getter
     @Accessors(fluent = true)
+    final class AbilityCooldown implements PetEvent {
+        private final SkyBlockPlayer player;
+        private final SkyBlockItem pet;
+        private final SkyBlockItem item;
+        @Setter
+        private double cooldown;  // millis, modified by handlers
+
+        public AbilityCooldown(SkyBlockPlayer player, SkyBlockItem pet, SkyBlockItem item, double cooldown) {
+            this.player = player;
+            this.pet = pet;
+            this.item = item;
+            this.cooldown = cooldown;
+        }
+    }
+
+    @Getter
+    @Accessors(fluent = true)
     non-sealed class Damaged implements PetEvent {
         private final SkyBlockPlayer player;
         private final SkyBlockItem pet;

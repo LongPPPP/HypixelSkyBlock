@@ -1,0 +1,64 @@
+package net.swofty.type.skyblockgeneric.item.handlers.pet.abilities.crow;
+
+import net.swofty.commons.skyblock.item.Rarity;
+import net.swofty.commons.skyblock.statistics.ItemStatistic;
+import net.swofty.commons.skyblock.statistics.ItemStatistics;
+import net.swofty.type.skyblockgeneric.item.SkyBlockItem;
+import net.swofty.type.skyblockgeneric.item.handlers.pet.PetHandler;
+import net.swofty.type.skyblockgeneric.item.handlers.pet.abstr.*;
+import net.swofty.type.skyblockgeneric.user.SkyBlockPlayer;
+import net.swofty.type.skyblockgeneric.utility.RarityValue;
+
+import java.util.Arrays;
+import java.util.List;
+
+import static net.swofty.commons.StringUtility.decimalify;
+
+@PetAbilityRegistration(pet = PetHandler.CROW, minimumRarity = Rarity.RARE)
+public final class CamouflageAbility implements PetAbility {
+    private static final int BASE = 5;
+    private static final RarityValue<Double> PER_LEVEL = new RarityValue<>(0.0, 0.0, 0.1, 0.15, 0.15, 0.0, 0.0);
+    private static final long BUFF_DURATION_MS = 20_000L;
+    private static final int DEFENSE_CAP = 500;
+
+    @Override
+    public String getName() {
+        return "Camouflage";
+    }
+
+    @Override
+    public List<String> getDescription(SkyBlockItem pet) {
+        Rarity rarity = pet.getAttributeHandler().getRarity();
+        int level = pet.getAttributeHandler().getPetData().getAsLevel(rarity);
+        double value = BASE + PER_LEVEL.getForRarity(rarity) * level;
+
+        return Arrays.asList(
+                "§7After casting an ability, increase",
+                "§7your §a Defense §7by §a+" + decimalify(value, 2) + " §7for §b20",
+                "§bseconds§7.",
+                "§8Capped at " + DEFENSE_CAP + " Defense"
+        );
+    }
+
+    @PetEventHandler
+    public void onAbilityCast(PetEvent.AbilityCast event) {
+        event.player().getPetData().getAbilityRuntime(this)
+                .getProcs().record(System.currentTimeMillis());
+    }
+
+    @Override
+    public ItemStatistics getStatistics(SkyBlockPlayer player, SkyBlockItem pet) {
+        ProcWindow procs = player.getPetData().getAbilityRuntime(this).getProcs();
+        int active = procs.active(System.currentTimeMillis(), BUFF_DURATION_MS);
+        if (active == 0) return ItemStatistics.empty();
+
+        Rarity rarity = pet.getAttributeHandler().getRarity();
+        int level = pet.getAttributeHandler().getPetData().getAsLevel(rarity);
+        double perCast = BASE + PER_LEVEL.getForRarity(rarity) * level;
+
+        return ItemStatistics.builder()
+                .withBase(ItemStatistic.DEFENSE, Math.min(active * perCast, DEFENSE_CAP))
+                .build();
+    }
+}
+

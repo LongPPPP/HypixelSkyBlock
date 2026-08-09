@@ -78,7 +78,7 @@ import java.util.stream.Stream;
 
 @Getter
 public class SkyBlockPlayer extends HypixelPlayer {
-    private final PlayerAbilityHandler abilityHandler = new PlayerAbilityHandler();
+    private final PlayerAbilityHandler abilityHandler = new PlayerAbilityHandler(this);
     @Getter
     private final PlayerStatistics statistics = new PlayerStatistics(this);
     public float health = 100;
