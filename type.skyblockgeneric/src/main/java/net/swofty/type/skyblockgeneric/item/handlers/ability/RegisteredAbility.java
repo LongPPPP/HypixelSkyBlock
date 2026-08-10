@@ -49,11 +49,8 @@ public class RegisteredAbility {
         if (!action.execute(player, item, targetedBlock, blockFace)){
             return false;
         }
-        SkyBlockItem pet = player.getPetData().getEnabledPet();
-        PetEvent.ManaCost manaCost = player.getPetData()
-                .dispatch(new PetEvent.ManaCost(player, pet, cost.getManaCost()));
-        if (!manaCost.free()) cost.onUse(player, this);
-        player.getPetData().dispatch(new PetEvent.AbilityCast(player, pet));
+        cost.onUse(player, this);
+        player.getPetData().dispatch(new PetEvent.AbilityCast(player, player.getPetData().getEnabledPet()));
         return true;
     }
 
@@ -90,10 +87,6 @@ public class RegisteredAbility {
         public abstract void onUse(@NonNull SkyBlockPlayer player, @NonNull RegisteredAbility ability);
         public abstract void onFail(@NonNull SkyBlockPlayer player);
         public abstract @Nullable String getLoreDisplay();
-
-        public int getManaCost() {
-            return 0;
-        }
     }
 
     public static class AbilityManaCost extends AbilityCost {
@@ -110,6 +103,10 @@ public class RegisteredAbility {
 
         @Override
         public void onUse(@NonNull SkyBlockPlayer player, @NonNull RegisteredAbility ability) {
+            SkyBlockItem pet = player.getPetData().getEnabledPet();
+            PetEvent.ManaCost manaCost = player.getPetData()
+                    .dispatch(new PetEvent.ManaCost(player, pet, cost));
+            if (manaCost.free()) return;
             SkyBlockActionBar.getFor(player).addReplacement(
                     SkyBlockActionBar.BarSection.MANA,
                     new SkyBlockActionBar.DisplayReplacement(
@@ -134,11 +131,6 @@ public class RegisteredAbility {
         }
 
         @Override
-        public int getManaCost() {
-            return cost;
-        }
-
-        @Override
         public String getLoreDisplay() {
             return "§8Mana Cost: §3" + cost;
         }
@@ -160,6 +152,10 @@ public class RegisteredAbility {
 
         @Override
         public void onUse(@NonNull SkyBlockPlayer player, @NonNull RegisteredAbility ability) {
+            SkyBlockItem pet = player.getPetData().getEnabledPet();
+            PetEvent.ManaCost manaCost = player.getPetData()
+                    .dispatch(new PetEvent.ManaCost(player, pet, cost));
+            if (manaCost.free()) return;
             SkyBlockActionBar.getFor(player).addReplacement(
                     SkyBlockActionBar.BarSection.MANA,
                     new SkyBlockActionBar.DisplayReplacement(
@@ -195,11 +191,6 @@ public class RegisteredAbility {
                             2
                     )
             );
-        }
-
-        @Override
-        public int getManaCost() {
-            return cost;
         }
 
         @Override
