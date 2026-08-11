@@ -44,7 +44,7 @@ public final class BulkAbility implements PetAbility {
         double defense = level * 0.01;
         int threshold = MAX_HEALTH_THRESHOLD.getForRarity(rarity);
 
-        double maxHealth = player.getStatistics().allStatistics().getOverall(ItemStatistic.HEALTH);
+        double maxHealth = player.getStatistics().allNonPetStatistics(null, null).getOverall(ItemStatistic.HEALTH);
         double granted = Math.floor(maxHealth / threshold) * defense;
 
         return ItemStatistics.builder()

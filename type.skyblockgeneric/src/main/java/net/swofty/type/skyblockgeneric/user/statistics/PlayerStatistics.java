@@ -241,19 +241,22 @@ public class PlayerStatistics {
     }
 
     public ItemStatistics allStatistics(SkyBlockPlayer causer, LivingEntity enemy) {
-        ItemStatistics total = ItemStatistics.builder().build();
-        if (enemy instanceof BestiaryMob bestiaryMob) total = ItemStatistics.add(total, getBestiaryStatistics(causer, bestiaryMob));
-        total = ItemStatistics.add(total, allArmorStatistics(causer, enemy));
-        total = ItemStatistics.add(total, equipmentStatistics(causer, enemy));
-        total = ItemStatistics.add(total, mainHandStatistics(causer, enemy));
-        total = ItemStatistics.add(total, spareStatistics());
-        total = ItemStatistics.add(total, getTemporaryStatistics());
-        total = ItemStatistics.add(total, petStatistics());
-        total = ItemStatistics.add(total, accessoryStatistics);
-        total = ItemStatistics.add(total, AttributeEffectService.statistics(player));
-        total = ItemStatistics.add(total, ItemStatistic.getOfAllBaseValues());
+        ItemStatistics base = allNonPetStatistics(causer, enemy);
+        return ItemStatistics.add(base, petStatistics());
+    }
 
-        return total;
+    public ItemStatistics allNonPetStatistics(SkyBlockPlayer causer, LivingEntity enemy) {
+        ItemStatistics base = ItemStatistics.builder().build();
+        if (enemy instanceof BestiaryMob bestiaryMob) base = ItemStatistics.add(base, getBestiaryStatistics(causer, bestiaryMob));
+        base = ItemStatistics.add(base, allArmorStatistics(causer, enemy));
+        base = ItemStatistics.add(base, equipmentStatistics(causer, enemy));
+        base = ItemStatistics.add(base, mainHandStatistics(causer, enemy));
+        base = ItemStatistics.add(base, spareStatistics());
+        base = ItemStatistics.add(base, getTemporaryStatistics());
+        base = ItemStatistics.add(base, accessoryStatistics);
+        base = ItemStatistics.add(base, AttributeEffectService.statistics(player));
+        base = ItemStatistics.add(base, ItemStatistic.getOfAllBaseValues());
+        return base;
     }
 
     public List<StatisticSource> statisticSources() {
