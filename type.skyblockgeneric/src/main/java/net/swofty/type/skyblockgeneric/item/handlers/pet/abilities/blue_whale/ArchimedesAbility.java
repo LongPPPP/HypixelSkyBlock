@@ -27,7 +27,7 @@ public final class ArchimedesAbility implements PetAbility {
         double maxHealth = level * 0.2;
 
         return List.of(
-                "§7Gain §c+" + decimalify(maxHealth, 2) + "% Max" + ItemStatistic.HEALTH.getFullDisplayName() + "§7."
+                "<7>Gain <stat:health:+" + decimalify(maxHealth, 2) + "% Max><7>."
         );
     }
 

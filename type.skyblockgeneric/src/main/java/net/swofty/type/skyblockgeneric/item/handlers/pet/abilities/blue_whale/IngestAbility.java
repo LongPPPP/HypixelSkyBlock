@@ -30,8 +30,8 @@ public final class IngestAbility implements PetAbility {
         double reduction = level * 0.05;
 
         return Arrays.asList(
-                "§7If you have any absorption active,",
-                "§7gain §a+" + decimalify(reduction, 2) + "% Damage Reduction§7."
+                "<7>If you have any absorption active,",
+                "<7>gain <a>+" + decimalify(reduction, 2) + "% Damage Reduction<7>."
         );
     }
 

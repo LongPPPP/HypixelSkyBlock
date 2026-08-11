@@ -48,7 +48,7 @@ public final class PetAbilityRegistry {
         AbilityEntry entry = BY_ABILITY.get(ability);
         if (entry == null || entry.implemented()) return null;
         String reason = entry.notImplementedReason();
-        return "§c⚠ §lNOT IMPLEMENTED§r§c" + (reason.isEmpty() ? "" : " — " + reason);
+        return "<c>⚠ <l>NOT IMPLEMENTED<r><c>" + (reason.isEmpty() ? "" : " — " + reason);
     }
 
     public static void invoke(PetAbility ability, PetEvent event) {

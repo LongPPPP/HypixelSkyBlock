@@ -30,8 +30,8 @@ public final class InsightfulAbility implements PetAbility {
         double value = BASE + PER_LEVEL * level;
 
         return Arrays.asList(
-                "§7Gives a §a" + decimalify(value, 2) + "%§7 chance to not consume",
-                "§7Mana when using an ability."
+                "<7>Gives a <a>" + decimalify(value, 2) + "%<7> chance to not consume",
+                "<7>Mana when using an ability."
         );
     }
 

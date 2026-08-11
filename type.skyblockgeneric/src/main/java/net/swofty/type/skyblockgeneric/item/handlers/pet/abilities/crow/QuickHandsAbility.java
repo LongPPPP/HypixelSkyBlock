@@ -32,8 +32,8 @@ public final class QuickHandsAbility implements PetAbility {
         double value = BASE + PER_LEVEL.getForRarity(rarity) * level;
 
         return Arrays.asList(
-                "§7Lowers the cooldown of your §cWeapon",
-                "§7abilities by §a+" + decimalify(value, 2) + "%§7."
+                "<7>Lowers the cooldown of your <c>Weapon",
+                "<7>abilities by <a>+" + decimalify(value, 2) + "%<7>."
         );
     }
 

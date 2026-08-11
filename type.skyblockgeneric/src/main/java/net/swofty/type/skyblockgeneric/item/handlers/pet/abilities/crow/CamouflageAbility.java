@@ -33,10 +33,10 @@ public final class CamouflageAbility implements PetAbility {
         double value = BASE + PER_LEVEL.getForRarity(rarity) * level;
 
         return Arrays.asList(
-                "§7After casting an ability, increase",
-                "§7your §a Defense §7by §a+" + decimalify(value, 2) + " §7for §b20",
-                "§bseconds§7.",
-                "§8Capped at " + DEFENSE_CAP + " Defense"
+                "<7>After casting an ability, increase",
+                "<7>your <a>Defense <7>by <a>+" + decimalify(value, 2) + " <7>for <b>20",
+                "<b>seconds<7>.",
+                "<8>Capped at " + DEFENSE_CAP + " Defense"
         );
     }
 

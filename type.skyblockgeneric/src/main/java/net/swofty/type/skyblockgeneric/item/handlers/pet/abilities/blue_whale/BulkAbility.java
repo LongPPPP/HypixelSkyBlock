@@ -32,8 +32,8 @@ public final class BulkAbility implements PetAbility {
         int threshold = MAX_HEALTH_THRESHOLD.getForRarity(rarity);
 
         return Arrays.asList(
-                "§7Gain §a" + decimalify(defense, 2) + ItemStatistic.DEFENSE.getFullDisplayName() + " §7per",
-                "§c" + threshold + " Max" + ItemStatistic.HEALTH.getFullDisplayName() + "§7."
+                "<7>Gain <stat:defense:+" + decimalify(defense, 2) + "> <7>per",
+                "<stat:health:" + threshold + " Max><7>."
         );
     }
 

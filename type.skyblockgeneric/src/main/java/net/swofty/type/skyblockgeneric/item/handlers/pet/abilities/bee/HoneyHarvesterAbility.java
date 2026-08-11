@@ -32,8 +32,8 @@ public final class HoneyHarvesterAbility implements PetAbility {
         double chance = CHANCE_PER_LEVEL * level;
 
         return List.of(
-                "§7You have a §a" + decimalify(chance, 3) + "% §7chance to find a",
-                "§aHoney Jar §7when farming crops."
+                "<7>You have a <a>" + decimalify(chance, 3) + "% <7>chance to find a",
+                "<a>Honey Jar <7>when farming crops."
         );
     }
 
