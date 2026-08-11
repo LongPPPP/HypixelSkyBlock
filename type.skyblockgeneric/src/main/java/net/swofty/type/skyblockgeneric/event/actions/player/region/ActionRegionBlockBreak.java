@@ -44,7 +44,7 @@ public class ActionRegionBlockBreak implements HypixelEventClass {
             }
             region.setPos1(event.getBlockPosition());
             RegionSelectorComponent.getPlayerRegionSelection().put(player, region);
-            player.sendMessage("§aPosition 1 set to §e" + event.getBlockPosition() + "§a.");
+            player.sendMessage("<a>Position 1 set to <e>{}<a>.", event.getBlockPosition());
             event.setCancelled(true);
             return;
         }
@@ -193,7 +193,7 @@ public class ActionRegionBlockBreak implements HypixelEventClass {
                         Pos adjacentPos = orePos.add(offset);
                         Block block2 = player.getInstance().getBlock(adjacentPos);
 
-                        if (block2.isAir()) {
+                        if (block2.air()) {
                             double distanceSquared = adjacentPos.distanceSquared(playerPos);
                             if (distanceSquared < closestDistanceSquared) {
                                 closestDistanceSquared = distanceSquared;
@@ -285,7 +285,7 @@ public class ActionRegionBlockBreak implements HypixelEventClass {
         double nearestDistance = Double.MAX_VALUE;
         for (Pos offset : offsets) {
             Pos candidate = source.add(offset);
-            if (!player.getInstance().getBlock(candidate).isAir()) continue;
+            if (!player.getInstance().getBlock(candidate).air()) continue;
             double distance = candidate.distanceSquared(player.getPosition());
             if (distance < nearestDistance) {
                 nearest = candidate;

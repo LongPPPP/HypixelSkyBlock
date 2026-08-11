@@ -3280,8 +3280,6 @@ public enum ItemType {
 
   SAND(Material.SAND, Rarity.COMMON),
 
-  SANDBOX_ITEM(Material.BLAZE_POWDER, Rarity.COMMON),
-
   SANDSTONE(Material.SANDSTONE, Rarity.COMMON),
 
   SANDSTONE_SLAB(Material.SANDSTONE_SLAB, Rarity.COMMON),
@@ -3752,7 +3750,7 @@ public enum ItemType {
 
   SILVER_BLOBFISH(Material.PLAYER_HEAD, Rarity.COMMON),
 
-  SILVER_FANG(Material.IRON_SWORD, Rarity.RARE),
+  SILVER_FANG(Material.GHAST_TEAR, Rarity.UNCOMMON),
 
   SILVER_FLYFISH(Material.PLAYER_HEAD, Rarity.COMMON),
 
@@ -3795,8 +3793,6 @@ public enum ItemType {
   SINFUL_DICE(Material.PLAYER_HEAD, Rarity.EPIC),
 
   SINSEEKER_SCYTHE(Material.GOLDEN_HOE, Rarity.EPIC),
-
-  SKELETON_LORD_BOW(Material.BOW, Rarity.EPIC),
 
   SKELETON_MINION(Material.PLAYER_HEAD, Rarity.COMMON),
 
