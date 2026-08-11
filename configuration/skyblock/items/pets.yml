@@ -36,7 +36,8 @@ items:
             item: ENCHANTED_GOLD_BLOCK
             amount: 9
           rest: null
-        base_statistics: {}
+        base_statistics:
+          strength: 5
         per_level_statistics:
           common:
             speed: 0.1
@@ -349,4 +350,2505 @@ items:
         skill_category: COMBAT
         skull_texture: ""
         handler_id: ENDERMAN
+      - id: TRACKED_UNIQUE
+  - id: AMMONITE_PET
+    material: player_head
+    name: "Ammonite Pet"
+    rarity: LEGENDARY
+    components:
+      - id: PET
+        pet_name: Ammonite
+        george_price:
+          common: 0
+          uncommon: 0
+          rare: 0
+          epic: 0
+          legendary: 5000
+          mythic: 0
+          rest: 0
+        base_statistics: {}
+        per_level_statistics:
+          legendary:
+            sea_creature_chance: 0.05
+        particle: 3
+        skill_category: FISHING
+        skull_texture: ""
+        handler_id: AMMONITE
+      - id: TRACKED_UNIQUE
+  - id: ANKYLOSAURUS_PET
+    material: player_head
+    name: "Ankylosaurus Pet"
+    rarity: LEGENDARY
+    components:
+      - id: PET
+        pet_name: Ankylosaurus
+        george_price:
+          common: 0
+          uncommon: 0
+          rare: 0
+          epic: 0
+          legendary: 500000
+          mythic: 0
+          rest: 0
+        base_statistics: {}
+        per_level_statistics:
+          legendary:
+            health: 1.5
+            defense: 0.5
+            true_defense: 0.15
+        particle: 3
+        skill_category: COMBAT
+        skull_texture: ""
+        handler_id: ANKYLOSAURUS
+      - id: TRACKED_UNIQUE
+  - id: ARMADILLO_PET
+    material: player_head
+    name: "Armadillo Pet"
+    rarity: MYTHIC
+    components:
+      - id: PET
+        pet_name: Armadillo
+        george_price:
+          common: 100
+          uncommon: 500
+          rare: 1000
+          epic: 2000
+          legendary: 5000
+          mythic: 10000
+          rest: 0
+        base_statistics: {}
+        per_level_statistics:
+          common:
+            defense: 2
+          uncommon:
+            defense: 2
+          rare:
+            defense: 2
+          epic:
+            defense: 2
+          legendary:
+            defense: 2
+          mythic:
+            defense: 2
+        particle: 3
+        skill_category: MINING
+        skull_texture: ""
+        handler_id: ARMADILLO
+      - id: TRACKED_UNIQUE
+  - id: BABY_YETI_PET
+    material: player_head
+    name: "Baby Yeti Pet"
+    rarity: MYTHIC
+    components:
+      - id: PET
+        pet_name: Baby Yeti
+        george_price:
+          common: 1000000
+          uncommon: 1250000
+          rare: 1500000
+          epic: 2000000
+          legendary: 2500000
+          mythic: 5000000
+          rest: 0
+        base_statistics: {}
+        per_level_statistics:
+          common:
+            strength: 0.5
+            fishing_speed: 0.5
+            sea_creature_chance: 0.05
+          uncommon:
+            strength: 0.5
+            fishing_speed: 0.5
+            sea_creature_chance: 0.05
+          rare:
+            strength: 0.5
+            fishing_speed: 0.5
+            sea_creature_chance: 0.05
+          epic:
+            strength: 0.5
+            fishing_speed: 0.5
+            sea_creature_chance: 0.05
+          legendary:
+            strength: 0.5
+            fishing_speed: 0.5
+            sea_creature_chance: 0.05
+          mythic:
+            strength: 0.5
+            fishing_speed: 0.5
+            sea_creature_chance: 0.05
+            cold_resistance: 0.1
+        particle: 3
+        skill_category: FISHING
+        skull_texture: ""
+        handler_id: BABY_YETI
+      - id: TRACKED_UNIQUE
+  - id: BAL_PET
+    material: player_head
+    name: "Bal Pet"
+    rarity: LEGENDARY
+    components:
+      - id: PET
+        pet_name: Bal
+        george_price:
+          common: 0
+          uncommon: 0
+          rare: 0
+          epic: 2000
+          legendary: 5000
+          mythic: 0
+          rest: 0
+        base_statistics: {}
+        per_level_statistics:
+          epic:
+            heat_resistance: 1.5
+            mining_fortune: 1
+          legendary:
+            heat_resistance: 1.5
+            mining_fortune: 1
+        particle: 3
+        skill_category: MINING
+        skull_texture: ""
+        handler_id: BAL
+      - id: TRACKED_UNIQUE
+  - id: BAT_PET
+    material: player_head
+    name: "Bat Pet"
+    rarity: MYTHIC
+    components:
+      - id: PET
+        pet_name: Bat
+        george_price:
+          common: 250
+          uncommon: 5000
+          rare: 10000
+          epic: 25000
+          legendary: 50000
+          mythic: 100000
+          rest: 0
+        base_statistics: {}
+        per_level_statistics:
+          common:
+            intelligence: 1
+            speed: 0.05
+          uncommon:
+            intelligence: 1
+            speed: 0.05
+          rare:
+            intelligence: 1
+            speed: 0.05
+          epic:
+            intelligence: 1
+            speed: 0.05
+          legendary:
+            intelligence: 1
+            speed: 0.05
+          mythic:
+            intelligence: 1
+            speed: 0.05
+            fishing_speed: 0.4
+            sea_creature_chance: 0.05
+        particle: 3
+        skill_category: MINING
+        skull_texture: ""
+        handler_id: BAT
+      - id: TRACKED_UNIQUE
+  - id: BLACK_CAT_PET
+    material: player_head
+    name: "Black Cat Pet"
+    rarity: MYTHIC
+    components:
+      - id: PET
+        pet_name: Black Cat
+        george_price:
+          common: 0
+          uncommon: 0
+          rare: 0
+          epic: 0
+          legendary: 5000000
+          mythic: 10000000
+          rest: 0
+        base_statistics: {}
+        per_level_statistics:
+          legendary:
+            intelligence: 1
+            speed: 1.25
+            magic_find: 0.15
+            pet_luck: 0.15
+          mythic:
+            intelligence: 1
+            speed: 1.25
+            magic_find: 0.15
+            pet_luck: 0.15
+        particle: 3
+        skill_category: COMBAT
+        skull_texture: ""
+        handler_id: BLACK_CAT
+      - id: TRACKED_UNIQUE
+  - id: BLAZE_PET
+    material: player_head
+    name: "Blaze Pet"
+    rarity: LEGENDARY
+    components:
+      - id: PET
+        pet_name: Blaze
+        george_price:
+          common: 10000
+          uncommon: 250000
+          rare: 500000
+          epic: 1000000
+          legendary: 2500000
+          mythic: 0
+          rest: 0
+        base_statistics: {}
+        per_level_statistics:
+          common:
+            defense: 0.3
+            intelligence: 1
+          uncommon:
+            defense: 0.3
+            intelligence: 1
+          rare:
+            defense: 0.3
+            intelligence: 1
+          epic:
+            defense: 0.3
+            intelligence: 1
+          legendary:
+            defense: 0.3
+            intelligence: 1
+        particle: 3
+        skill_category: COMBAT
+        skull_texture: ""
+        handler_id: BLAZE
+      - id: TRACKED_UNIQUE
+  - id: ENDERMITE_PET
+    material: player_head
+    name: "Endermite Pet"
+    rarity: MYTHIC
+    components:
+      - id: PET
+        pet_name: Endermite
+        george_price:
+          common: 250
+          uncommon: 5000
+          rare: 10000
+          epic: 25000
+          legendary: 50000
+          mythic: 100000
+          rest: 0
+        base_statistics: {}
+        per_level_statistics:
+          common:
+            intelligence: 1.5
+            pet_luck: 0.1
+          uncommon:
+            intelligence: 1.5
+            pet_luck: 0.1
+          rare:
+            intelligence: 1.5
+            pet_luck: 0.1
+          epic:
+            intelligence: 1.5
+            pet_luck: 0.1
+          legendary:
+            intelligence: 1.5
+            pet_luck: 0.1
+          mythic:
+            intelligence: 1.5
+            pet_luck: 0.1
+        particle: 3
+        skill_category: MINING
+        skull_texture: ""
+        handler_id: ENDERMITE
+      - id: TRACKED_UNIQUE
+  - id: FLYING_FISH_PET
+    material: player_head
+    name: "Flying Fish Pet"
+    rarity: MYTHIC
+    components:
+      - id: PET
+        pet_name: Flying Fish
+        george_price:
+          common: 0
+          uncommon: 0
+          rare: 1000
+          epic: 100000
+          legendary: 250000
+          mythic: 5000000
+          rest: 0
+        base_statistics: {}
+        per_level_statistics:
+          rare:
+            defense: 0.5
+            strength: 0.5
+          epic:
+            defense: 0.5
+            strength: 0.5
+          legendary:
+            defense: 0.5
+            strength: 0.5
+          mythic:
+            defense: 0.5
+            strength: 0.5
+        particle: 3
+        skill_category: FISHING
+        skull_texture: ""
+        handler_id: FLYING_FISH
+      - id: TRACKED_UNIQUE
+  - id: FROG_PET
+    material: player_head
+    name: "Frog Pet"
+    rarity: MYTHIC
+    components:
+      - id: PET
+        pet_name: Frog
+        george_price:
+          common: 100
+          uncommon: 500
+          rare: 1000
+          epic: 2000
+          legendary: 5000
+          mythic: 10000
+          rest: 0
+        base_statistics:
+          strength: 30
+        per_level_statistics:
+          common:
+            speed: 0.5
+            fishing_speed: 0.4
+            respiration: 0.1
+          uncommon:
+            speed: 0.5
+            fishing_speed: 0.4
+            respiration: 0.1
+          rare:
+            speed: 0.5
+            fishing_speed: 0.4
+            respiration: 0.1
+          epic:
+            speed: 0.5
+            fishing_speed: 0.4
+            respiration: 0.1
+          legendary:
+            speed: 0.5
+            fishing_speed: 0.4
+            respiration: 0.1
+          mythic:
+            speed: 0.5
+            fishing_speed: 0.4
+            respiration: 0.1
+            trophy_fish_chance: 0.05
+        particle: 3
+        skill_category: FORAGING
+        skull_texture: ""
+        handler_id: FROG
+      - id: TRACKED_UNIQUE
+  - id: GHOUL_PET
+    material: player_head
+    name: "Ghoul Pet"
+    rarity: LEGENDARY
+    components:
+      - id: PET
+        pet_name: Ghoul
+        george_price:
+          common: 0
+          uncommon: 0
+          rare: 0
+          epic: 2000
+          legendary: 100000
+          mythic: 0
+          rest: 0
+        base_statistics: {}
+        per_level_statistics:
+          epic:
+            health: 1
+            ferocity: 0.05
+            intelligence: 0.75
+            vitality: 0.15
+            mending: 0.25
+          legendary:
+            health: 1
+            ferocity: 0.05
+            intelligence: 0.75
+            vitality: 0.15
+            mending: 0.25
+        particle: 3
+        skill_category: COMBAT
+        skull_texture: ""
+        handler_id: GHOUL
+      - id: TRACKED_UNIQUE
+  - id: GIRAFFE_PET
+    material: player_head
+    name: "Giraffe Pet"
+    rarity: LEGENDARY
+    components:
+      - id: PET
+        pet_name: Giraffe
+        george_price:
+          common: 5000
+          uncommon: 12500
+          rare: 50000
+          epic: 500000
+          legendary: 5000000
+          mythic: 0
+          rest: 0
+        base_statistics: {}
+        per_level_statistics:
+          common:
+            health: 1
+            critical_chance: 0.05
+            swing_range: 0.01
+          uncommon:
+            health: 1
+            critical_chance: 0.05
+            swing_range: 0.01
+          rare:
+            health: 1
+            critical_chance: 0.05
+            swing_range: 0.01
+          epic:
+            health: 1
+            critical_chance: 0.05
+            swing_range: 0.01
+          legendary:
+            health: 1
+            critical_chance: 0.05
+            swing_range: 0.01
+        particle: 3
+        skill_category: FORAGING
+        skull_texture: ""
+        handler_id: GIRAFFE
+      - id: TRACKED_UNIQUE
+  - id: GLACITE_GOLEM_PET
+    material: player_head
+    name: "Glacite Golem Pet"
+    rarity: LEGENDARY
+    components:
+      - id: PET
+        pet_name: Glacite Golem
+        george_price:
+          common: 10000
+          uncommon: 250000
+          rare: 500000
+          epic: 1000000
+          legendary: 2500000
+          mythic: 0
+          rest: 0
+        base_statistics: {}
+        per_level_statistics:
+          common:
+            cold_resistance: 0.1
+            mining_speed: 1.25
+          uncommon:
+            cold_resistance: 0.1
+            mining_speed: 1.25
+          rare:
+            cold_resistance: 0.1
+            mining_speed: 1.25
+          epic:
+            cold_resistance: 0.1
+            mining_speed: 1.25
+          legendary:
+            cold_resistance: 0.1
+            mining_speed: 1.25
+        particle: 3
+        skill_category: MINING
+        skull_texture: ""
+        handler_id: GLACITE_GOLEM
+      - id: TRACKED_UNIQUE
+  - id: GOBLIN_PET
+    material: player_head
+    name: "Goblin Pet"
+    rarity: LEGENDARY
+    components:
+      - id: PET
+        pet_name: Goblin
+        george_price:
+          common: 0
+          uncommon: 0
+          rare: 0
+          epic: 0
+          legendary: 500000
+          mythic: 0
+          rest: 0
+        base_statistics: {}
+        per_level_statistics:
+          legendary:
+            magic_find: 0.07
+            ore_fortune: 1
+        particle: 3
+        skill_category: MINING
+        skull_texture: ""
+        handler_id: GOBLIN
+      - id: TRACKED_UNIQUE
+  - id: GOLDEN_DRAGON_PET
+    material: player_head
+    name: "Golden Dragon Pet"
+    rarity: LEGENDARY
+    components:
+      - id: PET
+        pet_name: Golden Dragon
+        george_price:
+          common: 0
+          uncommon: 0
+          rare: 0
+          epic: 0
+          legendary: 5000
+          mythic: 0
+          rest: 0
+        base_statistics:
+          strength: 25
+          bonus_attack_speed: 25
+          magic_find: 5
+        per_level_statistics:
+          legendary:
+            strength: 0.25
+            bonus_attack_speed: 0.25
+            magic_find: 0.05
+        particle: 3
+        skill_category: COMBAT
+        skull_texture: ""
+        handler_id: GOLDEN_DRAGON
+      - id: TRACKED_UNIQUE
+  - id: GOLEM_PET
+    material: player_head
+    name: "Golem Pet"
+    rarity: LEGENDARY
+    components:
+      - id: PET
+        pet_name: Golem
+        george_price:
+          common: 0
+          uncommon: 0
+          rare: 0
+          epic: 500000
+          legendary: 2500000
+          mythic: 0
+          rest: 0
+        base_statistics: {}
+        per_level_statistics:
+          epic:
+            health: 1.5
+            strength: 0.5
+            swing_range: 0.01
+          legendary:
+            health: 1.5
+            strength: 0.5
+            swing_range: 0.01
+        particle: 3
+        skill_category: COMBAT
+        skull_texture: ""
+        handler_id: GOLEM
+      - id: TRACKED_UNIQUE
+  - id: GRIFFIN_PET
+    material: player_head
+    name: "Griffin Pet"
+    rarity: MYTHIC
+    components:
+      - id: PET
+        pet_name: Griffin
+        george_price:
+          common: 100
+          uncommon: 500
+          rare: 1000
+          epic: 500000
+          legendary: 2500000
+          mythic: 10000
+          rest: 0
+        base_statistics: {}
+        per_level_statistics:
+          common:
+            strength: 0.5
+            critical_chance: 0.1
+            critical_damage: 0.5
+            bonus_attack_speed: 0.25
+          uncommon:
+            strength: 0.5
+            critical_chance: 0.1
+            critical_damage: 0.5
+            bonus_attack_speed: 0.25
+          rare:
+            strength: 0.5
+            critical_chance: 0.1
+            critical_damage: 0.5
+            bonus_attack_speed: 0.25
+          epic:
+            strength: 0.5
+            critical_chance: 0.1
+            critical_damage: 0.5
+            bonus_attack_speed: 0.25
+          legendary:
+            strength: 0.5
+            critical_chance: 0.1
+            critical_damage: 0.5
+            bonus_attack_speed: 0.25
+          mythic:
+            strength: 0.5
+            critical_chance: 0.1
+            critical_damage: 0.5
+            bonus_attack_speed: 0.25
+        particle: 3
+        skill_category: COMBAT
+        skull_texture: ""
+        handler_id: GRIFFIN
+      - id: TRACKED_UNIQUE
+  - id: GUARDIAN_PET
+    material: player_head
+    name: "Guardian Pet"
+    rarity: MYTHIC
+    components:
+      - id: PET
+        pet_name: Guardian
+        george_price:
+          common: 100
+          uncommon: 500
+          rare: 1000
+          epic: 100000
+          legendary: 250000
+          mythic: 500000
+          rest: 0
+        base_statistics: {}
+        per_level_statistics:
+          common:
+            defense: 0.5
+            intelligence: 1
+          uncommon:
+            defense: 0.5
+            intelligence: 1
+          rare:
+            defense: 0.5
+            intelligence: 1
+          epic:
+            defense: 0.5
+            intelligence: 1
+          legendary:
+            defense: 0.5
+            intelligence: 1
+          mythic:
+            defense: 0.5
+            intelligence: 1
+        particle: 3
+        skill_category: ENCHANTING
+        skull_texture: ""
+        handler_id: GUARDIAN
+      - id: TRACKED_UNIQUE
+  - id: HEDGEHOG_PET
+    material: player_head
+    name: "Hedgehog Pet"
+    rarity: LEGENDARY
+    components:
+      - id: PET
+        pet_name: Hedgehog
+        george_price:
+          common: 0
+          uncommon: 0
+          rare: 0
+          epic: 0
+          legendary: 100000
+          mythic: 0
+          rest: 0
+        base_statistics: {}
+        per_level_statistics:
+          legendary:
+            speed: 0.15
+        particle: 3
+        skill_category: FARMING
+        skull_texture: ""
+        handler_id: HEDGEHOG
+      - id: TRACKED_UNIQUE
+  - id: HERMIT_CRAB_PET
+    material: player_head
+    name: "Hermit Crab Pet"
+    rarity: MYTHIC
+    components:
+      - id: PET
+        pet_name: Hermit Crab
+        george_price:
+          common: 10000
+          uncommon: 20000
+          rare: 50000
+          epic: 200000
+          legendary: 1000000
+          mythic: 2000000
+          rest: 0
+        base_statistics: {}
+        per_level_statistics:
+          common:
+            defense: 0.2
+            fishing_speed: 0.2
+            sea_creature_chance: 0.02
+          uncommon:
+            defense: 0.2
+            fishing_speed: 0.2
+            sea_creature_chance: 0.02
+          rare:
+            defense: 0.2
+            fishing_speed: 0.2
+            sea_creature_chance: 0.02
+          epic:
+            defense: 0.2
+            fishing_speed: 0.2
+            sea_creature_chance: 0.02
+          legendary:
+            defense: 0.2
+            fishing_speed: 0.2
+            sea_creature_chance: 0.02
+          mythic:
+            defense: 0.2
+            fishing_speed: 0.2
+            sea_creature_chance: 0.02
+        particle: 3
+        skill_category: FISHING
+        skull_texture: ""
+        handler_id: HERMIT_CRAB
+      - id: TRACKED_UNIQUE
+  - id: HORSE_PET
+    material: player_head
+    name: "Horse Pet"
+    rarity: LEGENDARY
+    components:
+      - id: PET
+        pet_name: Horse
+        george_price:
+          common: 50
+          uncommon: 500
+          rare: 2500
+          epic: 5000
+          legendary: 10000
+          mythic: 0
+          rest: 0
+        base_statistics: {}
+        per_level_statistics:
+          common:
+            intelligence: 0.5
+            speed: 1
+          uncommon:
+            intelligence: 0.5
+            speed: 1
+          rare:
+            intelligence: 0.5
+            speed: 1
+          epic:
+            intelligence: 0.5
+            speed: 1
+          legendary:
+            intelligence: 0.5
+            speed: 1
+        particle: 3
+        skill_category: COMBAT
+        skull_texture: ""
+        handler_id: HORSE
+      - id: TRACKED_UNIQUE
+  - id: HOUND_PET
+    material: player_head
+    name: "Hound Pet"
+    rarity: LEGENDARY
+    components:
+      - id: PET
+        pet_name: Hound
+        george_price:
+          common: 0
+          uncommon: 0
+          rare: 0
+          epic: 2000
+          legendary: 100000
+          mythic: 0
+          rest: 0
+        base_statistics: {}
+        per_level_statistics:
+          epic:
+            strength: 0.4
+            bonus_attack_speed: 0.25
+            ferocity: 0.05
+            speed: 0.1
+          legendary:
+            strength: 0.4
+            bonus_attack_speed: 0.25
+            ferocity: 0.05
+            speed: 0.1
+        particle: 3
+        skill_category: COMBAT
+        skull_texture: ""
+        handler_id: HOUND
+      - id: TRACKED_UNIQUE
+  - id: JADE_DRAGON_PET
+    material: player_head
+    name: "Jade Dragon Pet"
+    rarity: LEGENDARY
+    components:
+      - id: PET
+        pet_name: Jade Dragon
+        george_price:
+          common: 0
+          uncommon: 0
+          rare: 0
+          epic: 0
+          legendary: 5000
+          mythic: 0
+          rest: 0
+        base_statistics:
+          strength: 25
+          magic_find: 5
+          foraging_fortune: 25
+        per_level_statistics:
+          legendary:
+            strength: 0.25
+            magic_find: 0.05
+            foraging_fortune: 0.25
+        particle: 3
+        skill_category: FORAGING
+        skull_texture: ""
+        handler_id: JADE_DRAGON
+      - id: TRACKED_UNIQUE
+  - id: JELLYFISH_PET
+    material: player_head
+    name: "Jellyfish Pet"
+    rarity: LEGENDARY
+    components:
+      - id: PET
+        pet_name: Jellyfish
+        george_price:
+          common: 0
+          uncommon: 0
+          rare: 0
+          epic: 2000
+          legendary: 5000
+          mythic: 0
+          rest: 0
+        base_statistics: {}
+        per_level_statistics:
+          epic:
+            health: 2
+            health_regeneration: 1
+          legendary:
+            health: 2
+            health_regeneration: 1
+        particle: 3
+        skill_category: ALCHEMY
+        skull_texture: ""
+        handler_id: JELLYFISH
+      - id: TRACKED_UNIQUE
+  - id: JERRY_PET
+    material: player_head
+    name: "Jerry Pet"
+    rarity: MYTHIC
+    components:
+      - id: PET
+        pet_name: Jerry
+        george_price:
+          common: 50
+          uncommon: 500
+          rare: 2500
+          epic: 5000
+          legendary: 10000
+          mythic: 25000
+          rest: 0
+        base_statistics: {}
+        per_level_statistics:
+          common:
+            intelligence: -1
+          uncommon:
+            intelligence: -1
+          rare:
+            intelligence: -1
+          epic:
+            intelligence: -1
+          legendary:
+            intelligence: -1
+          mythic:
+            intelligence: -1
+        particle: 3
+        skill_category: COMBAT
+        skull_texture: ""
+        handler_id: JERRY
+      - id: TRACKED_UNIQUE
+  - id: KUUDRA_PET
+    material: player_head
+    name: "Kuudra Pet"
+    rarity: LEGENDARY
+    components:
+      - id: PET
+        pet_name: Kuudra
+        george_price:
+          common: 100
+          uncommon: 500
+          rare: 1000
+          epic: 2000
+          legendary: 5000
+          mythic: 0
+          rest: 0
+        base_statistics: {}
+        per_level_statistics:
+          common:
+            strength: 0.4
+            health: 4
+          uncommon:
+            strength: 0.4
+            health: 4
+          rare:
+            strength: 0.4
+            health: 4
+          epic:
+            strength: 0.4
+            health: 4
+          legendary:
+            strength: 0.4
+            health: 4
+        particle: 3
+        skill_category: COMBAT
+        skull_texture: ""
+        handler_id: KUUDRA
+      - id: TRACKED_UNIQUE
+  - id: LION_PET
+    material: player_head
+    name: "Lion Pet"
+    rarity: LEGENDARY
+    components:
+      - id: PET
+        pet_name: Lion
+        george_price:
+          common: 5000
+          uncommon: 12500
+          rare: 50000
+          epic: 500000
+          legendary: 5000000
+          mythic: 0
+          rest: 0
+        base_statistics: {}
+        per_level_statistics:
+          common:
+            strength: 0.5
+            ferocity: 0.05
+            speed: 0.25
+          uncommon:
+            strength: 0.5
+            ferocity: 0.05
+            speed: 0.25
+          rare:
+            strength: 0.5
+            ferocity: 0.05
+            speed: 0.25
+          epic:
+            strength: 0.5
+            ferocity: 0.05
+            speed: 0.25
+          legendary:
+            strength: 0.5
+            ferocity: 0.05
+            speed: 0.25
+        particle: 3
+        skill_category: FORAGING
+        skull_texture: ""
+        handler_id: LION
+      - id: TRACKED_UNIQUE
+  - id: MAGMA_CUBE_PET
+    material: player_head
+    name: "Magma Cube Pet"
+    rarity: LEGENDARY
+    components:
+      - id: PET
+        pet_name: Magma Cube
+        george_price:
+          common: 100
+          uncommon: 500
+          rare: 2000
+          epic: 10000
+          legendary: 1000000
+          mythic: 0
+          rest: 0
+        base_statistics: {}
+        per_level_statistics:
+          common:
+            health: 0.5
+            defense: 0.33
+            strength: 0.2
+          uncommon:
+            health: 0.5
+            defense: 0.33
+            strength: 0.2
+          rare:
+            health: 0.5
+            defense: 0.33
+            strength: 0.2
+          epic:
+            health: 0.5
+            defense: 0.33
+            strength: 0.2
+          legendary:
+            health: 0.5
+            defense: 0.33
+            strength: 0.2
+        particle: 3
+        skill_category: COMBAT
+        skull_texture: ""
+        handler_id: MAGMA_CUBE
+      - id: TRACKED_UNIQUE
+  - id: MAMMOTH_PET
+    material: player_head
+    name: "Mammoth Pet"
+    rarity: LEGENDARY
+    components:
+      - id: PET
+        pet_name: Mammoth
+        george_price:
+          common: 0
+          uncommon: 0
+          rare: 0
+          epic: 0
+          legendary: 500000
+          mythic: 0
+          rest: 0
+        base_statistics: {}
+        per_level_statistics:
+          legendary:
+            defense: 0.5
+            cold_resistance: 0.1
+        particle: 3
+        skill_category: COMBAT
+        skull_texture: ""
+        handler_id: MAMMOTH
+      - id: TRACKED_UNIQUE
+  - id: MEGALODON_PET
+    material: player_head
+    name: "Megalodon Pet"
+    rarity: LEGENDARY
+    components:
+      - id: PET
+        pet_name: Megalodon
+        george_price:
+          common: 0
+          uncommon: 0
+          rare: 0
+          epic: 500000
+          legendary: 2500000
+          mythic: 0
+          rest: 0
+        base_statistics:
+          ferocity: 5
+          fishing_speed: 10
+          sea_creature_chance: 5
+        per_level_statistics:
+          epic:
+            strength: 0.5
+            ferocity: 0.05
+            magic_find: 0.1
+            fishing_speed: 0.3
+            sea_creature_chance: 0.05
+          legendary:
+            strength: 0.5
+            ferocity: 0.05
+            magic_find: 0.1
+            fishing_speed: 0.3
+            sea_creature_chance: 0.05
+        particle: 3
+        skill_category: FISHING
+        skull_texture: ""
+        handler_id: MEGALODON
+      - id: TRACKED_UNIQUE
+  - id: MITHRIL_GOLEM_PET
+    material: player_head
+    name: "Mithril Golem Pet"
+    rarity: MYTHIC
+    components:
+      - id: PET
+        pet_name: Mithril Golem
+        george_price:
+          common: 250
+          uncommon: 5000
+          rare: 10000
+          epic: 25000
+          legendary: 50000
+          mythic: 100000
+          rest: 0
+        base_statistics: {}
+        per_level_statistics:
+          common:
+            true_defense: 0.5
+            mining_fortune: 0.25
+          uncommon:
+            true_defense: 0.5
+            mining_fortune: 0.25
+          rare:
+            true_defense: 0.5
+            mining_fortune: 0.25
+          epic:
+            true_defense: 0.5
+            mining_fortune: 0.25
+          legendary:
+            true_defense: 0.5
+            mining_fortune: 0.25
+          mythic:
+            true_defense: 0.5
+            mining_fortune: 0.25
+        particle: 3
+        skill_category: MINING
+        skull_texture: ""
+        handler_id: MITHRIL_GOLEM
+      - id: TRACKED_UNIQUE
+  - id: MOLE_PET
+    material: player_head
+    name: "Mole Pet"
+    rarity: LEGENDARY
+    components:
+      - id: PET
+        pet_name: Mole
+        george_price:
+          common: 0
+          uncommon: 0
+          rare: 0
+          epic: 0
+          legendary: 500000
+          mythic: 0
+          rest: 0
+        base_statistics: {}
+        per_level_statistics:
+          legendary:
+            intelligence: 1
+            magic_find: 0.05
+            mining_speed: 1.5
+        particle: 3
+        skill_category: MINING
+        skull_texture: ""
+        handler_id: MOLE
+      - id: TRACKED_UNIQUE
+  - id: MONKEY_PET
+    material: player_head
+    name: "Monkey Pet"
+    rarity: LEGENDARY
+    components:
+      - id: PET
+        pet_name: Monkey
+        george_price:
+          common: 5000
+          uncommon: 12500
+          rare: 50000
+          epic: 500000
+          legendary: 5000000
+          mythic: 0
+          rest: 0
+        base_statistics: {}
+        per_level_statistics:
+          common:
+            intelligence: 0.5
+            speed: 0.2
+          uncommon:
+            intelligence: 0.5
+            speed: 0.2
+          rare:
+            intelligence: 0.5
+            speed: 0.2
+          epic:
+            intelligence: 0.5
+            speed: 0.2
+          legendary:
+            intelligence: 0.5
+            speed: 0.2
+        particle: 3
+        skill_category: FORAGING
+        skull_texture: ""
+        handler_id: MONKEY
+      - id: TRACKED_UNIQUE
+  - id: MOOSHROOM_COW_PET
+    material: player_head
+    name: "Mooshroom Cow Pet"
+    rarity: LEGENDARY
+    components:
+      - id: PET
+        pet_name: Mooshroom Cow
+        george_price:
+          common: 1000
+          uncommon: 25000
+          rare: 50000
+          epic: 100000
+          legendary: 250000
+          mythic: 0
+          rest: 0
+        base_statistics: {}
+        per_level_statistics:
+          common:
+            health: 1
+            farming_fortune: 1
+          uncommon:
+            health: 1
+            farming_fortune: 1
+          rare:
+            health: 1
+            farming_fortune: 1
+          epic:
+            health: 1
+            farming_fortune: 1
+          legendary:
+            health: 1
+            farming_fortune: 1
+        particle: 3
+        skill_category: FARMING
+        skull_texture: ""
+        handler_id: MOOSHROOM_COW
+      - id: TRACKED_UNIQUE
+  - id: MOSQUITO_PET
+    material: player_head
+    name: "Mosquito Pet"
+    rarity: LEGENDARY
+    components:
+      - id: PET
+        pet_name: Mosquito
+        george_price:
+          common: 10000
+          uncommon: 250000
+          rare: 500000
+          epic: 1000000
+          legendary: 2500000
+          mythic: 0
+          rest: 0
+        base_statistics: {}
+        per_level_statistics:
+          common:
+            speed: 0.2
+            bonus_pest_chance: 0.5
+          uncommon:
+            speed: 0.2
+            bonus_pest_chance: 0.5
+          rare:
+            speed: 0.2
+            bonus_pest_chance: 0.5
+          epic:
+            speed: 0.2
+            bonus_pest_chance: 0.5
+          legendary:
+            speed: 0.2
+            bonus_pest_chance: 0.5
+        particle: 3
+        skill_category: FARMING
+        skull_texture: ""
+        handler_id: MOSQUITO
+      - id: TRACKED_UNIQUE
+  - id: OCELOT_PET
+    material: player_head
+    name: "Ocelot Pet"
+    rarity: LEGENDARY
+    components:
+      - id: PET
+        pet_name: Ocelot
+        george_price:
+          common: 250
+          uncommon: 5000
+          rare: 10000
+          epic: 25000
+          legendary: 50000
+          mythic: 0
+          rest: 0
+        base_statistics: {}
+        per_level_statistics:
+          common:
+            ferocity: 0.1
+            speed: 0.5
+          uncommon:
+            ferocity: 0.1
+            speed: 0.5
+          rare:
+            ferocity: 0.1
+            speed: 0.5
+          epic:
+            ferocity: 0.1
+            speed: 0.5
+          legendary:
+            ferocity: 0.1
+            speed: 0.5
+        particle: 3
+        skill_category: FORAGING
+        skull_texture: ""
+        handler_id: OCELOT
+      - id: TRACKED_UNIQUE
+  - id: ORCHID_MANTIS_PET
+    material: player_head
+    name: "Orchid Mantis Pet"
+    rarity: LEGENDARY
+    components:
+      - id: PET
+        pet_name: Orchid Mantis
+        george_price:
+          common: 10000
+          uncommon: 250000
+          rare: 500000
+          epic: 1000000
+          legendary: 2500000
+          mythic: 0
+          rest: 0
+        base_statistics: {}
+        per_level_statistics:
+          common:
+            speed: 0.3
+            overbloom: 0.15
+          uncommon:
+            speed: 0.3
+            overbloom: 0.15
+          rare:
+            speed: 0.3
+            overbloom: 0.15
+          epic:
+            speed: 0.3
+            overbloom: 0.15
+          legendary:
+            speed: 0.3
+            overbloom: 0.15
+        particle: 3
+        skill_category: FARMING
+        skull_texture: ""
+        handler_id: ORCHID_MANTIS
+      - id: TRACKED_UNIQUE
+  - id: OWL_PET
+    material: player_head
+    name: "Owl Pet"
+    rarity: LEGENDARY
+    components:
+      - id: PET
+        pet_name: Owl
+        george_price:
+          common: 0
+          uncommon: 0
+          rare: 0
+          epic: 0
+          legendary: 200000
+          mythic: 0
+          rest: 0
+        base_statistics: {}
+        per_level_statistics:
+          legendary: {}
+        particle: 3
+        skill_category: TAMING
+        skull_texture: ""
+        handler_id: OWL
+      - id: TRACKED_UNIQUE
+  - id: PARROT_PET
+    material: player_head
+    name: "Parrot Pet"
+    rarity: LEGENDARY
+    components:
+      - id: PET
+        pet_name: Parrot
+        george_price:
+          common: 0
+          uncommon: 0
+          rare: 0
+          epic: 500000
+          legendary: 5000000
+          mythic: 0
+          rest: 0
+        base_statistics: {}
+        per_level_statistics:
+          epic:
+            critical_damage: 0.1
+            intelligence: 1
+          legendary:
+            critical_damage: 0.1
+            intelligence: 1
+        particle: 3
+        skill_category: ALCHEMY
+        skull_texture: ""
+        handler_id: PARROT
+      - id: TRACKED_UNIQUE
+  - id: PENGUIN_PET
+    material: player_head
+    name: "Penguin Pet"
+    rarity: LEGENDARY
+    components:
+      - id: PET
+        pet_name: Penguin
+        george_price:
+          common: 0
+          uncommon: 0
+          rare: 0
+          epic: 0
+          legendary: 500000
+          mythic: 0
+          rest: 0
+        base_statistics: {}
+        per_level_statistics:
+          legendary:
+            sea_creature_chance: 0.1
+            cold_resistance: 0.15
+        particle: 3
+        skill_category: FISHING
+        skull_texture: ""
+        handler_id: PENGUIN
+      - id: TRACKED_UNIQUE
+  - id: PHOENIX_PET
+    material: player_head
+    name: "Phoenix Pet"
+    rarity: LEGENDARY
+    components:
+      - id: PET
+        pet_name: Phoenix
+        george_price:
+          common: 0
+          uncommon: 0
+          rare: 0
+          epic: 500000
+          legendary: 5000000
+          mythic: 0
+          rest: 0
+        base_statistics:
+          strength: 10
+          intelligence: 50
+        per_level_statistics:
+          epic:
+            strength: 0.5
+            intelligence: 1
+          legendary:
+            strength: 0.5
+            intelligence: 1
+        particle: 3
+        skill_category: COMBAT
+        skull_texture: ""
+        handler_id: PHOENIX
+      - id: TRACKED_UNIQUE
+  - id: PIG_PET
+    material: player_head
+    name: "Pig Pet"
+    rarity: LEGENDARY
+    components:
+      - id: PET
+        pet_name: Pig
+        george_price:
+          common: 50
+          uncommon: 500
+          rare: 2500
+          epic: 5000
+          legendary: 10000
+          mythic: 0
+          rest: 0
+        base_statistics: {}
+        per_level_statistics:
+          common:
+            speed: 0.15
+            potato_fortune: 0.2
+          uncommon:
+            speed: 0.15
+            potato_fortune: 0.2
+          rare:
+            speed: 0.15
+            potato_fortune: 0.2
+          epic:
+            speed: 0.15
+            potato_fortune: 0.2
+          legendary:
+            speed: 0.15
+            potato_fortune: 0.2
+        particle: 3
+        skill_category: FARMING
+        skull_texture: ""
+        handler_id: PIG
+      - id: TRACKED_UNIQUE
+  - id: PIGMAN_PET
+    material: player_head
+    name: "Pigman Pet"
+    rarity: LEGENDARY
+    components:
+      - id: PET
+        pet_name: Pigman
+        george_price:
+          common: 1000
+          uncommon: 25000
+          rare: 50000
+          epic: 100000
+          legendary: 250000
+          mythic: 0
+          rest: 0
+        base_statistics: {}
+        per_level_statistics:
+          common:
+            defense: 0.5
+            strength: 0.5
+            ferocity: 0.05
+          uncommon:
+            defense: 0.5
+            strength: 0.5
+            ferocity: 0.05
+          rare:
+            defense: 0.5
+            strength: 0.5
+            ferocity: 0.05
+          epic:
+            defense: 0.5
+            strength: 0.5
+            ferocity: 0.05
+          legendary:
+            defense: 0.5
+            strength: 0.5
+            ferocity: 0.05
+        particle: 3
+        skill_category: COMBAT
+        skull_texture: ""
+        handler_id: PIGMAN
+      - id: TRACKED_UNIQUE
+  - id: PRECURSOR_DRONE_PET
+    material: player_head
+    name: "Precursor Drone Pet"
+    rarity: COMMON
+    components:
+      - id: PET
+        pet_name: Precursor Drone
+        george_price:
+          common: 100
+          uncommon: 0
+          rare: 0
+          epic: 0
+          legendary: 0
+          mythic: 0
+          rest: 0
+        base_statistics: {}
+        per_level_statistics:
+          common:
+            sea_creature_chance: 0.1
+            mining_fortune: 0.3
+            foraging_fortune: 0.3
+        particle: 3
+        skill_category: COMBAT
+        skull_texture: ""
+        handler_id: PRECURSOR_DRONE
+      - id: TRACKED_UNIQUE
+  - id: RABBIT_PET
+    material: player_head
+    name: "Rabbit Pet"
+    rarity: MYTHIC
+    components:
+      - id: PET
+        pet_name: Rabbit
+        george_price:
+          common: 250
+          uncommon: 5000
+          rare: 10000
+          epic: 25000
+          legendary: 50000
+          mythic: 100000
+          rest: 0
+        base_statistics: {}
+        per_level_statistics:
+          common:
+            health: 1
+            speed: 0.2
+          uncommon:
+            health: 1
+            speed: 0.2
+          rare:
+            health: 1
+            speed: 0.2
+          epic:
+            health: 1
+            speed: 0.2
+          legendary:
+            health: 1
+            speed: 0.2
+          mythic:
+            health: 1
+            speed: 0.2
+        particle: 3
+        skill_category: FARMING
+        skull_texture: ""
+        handler_id: RABBIT
+      - id: TRACKED_UNIQUE
+  - id: RAT_PET
+    material: player_head
+    name: "Rat Pet"
+    rarity: MYTHIC
+    components:
+      - id: PET
+        pet_name: Rat
+        george_price:
+          common: 0
+          uncommon: 0
+          rare: 0
+          epic: 0
+          legendary: 5000
+          mythic: 10000
+          rest: 0
+        base_statistics: {}
+        per_level_statistics:
+          legendary:
+            health: 1.25
+            strength: 0.6
+            critical_damage: 0.25
+          mythic:
+            health: 1.25
+            strength: 0.6
+            critical_damage: 0.25
+        particle: 3
+        skill_category: COMBAT
+        skull_texture: ""
+        handler_id: RAT
+      - id: TRACKED_UNIQUE
+  - id: REINDEER_PET
+    material: player_head
+    name: "Reindeer Pet"
+    rarity: LEGENDARY
+    components:
+      - id: PET
+        pet_name: Reindeer
+        george_price:
+          common: 0
+          uncommon: 0
+          rare: 0
+          epic: 0
+          legendary: 5000
+          mythic: 0
+          rest: 0
+        base_statistics: {}
+        per_level_statistics:
+          legendary:
+            health: 1
+            fishing_speed: 0.25
+            sea_creature_chance: 0.05
+        particle: 3
+        skill_category: FISHING
+        skull_texture: ""
+        handler_id: REINDEER
+      - id: TRACKED_UNIQUE
+  - id: ROCK_PET
+    material: player_head
+    name: "Rock Pet"
+    rarity: LEGENDARY
+    components:
+      - id: PET
+        pet_name: Rock
+        george_price:
+          common: 10000
+          uncommon: 50000
+          rare: 500000
+          epic: 2500000
+          legendary: 10000000
+          mythic: 0
+          rest: 0
+        base_statistics: {}
+        per_level_statistics:
+          common:
+            defense: 2
+            true_defense: 0.1
+          uncommon:
+            defense: 2
+            true_defense: 0.1
+          rare:
+            defense: 2
+            true_defense: 0.1
+          epic:
+            defense: 2
+            true_defense: 0.1
+          legendary:
+            defense: 2
+            true_defense: 0.1
+        particle: 3
+        skill_category: MINING
+        skull_texture: ""
+        handler_id: ROCK
+      - id: TRACKED_UNIQUE
+  - id: ROSE_DRAGON_PET
+    material: player_head
+    name: "Rose Dragon Pet"
+    rarity: LEGENDARY
+    components:
+      - id: PET
+        pet_name: Rose Dragon
+        george_price:
+          common: 0
+          uncommon: 0
+          rare: 0
+          epic: 0
+          legendary: 5000000
+          mythic: 0
+          rest: 0
+        base_statistics:
+          speed: 50
+          farming_fortune: 20
+        per_level_statistics:
+          legendary:
+            speed: 0.5
+            farming_fortune: 0.2
+        particle: 3
+        skill_category: FARMING
+        skull_texture: ""
+        handler_id: ROSE_DRAGON
+      - id: TRACKED_UNIQUE
+  - id: SCATHA_PET
+    material: player_head
+    name: "Scatha Pet"
+    rarity: LEGENDARY
+    components:
+      - id: PET
+        pet_name: Scatha
+        george_price:
+          common: 0
+          uncommon: 0
+          rare: 1000
+          epic: 2000
+          legendary: 5000
+          mythic: 0
+          rest: 0
+        base_statistics: {}
+        per_level_statistics:
+          rare:
+            mining_speed: 1
+            mining_fortune: 1.25
+          epic:
+            mining_speed: 1
+            mining_fortune: 1.25
+          legendary:
+            mining_speed: 1
+            mining_fortune: 1.25
+        particle: 3
+        skill_category: MINING
+        skull_texture: ""
+        handler_id: SCATHA
+      - id: TRACKED_UNIQUE
+  - id: SEAL_PET
+    material: player_head
+    name: "Seal Pet"
+    rarity: LEGENDARY
+    components:
+      - id: PET
+        pet_name: Seal
+        george_price:
+          common: 100
+          uncommon: 500
+          rare: 1000
+          epic: 2000
+          legendary: 5000
+          mythic: 0
+          rest: 0
+        base_statistics: {}
+        per_level_statistics:
+          common:
+            fishing_speed: 0.35
+            sea_creature_chance: 0.05
+            treasure_chance: 0.01
+          uncommon:
+            fishing_speed: 0.35
+            sea_creature_chance: 0.05
+            treasure_chance: 0.01
+          rare:
+            fishing_speed: 0.35
+            sea_creature_chance: 0.05
+            treasure_chance: 0.01
+          epic:
+            fishing_speed: 0.35
+            sea_creature_chance: 0.05
+            treasure_chance: 0.01
+          legendary:
+            fishing_speed: 0.35
+            sea_creature_chance: 0.05
+            treasure_chance: 0.01
+        particle: 3
+        skill_category: FISHING
+        skull_texture: ""
+        handler_id: SEAL
+      - id: TRACKED_UNIQUE
+  - id: SHEEP_PET
+    material: player_head
+    name: "Sheep Pet"
+    rarity: LEGENDARY
+    components:
+      - id: PET
+        pet_name: Sheep
+        george_price:
+          common: 250
+          uncommon: 5000
+          rare: 10000
+          epic: 25000
+          legendary: 50000
+          mythic: 0
+          rest: 0
+        base_statistics: {}
+        per_level_statistics:
+          common:
+            intelligence: 1
+            ability_damage: 0.2
+          uncommon:
+            intelligence: 1
+            ability_damage: 0.2
+          rare:
+            intelligence: 1
+            ability_damage: 0.2
+          epic:
+            intelligence: 1
+            ability_damage: 0.2
+          legendary:
+            intelligence: 1
+            ability_damage: 0.2
+        particle: 3
+        skill_category: ALCHEMY
+        skull_texture: ""
+        handler_id: SHEEP
+      - id: TRACKED_UNIQUE
+  - id: SILVERFISH_PET
+    material: player_head
+    name: "Silverfish Pet"
+    rarity: LEGENDARY
+    components:
+      - id: PET
+        pet_name: Silverfish
+        george_price:
+          common: 50
+          uncommon: 500
+          rare: 2500
+          epic: 5000
+          legendary: 10000
+          mythic: 0
+          rest: 0
+        base_statistics: {}
+        per_level_statistics:
+          common:
+            defense: 1
+            mining_fortune: 0.2
+          uncommon:
+            defense: 1
+            mining_fortune: 0.2
+          rare:
+            defense: 1
+            mining_fortune: 0.2
+          epic:
+            defense: 1
+            mining_fortune: 0.2
+          legendary:
+            defense: 1
+            mining_fortune: 0.2
+        particle: 3
+        skill_category: MINING
+        skull_texture: ""
+        handler_id: SILVERFISH
+      - id: TRACKED_UNIQUE
+  - id: SKELETON_PET
+    material: player_head
+    name: "Skeleton Pet"
+    rarity: LEGENDARY
+    components:
+      - id: PET
+        pet_name: Skeleton
+        george_price:
+          common: 250
+          uncommon: 5000
+          rare: 10000
+          epic: 25000
+          legendary: 50000
+          mythic: 0
+          rest: 0
+        base_statistics: {}
+        per_level_statistics:
+          common:
+            critical_chance: 0.15
+            critical_damage: 0.3
+          uncommon:
+            critical_chance: 0.15
+            critical_damage: 0.3
+          rare:
+            critical_chance: 0.15
+            critical_damage: 0.3
+          epic:
+            critical_chance: 0.15
+            critical_damage: 0.3
+          legendary:
+            critical_chance: 0.15
+            critical_damage: 0.3
+        particle: 3
+        skill_category: COMBAT
+        skull_texture: ""
+        handler_id: SKELETON
+      - id: TRACKED_UNIQUE
+  - id: SKELETON_HORSE_PET
+    material: player_head
+    name: "Skeleton Horse Pet"
+    rarity: LEGENDARY
+    components:
+      - id: PET
+        pet_name: Skeleton Horse
+        george_price:
+          common: 0
+          uncommon: 0
+          rare: 0
+          epic: 0
+          legendary: 500000
+          mythic: 0
+          rest: 0
+        base_statistics: {}
+        per_level_statistics:
+          legendary:
+            intelligence: 0.75
+            speed: 1.5
+        particle: 3
+        skill_category: COMBAT
+        skull_texture: ""
+        handler_id: SKELETON_HORSE
+      - id: TRACKED_UNIQUE
+  - id: SLOTH_PET
+    material: player_head
+    name: "Sloth Pet"
+    rarity: LEGENDARY
+    components:
+      - id: PET
+        pet_name: Sloth
+        george_price:
+          common: 25000
+          uncommon: 50000
+          rare: 0
+          epic: 0
+          legendary: 0
+          mythic: 0
+          rest: 0
+        base_statistics: {}
+        per_level_statistics:
+          common:
+            sweep: 0.25
+            foraging_fortune: 0.25
+          uncommon:
+            sweep: 0.25
+            foraging_fortune: 0.25
+          rare:
+            sweep: 0.25
+            foraging_fortune: 0.25
+          epic:
+            sweep: 0.25
+            foraging_fortune: 0.25
+          legendary:
+            sweep: 0.25
+            foraging_fortune: 0.25
+        particle: 3
+        skill_category: FORAGING
+        skull_texture: ""
+        handler_id: SLOTH
+      - id: TRACKED_UNIQUE
+  - id: SLUG_PET
+    material: player_head
+    name: "Slug Pet"
+    rarity: LEGENDARY
+    components:
+      - id: PET
+        pet_name: Slug
+        george_price:
+          common: 0
+          uncommon: 0
+          rare: 0
+          epic: 500000
+          legendary: 5000000
+          mythic: 0
+          rest: 0
+        base_statistics: {}
+        per_level_statistics:
+          epic:
+            defense: 0.2
+            intelligence: 0.25
+          legendary:
+            defense: 0.2
+            intelligence: 0.25
+        particle: 3
+        skill_category: FARMING
+        skull_texture: ""
+        handler_id: SLUG
+      - id: TRACKED_UNIQUE
+  - id: SNAIL_PET
+    material: player_head
+    name: "Snail Pet"
+    rarity: LEGENDARY
+    components:
+      - id: PET
+        pet_name: Snail
+        george_price:
+          common: 1000
+          uncommon: 25000
+          rare: 50000
+          epic: 100000
+          legendary: 250000
+          mythic: 0
+          rest: 0
+        base_statistics: {}
+        per_level_statistics:
+          common:
+            defense: 1
+            intelligence: 1
+          uncommon:
+            defense: 1
+            intelligence: 1
+          rare:
+            defense: 1
+            intelligence: 1
+          epic:
+            defense: 1
+            intelligence: 1
+          legendary:
+            defense: 1
+            intelligence: 1
+        particle: 3
+        skill_category: MINING
+        skull_texture: ""
+        handler_id: SNAIL
+      - id: TRACKED_UNIQUE
+  - id: SNOWMAN_PET
+    material: player_head
+    name: "Snowman Pet"
+    rarity: MYTHIC
+    components:
+      - id: PET
+        pet_name: Snowman
+        george_price:
+          common: 0
+          uncommon: 0
+          rare: 0
+          epic: 0
+          legendary: 2000000
+          mythic: 2000000
+          rest: 0
+        base_statistics: {}
+        per_level_statistics:
+          legendary:
+            damage: 0.25
+            strength: 0.25
+            critical_damage: 0.25
+          mythic:
+            damage: 0.25
+            strength: 0.25
+            critical_damage: 0.25
+        particle: 3
+        skill_category: COMBAT
+        skull_texture: ""
+        handler_id: SNOWMAN
+      - id: TRACKED_UNIQUE
+  - id: SPIDER_PET
+    material: player_head
+    name: "Spider Pet"
+    rarity: MYTHIC
+    components:
+      - id: PET
+        pet_name: Spider
+        george_price:
+          common: 250
+          uncommon: 5000
+          rare: 10000
+          epic: 25000
+          legendary: 50000
+          mythic: 100000
+          rest: 0
+        base_statistics: {}
+        per_level_statistics:
+          common:
+            strength: 0.5
+            critical_chance: 0.1
+          uncommon:
+            strength: 0.5
+            critical_chance: 0.1
+          rare:
+            strength: 0.5
+            critical_chance: 0.1
+          epic:
+            strength: 0.5
+            critical_chance: 0.1
+          legendary:
+            strength: 0.5
+            critical_chance: 0.1
+          mythic:
+            strength: 0.5
+            critical_chance: 0.1
+        particle: 3
+        skill_category: COMBAT
+        skull_texture: ""
+        handler_id: SPIDER
+      - id: TRACKED_UNIQUE
+  - id: SPINOSAURUS_PET
+    material: player_head
+    name: "Spinosaurus Pet"
+    rarity: LEGENDARY
+    components:
+      - id: PET
+        pet_name: Spinosaurus
+        george_price:
+          common: 0
+          uncommon: 0
+          rare: 0
+          epic: 0
+          legendary: 500000
+          mythic: 0
+          rest: 0
+        base_statistics: {}
+        per_level_statistics:
+          legendary:
+            fishing_speed: 0.5
+            sea_creature_chance: 0.05
+            trophy_fish_chance: 0.05
+        particle: 3
+        skill_category: FISHING
+        skull_texture: ""
+        handler_id: SPINOSAURUS
+      - id: TRACKED_UNIQUE
+  - id: SPIRIT_PET
+    material: player_head
+    name: "Spirit Pet"
+    rarity: LEGENDARY
+    components:
+      - id: PET
+        pet_name: Spirit
+        george_price:
+          common: 0
+          uncommon: 0
+          rare: 0
+          epic: 2000
+          legendary: 5000
+          mythic: 0
+          rest: 0
+        base_statistics: {}
+        per_level_statistics:
+          epic:
+            intelligence: 1
+            speed: 0.3
+          legendary:
+            intelligence: 1
+            speed: 0.3
+        particle: 3
+        skill_category: COMBAT
+        skull_texture: ""
+        handler_id: SPIRIT
+      - id: TRACKED_UNIQUE
+  - id: SQUID_PET
+    material: player_head
+    name: "Squid Pet"
+    rarity: LEGENDARY
+    components:
+      - id: PET
+        pet_name: Squid
+        george_price:
+          common: 100
+          uncommon: 500
+          rare: 100000
+          epic: 200000
+          legendary: 500000
+          mythic: 0
+          rest: 0
+        base_statistics: {}
+        per_level_statistics:
+          common:
+            health: 0.5
+            intelligence: 0.5
+          uncommon:
+            health: 0.5
+            intelligence: 0.5
+          rare:
+            health: 0.5
+            intelligence: 0.5
+          epic:
+            health: 0.5
+            intelligence: 0.5
+          legendary:
+            health: 0.5
+            intelligence: 0.5
+        particle: 3
+        skill_category: FISHING
+        skull_texture: ""
+        handler_id: SQUID
+      - id: TRACKED_UNIQUE
+  - id: TARANTULA_PET
+    material: player_head
+    name: "Tarantula Pet"
+    rarity: MYTHIC
+    components:
+      - id: PET
+        pet_name: Tarantula
+        george_price:
+          common: 0
+          uncommon: 0
+          rare: 0
+          epic: 2000
+          legendary: 100000
+          mythic: 150000
+          rest: 0
+        base_statistics: {}
+        per_level_statistics:
+          epic:
+            strength: 0.1
+            critical_chance: 0.1
+            critical_damage: 0.3
+          legendary:
+            strength: 0.1
+            critical_chance: 0.1
+            critical_damage: 0.3
+          mythic:
+            strength: 0.1
+            critical_chance: 0.1
+            critical_damage: 0.3
+        particle: 3
+        skill_category: COMBAT
+        skull_texture: ""
+        handler_id: TARANTULA
+      - id: TRACKED_UNIQUE
+  - id: TIGER_PET
+    material: player_head
+    name: "Tiger Pet"
+    rarity: LEGENDARY
+    components:
+      - id: PET
+        pet_name: Tiger
+        george_price:
+          common: 5000
+          uncommon: 12500
+          rare: 50000
+          epic: 500000
+          legendary: 5000000
+          mythic: 0
+          rest: 0
+        base_statistics:
+          strength: 5
+        per_level_statistics:
+          common:
+            strength: 0.1
+            critical_chance: 0.05
+            critical_damage: 0.5
+            ferocity: 0.25
+          uncommon:
+            strength: 0.1
+            critical_chance: 0.05
+            critical_damage: 0.5
+            ferocity: 0.25
+          rare:
+            strength: 0.1
+            critical_chance: 0.05
+            critical_damage: 0.5
+            ferocity: 0.25
+          epic:
+            strength: 0.1
+            critical_chance: 0.05
+            critical_damage: 0.5
+            ferocity: 0.25
+          legendary:
+            strength: 0.1
+            critical_chance: 0.05
+            critical_damage: 0.5
+            ferocity: 0.25
+        particle: 3
+        skill_category: COMBAT
+        skull_texture: ""
+        handler_id: TIGER
+      - id: TRACKED_UNIQUE
+  - id: TURTLE_PET
+    material: player_head
+    name: "Turtle Pet"
+    rarity: LEGENDARY
+    components:
+      - id: PET
+        pet_name: Turtle
+        george_price:
+          common: 0
+          uncommon: 0
+          rare: 0
+          epic: 500000
+          legendary: 5000000
+          mythic: 0
+          rest: 0
+        base_statistics:
+          health: 50
+          defense: 100
+        per_level_statistics:
+          epic:
+            health: 0.25
+            defense: 0.5
+            true_defense: 0.15
+          legendary:
+            health: 0.25
+            defense: 0.5
+            true_defense: 0.15
+        particle: 3
+        skill_category: COMBAT
+        skull_texture: ""
+        handler_id: TURTLE
+      - id: TRACKED_UNIQUE
+  - id: TYRANNOSAURUS_PET
+    material: player_head
+    name: "T-Rex Pet"
+    rarity: LEGENDARY
+    components:
+      - id: PET
+        pet_name: T-Rex
+        george_price:
+          common: 0
+          uncommon: 0
+          rare: 0
+          epic: 0
+          legendary: 500000
+          mythic: 0
+          rest: 0
+        base_statistics: {}
+        per_level_statistics:
+          legendary:
+            strength: 0.75
+            critical_chance: 0.05
+            ferocity: 0.25
+        particle: 3
+        skill_category: COMBAT
+        skull_texture: ""
+        handler_id: TYRANNOSAURUS
+      - id: TRACKED_UNIQUE
+  - id: WITCH_PET
+    material: player_head
+    name: "Witch Pet"
+    rarity: LEGENDARY
+    components:
+      - id: PET
+        pet_name: Witch
+        george_price:
+          common: 100
+          uncommon: 500
+          rare: 1000
+          epic: 2000
+          legendary: 5000
+          mythic: 0
+          rest: 0
+        base_statistics: {}
+        per_level_statistics:
+          common:
+            intelligence: 1
+            alchemy_wisdom: 0.05
+          uncommon:
+            intelligence: 1
+            alchemy_wisdom: 0.05
+          rare:
+            intelligence: 1
+            alchemy_wisdom: 0.05
+          epic:
+            intelligence: 1
+            alchemy_wisdom: 0.05
+          legendary:
+            intelligence: 1
+            alchemy_wisdom: 0.05
+        particle: 3
+        skill_category: ALCHEMY
+        skull_texture: ""
+        handler_id: WITCH
+      - id: TRACKED_UNIQUE
+  - id: WITHER_SKELETON_PET
+    material: player_head
+    name: "Wither Skeleton Pet"
+    rarity: LEGENDARY
+    components:
+      - id: PET
+        pet_name: Wither Skeleton
+        george_price:
+          common: 1000
+          uncommon: 25000
+          rare: 50000
+          epic: 100000
+          legendary: 250000
+          mythic: 0
+          rest: 0
+        base_statistics: {}
+        per_level_statistics:
+          common:
+            defense: 0.25
+            strength: 0.25
+            critical_chance: 0.05
+            critical_damage: 0.25
+            intelligence: 0.25
+          uncommon:
+            defense: 0.25
+            strength: 0.25
+            critical_chance: 0.05
+            critical_damage: 0.25
+            intelligence: 0.25
+          rare:
+            defense: 0.25
+            strength: 0.25
+            critical_chance: 0.05
+            critical_damage: 0.25
+            intelligence: 0.25
+          epic:
+            defense: 0.25
+            strength: 0.25
+            critical_chance: 0.05
+            critical_damage: 0.25
+            intelligence: 0.25
+          legendary:
+            defense: 0.25
+            strength: 0.25
+            critical_chance: 0.05
+            critical_damage: 0.25
+            intelligence: 0.25
+        particle: 3
+        skill_category: MINING
+        skull_texture: ""
+        handler_id: WITHER_SKELETON
+      - id: TRACKED_UNIQUE
+  - id: WOLF_PET
+    material: player_head
+    name: "Wolf Pet"
+    rarity: LEGENDARY
+    components:
+      - id: PET
+        pet_name: Wolf
+        george_price:
+          common: 250
+          uncommon: 5000
+          rare: 10000
+          epic: 25000
+          legendary: 50000
+          mythic: 0
+          rest: 0
+        base_statistics: {}
+        per_level_statistics:
+          common:
+            health: 0.5
+            true_defense: 0.1
+            critical_damage: 0.1
+            speed: 0.2
+          uncommon:
+            health: 0.5
+            true_defense: 0.1
+            critical_damage: 0.1
+            speed: 0.2
+          rare:
+            health: 0.5
+            true_defense: 0.1
+            critical_damage: 0.1
+            speed: 0.2
+          epic:
+            health: 0.5
+            true_defense: 0.1
+            critical_damage: 0.1
+            speed: 0.2
+          legendary:
+            health: 0.5
+            true_defense: 0.1
+            critical_damage: 0.1
+            speed: 0.2
+        particle: 3
+        skill_category: COMBAT
+        skull_texture: ""
+        handler_id: WOLF
+      - id: TRACKED_UNIQUE
+  - id: ZOMBIE_PET
+    material: player_head
+    name: "Zombie Pet"
+    rarity: LEGENDARY
+    components:
+      - id: PET
+        pet_name: Zombie
+        george_price:
+          common: 50
+          uncommon: 500
+          rare: 2500
+          epic: 5000
+          legendary: 10000
+          mythic: 0
+          rest: 0
+        base_statistics: {}
+        per_level_statistics:
+          common:
+            health: 1
+            critical_damage: 0.3
+          uncommon:
+            health: 1
+            critical_damage: 0.3
+          rare:
+            health: 1
+            critical_damage: 0.3
+          epic:
+            health: 1
+            critical_damage: 0.3
+          legendary:
+            health: 1
+            critical_damage: 0.3
+        particle: 3
+        skill_category: COMBAT
+        skull_texture: ""
+        handler_id: ZOMBIE
       - id: TRACKED_UNIQUE
