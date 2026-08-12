@@ -21,6 +21,8 @@ public final class CamouflageAbility implements PetAbility {
     private static final long BUFF_DURATION_MS = 20_000L;
     private static final int DEFENSE_CAP = 500;
 
+    private final ProcWindow procs = new ProcWindow();
+
     @Override
     public String getName() {
         return "Camouflage";
@@ -42,13 +44,11 @@ public final class CamouflageAbility implements PetAbility {
 
     @PetEventHandler
     public void onAbilityCast(PetEvent.AbilityCast event) {
-        event.player().getPetData().getAbilityRuntime(this)
-                .getProcs().record(System.currentTimeMillis());
+        procs.record(System.currentTimeMillis());
     }
 
     @Override
     public ItemStatistics getStatistics(SkyBlockPlayer player, SkyBlockItem pet) {
-        ProcWindow procs = player.getPetData().getAbilityRuntime(this).getProcs();
         int active = procs.active(System.currentTimeMillis(), BUFF_DURATION_MS);
         if (active == 0) return ItemStatistics.empty();
 

@@ -1,6 +1,7 @@
 package net.swofty.type.skyblockgeneric.data.datapoints;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import lombok.AccessLevel;
 import lombok.Getter;
 import net.swofty.commons.skyblock.item.ItemType;
 import net.swofty.commons.skyblock.item.Rarity;
@@ -12,7 +13,6 @@ import net.swofty.type.skyblockgeneric.entity.PetEntityImpl;
 import net.swofty.type.skyblockgeneric.item.SkyBlockItem;
 import net.swofty.type.skyblockgeneric.item.components.SkullHeadComponent;
 import net.swofty.type.skyblockgeneric.item.handlers.pet.PetAbilityRegistry;
-import net.swofty.type.skyblockgeneric.item.handlers.pet.abstr.AbilityRuntime;
 import net.swofty.type.skyblockgeneric.item.handlers.pet.abstr.PetAbility;
 import net.swofty.type.skyblockgeneric.item.handlers.pet.abstr.PetEvent;
 import net.swofty.type.skyblockgeneric.user.SkyBlockPlayer;
@@ -71,7 +71,8 @@ public class DatapointPetData extends SkyBlockDatapoint<DatapointPetData.UserPet
     public static class UserPetData {
         private HashMap<SkyBlockItem, Boolean> petsMap;
         private PetEntityImpl enabledPetEntityImpl = null;
-        private final transient Map<PetAbility, AbilityRuntime> abilityRuntimes = new HashMap<>();
+        @Getter(AccessLevel.NONE)
+        private final transient Map<Class<? extends PetAbility>, PetAbility> abilities = new HashMap<>();
 
         public UserPetData() {
             this.petsMap = new HashMap<>();
@@ -123,11 +124,9 @@ public class DatapointPetData extends SkyBlockDatapoint<DatapointPetData.UserPet
         }
 
         public List<PetAbility> getAbilities(SkyBlockItem pet) {
-            return PetAbilityRegistry.getAbilities(pet);
-        }
-
-        public AbilityRuntime getAbilityRuntime(PetAbility ability) {
-            return abilityRuntimes.computeIfAbsent(ability, _ -> new AbilityRuntime());
+            return PetAbilityRegistry.getAbilities(pet).stream()
+                    .map(fresh -> abilities.computeIfAbsent(fresh.getClass(), _ -> fresh))
+                    .toList();
         }
 
         public <E extends PetEvent> E dispatch(E event) {

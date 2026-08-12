@@ -17,14 +17,13 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.EnumMap;
 import java.util.HashMap;
-import java.util.IdentityHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
 public final class PetAbilityRegistry {
-    private static final Map<PetAbility, AbilityEntry> BY_ABILITY = new IdentityHashMap<>();
-    private static final Map<PetHandler, List<AbilityEntry>> ABILITIES = load();
+    private static final Map<Class<? extends PetAbility>, AbilityDescriptor> BY_ABILITY = new HashMap<>();
+    private static final Map<PetHandler, List<AbilityDescriptor>> ABILITIES = load();
     private static final Map<Class<?>, Map<Class<? extends PetEvent>, List<Method>>> HANDLERS = new ConcurrentHashMap<>();
 
     private PetAbilityRegistry() {
@@ -36,19 +35,38 @@ public final class PetAbilityRegistry {
                 item.getAttributeHandler().getRarity());
     }
 
+    /**
+     * Returns a fresh instance of every ability.
+     * Instances are per-player
+     */
     public static List<PetAbility> getAbilitiesFor(PetHandler pet, Rarity rarity) {
         return ABILITIES.getOrDefault(pet, List.of())
                 .stream()
-                .filter(e -> rarity.isAtLeast(e.minimumRarity))
-                .map(AbilityEntry::ability)
+                .filter(descriptor -> rarity.isAtLeast(descriptor.minimumRarity))
+                .map(descriptor -> instantiate(descriptor.type))
                 .toList();
     }
 
     public static @Nullable String notImplementedLine(PetAbility ability) {
-        AbilityEntry entry = BY_ABILITY.get(ability);
-        if (entry == null || entry.implemented()) return null;
-        String reason = entry.notImplementedReason();
+        AbilityDescriptor descriptor = BY_ABILITY.get(ability.getClass());
+        if (descriptor == null || descriptor.implemented) return null;
+        String reason = descriptor.notImplementedReason;
         return "<c>⚠ <l>NOT IMPLEMENTED<r><c>" + (reason.isEmpty() ? "" : " — " + reason);
+    }
+
+    public static List<NotImplementedAbility> notImplementedAbilities() {
+        List<NotImplementedAbility> out = new ArrayList<>();
+        ABILITIES.forEach((pet, descriptors) -> {
+            for (AbilityDescriptor descriptor : descriptors) {
+                if (!descriptor.implemented) {
+                    out.add(new NotImplementedAbility(pet, descriptor.prototype.getName(), descriptor.notImplementedReason));
+                }
+            }
+        });
+        return out;
+    }
+
+    public record NotImplementedAbility(PetHandler pet, String name, String reason) {
     }
 
     public static void invoke(PetAbility ability, PetEvent event) {
@@ -62,20 +80,20 @@ public final class PetAbilityRegistry {
         }
     }
 
-    private static Map<PetHandler, List<AbilityEntry>> load() {
-        Map<PetHandler, List<AbilityEntry>> registry = new EnumMap<>(PetHandler.class);
+    private static Map<PetHandler, List<AbilityDescriptor>> load() {
+        Map<PetHandler, List<AbilityDescriptor>> registry = new EnumMap<>(PetHandler.class);
         for (Class<?> clazz : new Reflections("net.swofty.type.skyblockgeneric.item.handlers.pet.abilities")
                 .getTypesAnnotatedWith(PetAbilityRegistration.class)) {
             PetAbilityRegistration meta = clazz.getAnnotation(PetAbilityRegistration.class);
-            PetAbility ability = instantiate(clazz);
-            AbilityEntry entry = new AbilityEntry(ability, meta.minimumRarity(), meta.order(),
-                    meta.implemented(), meta.notImplementedReason());
-            registry.computeIfAbsent(meta.pet(), _ -> new ArrayList<>()).add(entry);
-            BY_ABILITY.put(ability, entry);
+            Class<? extends PetAbility> type = clazz.asSubclass(PetAbility.class);
+            AbilityDescriptor descriptor = new AbilityDescriptor(type, instantiate(clazz),
+                    meta.minimumRarity(), meta.order(), meta.implemented(), meta.notImplementedReason());
+            registry.computeIfAbsent(meta.pet(), _ -> new ArrayList<>()).add(descriptor);
+            BY_ABILITY.put(type, descriptor);
         }
         registry.values().forEach(list -> list.sort(
-                Comparator.comparingInt((AbilityEntry e) -> e.minimumRarity().ordinal())
-                        .thenComparingInt(AbilityEntry::order)));
+                Comparator.comparingInt((AbilityDescriptor d) -> d.minimumRarity.ordinal())
+                        .thenComparingInt(AbilityDescriptor::order)));
         return Map.copyOf(registry);
     }
 
@@ -107,7 +125,7 @@ public final class PetAbilityRegistry {
         return handlers;
     }
 
-    private record AbilityEntry(PetAbility ability, Rarity minimumRarity, int order,
-                                boolean implemented, String notImplementedReason) {
+    private record AbilityDescriptor(Class<? extends PetAbility> type, PetAbility prototype, Rarity minimumRarity,
+                                     int order, boolean implemented, String notImplementedReason) {
     }
 }

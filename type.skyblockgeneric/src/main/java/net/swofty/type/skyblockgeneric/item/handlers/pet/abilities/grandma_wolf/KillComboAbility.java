@@ -3,13 +3,12 @@ package net.swofty.type.skyblockgeneric.item.handlers.pet.abilities.grandma_wolf
 import net.swofty.type.skyblockgeneric.item.handlers.pet.PetHandler;
 import net.swofty.type.skyblockgeneric.item.handlers.pet.abstr.PetAbilityRegistration;
 import net.swofty.type.skyblockgeneric.item.handlers.pet.abstr.PetEventHandler;
+import net.swofty.type.skyblockgeneric.item.handlers.pet.abstr.StackingBuffPetAbility;
 
 import net.swofty.commons.skyblock.item.Rarity;
 import net.swofty.commons.skyblock.statistics.ItemStatistic;
 import net.swofty.commons.skyblock.statistics.ItemStatistics;
 import net.swofty.type.skyblockgeneric.item.SkyBlockItem;
-import net.swofty.type.skyblockgeneric.item.handlers.pet.abstr.AbilityRuntime;
-import net.swofty.type.skyblockgeneric.item.handlers.pet.abstr.PetAbility;
 import net.swofty.type.skyblockgeneric.item.handlers.pet.abstr.PetEvent;
 import net.swofty.type.skyblockgeneric.user.SkyBlockPlayer;
 import net.swofty.type.skyblockgeneric.utility.RarityValue;
@@ -20,7 +19,7 @@ import java.util.List;
 import static net.swofty.commons.StringUtility.commaify;
 
 @PetAbilityRegistration(pet = PetHandler.GRANDMA_WOLF, minimumRarity = Rarity.COMMON)
-public final class KillComboAbility implements PetAbility {
+public final class KillComboAbility extends StackingBuffPetAbility {
     private static final RarityValue<Integer> MAGIC_FIND_5 = new RarityValue<>(1, 1, 2, 2, 3, 3, 0);
     private static final RarityValue<Integer> MAGIC_FIND_15 = new RarityValue<>(1, 1, 2, 2, 3, 3, 0);
     private static final RarityValue<Integer> MAGIC_FIND_25 = new RarityValue<>(1, 1, 2, 2, 3, 3, 0);
@@ -78,35 +77,27 @@ public final class KillComboAbility implements PetAbility {
     }
 
     @Override
-    public ItemStatistics getStatistics(SkyBlockPlayer player, SkyBlockItem pet) {
-        AbilityRuntime rt = player.getPetData().getAbilityRuntime(this);
-        int combo = rt.getStacks();
-        if (combo <= 0) return ItemStatistics.empty();
-
+    protected long activeDuration(SkyBlockItem pet, int stacks) {
         Rarity rarity = pet.getAttributeHandler().getRarity();
         int level = pet.getAttributeHandler().getPetData().getAsLevel(rarity);
-
         double activeDuration = 0;
         for (int i = 0; i < THRESHOLDS.length; i++) {
-            if (combo >= THRESHOLDS[i]) {
+            if (stacks >= THRESHOLDS[i]) {
                 activeDuration = BASE_DURATIONS[i] + level * DURATION_PER_LEVEL[i];
             }
         }
+        return (long) (activeDuration * 1000);
+    }
 
-        if (activeDuration <= 0
-                || System.currentTimeMillis() - rt.getLastProc() > (long) (activeDuration * 1000)) {
-            rt.setStacks(0);
-            return ItemStatistics.empty();
-        }
-
+    @Override
+    protected ItemStatistics computeStatistics(SkyBlockPlayer player, SkyBlockItem pet, int stacks) {
+        Rarity rarity = pet.getAttributeHandler().getRarity();
         double totalMf = 0;
         int totalWisdom = 0;
-
-        if (combo >= 5) totalMf += MAGIC_FIND_5.getForRarity(rarity);
-        if (combo >= 15) totalMf += MAGIC_FIND_15.getForRarity(rarity);
-        if (combo >= 25) totalMf += MAGIC_FIND_25.getForRarity(rarity);
-        if (combo >= 20) totalWisdom += COMBAT_WISDOM_20.getForRarity(rarity);
-
+        if (stacks >= 5) totalMf += MAGIC_FIND_5.getForRarity(rarity);
+        if (stacks >= 15) totalMf += MAGIC_FIND_15.getForRarity(rarity);
+        if (stacks >= 25) totalMf += MAGIC_FIND_25.getForRarity(rarity);
+        if (stacks >= 20) totalWisdom += COMBAT_WISDOM_20.getForRarity(rarity);
         return ItemStatistics.builder()
                 .withAdditivePercentage(ItemStatistic.MAGIC_FIND, totalMf)
                 .withBase(ItemStatistic.COMBAT_WISDOM, (double) totalWisdom)
@@ -115,15 +106,12 @@ public final class KillComboAbility implements PetAbility {
 
     @PetEventHandler
     public void onKillEvent(PetEvent.Kill kill) {
-        AbilityRuntime rt = kill.player().getPetData().getAbilityRuntime(this);
-        rt.setStacks(rt.getStacks() + 1);
-        rt.setLastProc(System.currentTimeMillis());
-
+        increment();
         Rarity rarity = kill.pet().getAttributeHandler().getRarity();
-        if (rt.getStacks() >= 10) {
+        if (stacks() >= 10) {
             kill.player().addCoins(COINS_10.getForRarity(rarity));
         }
-        if (rt.getStacks() >= 30) {
+        if (stacks() >= 30) {
             kill.player().addCoins(COINS_30.getForRarity(rarity));
         }
     }
