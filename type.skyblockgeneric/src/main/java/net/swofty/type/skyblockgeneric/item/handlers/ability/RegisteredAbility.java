@@ -16,6 +16,8 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.function.BiFunction;
 
+import static net.swofty.commons.StringUtility.decimalify;
+
 @Getter
 public class RegisteredAbility {
     private final String id;
@@ -106,15 +108,16 @@ public class RegisteredAbility {
         public void onUse(@NonNull SkyBlockPlayer player, @NonNull RegisteredAbility ability) {
             SkyBlockItem pet = player.getPetData().getEnabledPet();
             PetEvent.ManaCost manaCost = player.getPetData()
-                    .dispatch(new PetEvent.ManaCost(player, pet, cost));
+                    .dispatch(new PetEvent.ManaCost(player, pet, ability, cost));
             if (manaCost.free()) return;
+            double finalCost = manaCost.cost();
             SkyBlockActionBar.getFor(player).addReplacement(
                     SkyBlockActionBar.BarSection.MANA,
-                    Text.of("<b>-{} (<6>{}</6>)", cost, ability.getName()),
+                    Text.of("<b>-{} (<6>{}</6>)", decimalify(finalCost, 2), ability.getName()),
                     20,
                     2
             );
-            player.setMana(player.getMana() - cost);
+            player.setMana(player.getMana() - (float) finalCost);
         }
 
         @Override
@@ -151,15 +154,16 @@ public class RegisteredAbility {
         public void onUse(@NonNull SkyBlockPlayer player, @NonNull RegisteredAbility ability) {
             SkyBlockItem pet = player.getPetData().getEnabledPet();
             PetEvent.ManaCost manaCost = player.getPetData()
-                    .dispatch(new PetEvent.ManaCost(player, pet, cost));
+                    .dispatch(new PetEvent.ManaCost(player, pet, ability, cost));
             if (manaCost.free()) return;
+            double finalCost = manaCost.cost();
             SkyBlockActionBar.getFor(player).addReplacement(
                     SkyBlockActionBar.BarSection.MANA,
-                    Text.of("<b>-{} (<6>{}</6>)", cost, ability.getName()),
+                    Text.of("<b>-{} (<6>{}</6>)", decimalify(finalCost, 2), ability.getName()),
                     20,
                     2
             );
-            player.setMana(player.getMana() - cost);
+            player.setMana(player.getMana() - (float) finalCost);
             player.getSkyblockDataHandler().get(SkyBlockDataHandler.Data.SOULFLOW, DatapointInteger.class).setValue(
                     player.getSkyblockDataHandler().get(SkyBlockDataHandler.Data.SOULFLOW, DatapointInteger.class).getValue() - soulflow
             );
