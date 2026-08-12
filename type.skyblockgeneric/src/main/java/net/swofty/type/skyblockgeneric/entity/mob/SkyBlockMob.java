@@ -34,7 +34,6 @@ import net.swofty.commons.skyblock.statistics.ItemStatistics;
 import net.swofty.type.generic.event.HypixelEventHandler;
 import net.swofty.type.generic.utility.MathUtility;
 import net.swofty.type.skyblockgeneric.SkyBlockGenericLoader;
-import net.swofty.type.skyblockgeneric.entity.DroppedItemEntityImpl;
 import net.swofty.type.skyblockgeneric.entity.TextDisplayEntity;
 import net.swofty.type.skyblockgeneric.entity.mob.impl.MobPlayerSkin;
 import net.swofty.type.skyblockgeneric.entity.mob.impl.RegionPopulator;
@@ -263,16 +262,7 @@ public abstract class SkyBlockMob extends EntityCreature {
             if (SkyBlockLootTable.LootRecord.isNone(record)) continue;
 
             SkyBlockItem item = new SkyBlockItem(itemType, record.getAmount());
-            ItemType droppedItemLinker = item.getAttributeHandler().getPotentialType();
-
-            if (player.canInsertItemIntoSacks(droppedItemLinker, record.getAmount())) {
-                player.getSackItems().increase(droppedItemLinker, record.getAmount());
-            } else if (player.getSkyBlockExperience().getLevel().asInt() >= 6) {
-                player.addAndUpdateItem(item);
-            } else {
-                DroppedItemEntityImpl droppedItem = new DroppedItemEntityImpl(item, player);
-                droppedItem.setInstance(getInstance(), getPosition().add(0, 0.5, 0));
-            }
+            player.giveLoot(item, record.getAmount(), getPosition());
         }
     }
 

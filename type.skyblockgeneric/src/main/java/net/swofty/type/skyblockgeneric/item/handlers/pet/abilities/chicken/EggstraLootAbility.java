@@ -9,13 +9,10 @@ import net.minestom.server.item.ItemStack;
 import net.minestom.server.item.Material;
 import net.swofty.commons.skyblock.item.ItemType;
 import net.swofty.commons.skyblock.item.Rarity;
-import net.swofty.type.skyblockgeneric.entity.DroppedItemEntityImpl;
-import net.swofty.type.skyblockgeneric.entity.mob.SkyBlockMob;
 import net.swofty.type.skyblockgeneric.item.SkyBlockItem;
 import net.swofty.type.skyblockgeneric.item.handlers.pet.abstr.PetAbility;
 import net.swofty.type.skyblockgeneric.item.handlers.pet.abstr.PetEvent;
 import net.swofty.type.skyblockgeneric.loottable.SkyBlockLootTable;
-import net.swofty.type.skyblockgeneric.user.SkyBlockPlayer;
 import net.swofty.type.skyblockgeneric.utility.RarityValue;
 
 import java.util.Arrays;
@@ -54,12 +51,7 @@ public final class EggstraLootAbility implements PetAbility {
     @PetEventHandler
     public void onChickenKill(PetEvent.Kill kill) {
         if (kill.mob().getEntityType() != EntityType.CHICKEN) return;
-        dropItemForPlayer(
-                kill.player(),
-                new SkyBlockItem(ItemStack.of(Material.EGG)),
-                1,
-                kill.mob()
-        );
+        kill.player().giveLoot(new SkyBlockItem(ItemStack.of(Material.EGG)), 1, kill.mob().getPosition());
     }
 
     @PetEventHandler
@@ -82,19 +74,7 @@ public final class EggstraLootAbility implements PetAbility {
             SkyBlockLootTable.LootRecord record = entry.getValue();
             if (SkyBlockLootTable.LootRecord.isNone(record)) continue;
             SkyBlockItem item = new SkyBlockItem(entry.getKey(), record.getAmount());
-            dropItemForPlayer(context.player(), item, record.getAmount(), context.mob());
-        }
-    }
-
-    private void dropItemForPlayer(SkyBlockPlayer player, SkyBlockItem item, int amount, SkyBlockMob mob) {
-        ItemType type = item.getAttributeHandler().getPotentialType();
-        if (type != null && player.canInsertItemIntoSacks(type, amount)) {
-            player.getSackItems().increase(type, amount);
-        } else if (player.getSkyBlockExperience().getLevel().asInt() >= 6) {
-            player.addAndUpdateItem(item);
-        } else {
-            DroppedItemEntityImpl droppedItem = new DroppedItemEntityImpl(item, player);
-            droppedItem.setInstance(mob.getInstance(), mob.getPosition().add(0, 0.5, 0));
+            context.player().giveLoot(item, record.getAmount(), context.mob().getPosition());
         }
     }
 }
