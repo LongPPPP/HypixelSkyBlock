@@ -1,9 +1,9 @@
 package net.swofty.type.skyblockgeneric.item.handlers.pet.abilities.grandma_wolf;
 
 import net.swofty.type.skyblockgeneric.item.handlers.pet.PetHandler;
+import net.swofty.type.skyblockgeneric.item.handlers.pet.abstr.PetAbility;
 import net.swofty.type.skyblockgeneric.item.handlers.pet.abstr.PetAbilityRegistration;
 import net.swofty.type.skyblockgeneric.item.handlers.pet.abstr.PetEventHandler;
-import net.swofty.type.skyblockgeneric.item.handlers.pet.abstr.StackingBuffPetAbility;
 
 import net.swofty.commons.skyblock.item.Rarity;
 import net.swofty.commons.skyblock.statistics.ItemStatistic;
@@ -19,7 +19,10 @@ import java.util.List;
 import static net.swofty.commons.StringUtility.commaify;
 
 @PetAbilityRegistration(pet = PetHandler.GRANDMA_WOLF, minimumRarity = Rarity.COMMON)
-public final class KillComboAbility extends StackingBuffPetAbility {
+public final class KillComboAbility implements PetAbility {
+    private int stacks;
+    private long lastProc;
+
     private static final RarityValue<Integer> MAGIC_FIND_5 = new RarityValue<>(1, 1, 2, 2, 3, 3, 0);
     private static final RarityValue<Integer> MAGIC_FIND_15 = new RarityValue<>(1, 1, 2, 2, 3, 3, 0);
     private static final RarityValue<Integer> MAGIC_FIND_25 = new RarityValue<>(1, 1, 2, 2, 3, 3, 0);
@@ -77,7 +80,16 @@ public final class KillComboAbility extends StackingBuffPetAbility {
     }
 
     @Override
-    protected long activeDuration(SkyBlockItem pet, int stacks) {
+    public ItemStatistics getStatistics(SkyBlockPlayer player, SkyBlockItem pet) {
+        if (stacks <= 0) return ItemStatistics.empty();
+        if (System.currentTimeMillis() - lastProc > activeDuration(pet, stacks)) {
+            stacks = 0;
+            return ItemStatistics.empty();
+        }
+        return computeStatistics(player, pet, stacks);
+    }
+
+    private long activeDuration(SkyBlockItem pet, int stacks) {
         Rarity rarity = pet.getAttributeHandler().getRarity();
         int level = pet.getAttributeHandler().getPetData().getAsLevel(rarity);
         double activeDuration = 0;
@@ -89,8 +101,7 @@ public final class KillComboAbility extends StackingBuffPetAbility {
         return (long) (activeDuration * 1000);
     }
 
-    @Override
-    protected ItemStatistics computeStatistics(SkyBlockPlayer player, SkyBlockItem pet, int stacks) {
+    private ItemStatistics computeStatistics(SkyBlockPlayer player, SkyBlockItem pet, int stacks) {
         Rarity rarity = pet.getAttributeHandler().getRarity();
         double totalMf = 0;
         int totalWisdom = 0;
@@ -105,14 +116,19 @@ public final class KillComboAbility extends StackingBuffPetAbility {
     }
 
     @PetEventHandler
-    public void onKillEvent(PetEvent.Kill kill) {
+    public void onKillEvent(PetEvent.KilledMob kill) {
         increment();
         Rarity rarity = kill.pet().getAttributeHandler().getRarity();
-        if (stacks() >= 10) {
+        if (stacks >= 10) {
             kill.player().addCoins(COINS_10.getForRarity(rarity));
         }
-        if (stacks() >= 30) {
+        if (stacks >= 30) {
             kill.player().addCoins(COINS_30.getForRarity(rarity));
         }
+    }
+
+    private void increment() {
+        stacks++;
+        lastProc = System.currentTimeMillis();
     }
 }

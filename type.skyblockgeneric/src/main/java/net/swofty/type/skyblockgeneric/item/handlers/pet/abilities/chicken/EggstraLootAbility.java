@@ -49,18 +49,18 @@ public final class EggstraLootAbility implements PetAbility {
     }
 
     @PetEventHandler
-    public void onChickenKill(PetEvent.Kill kill) {
+    public void onChickenKill(PetEvent.KilledMob kill) {
         if (kill.mob().getEntityType() != EntityType.CHICKEN) return;
         kill.player().giveLoot(new SkyBlockItem(ItemStack.of(Material.EGG)), 1, kill.mob().getPosition());
     }
 
     @PetEventHandler
-    public void onAnimalKill(PetEvent.Kill kill) {
+    public void onAnimalKill(PetEvent.KilledMob kill) {
         if (!ANIMALS.contains(kill.mob().getEntityType())) return;
         dropExtraLoot(kill);
     }
 
-    private void dropExtraLoot(PetEvent.Kill context) {
+    private void dropExtraLoot(PetEvent.KilledMob context) {
         Rarity rarity = context.pet().getAttributeHandler().getRarity();
         int level = context.pet().getAttributeHandler().getPetData().getAsLevel(rarity);
         double chance = CHANCE_PER_LEVEL.getForRarity(rarity) * level;
