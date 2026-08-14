@@ -191,21 +191,31 @@ public class PlayerStatistics {
     }
 
     public ItemStatistics petStatistics() {
-        SkyBlockItem pet = player.getPetData().getEnabledPet();
-        if (pet == null) return ItemStatistics.empty();
+        ItemStatistics stats = ItemStatistics.empty();
+        for (SkyBlockItem pet : player.getPetData().getActivePets()) {
+            stats = ItemStatistics.add(stats, petStatsFor(pet));
+        }
+        return stats;
+    }
+
+    private ItemStatistics petStatsFor(SkyBlockItem pet) {
+        ItemStatistics stats = player.getPetData().getEnabledPet() == pet
+                ? baseAndPerLevel(pet)
+                : ItemStatistics.empty();
+        for (PetAbility ability : player.getPetData().getAbilities(pet)) {
+            stats = ItemStatistics.add(stats, ability.getStatistics(player, pet));
+        }
+        return stats;
+    }
+
+    private ItemStatistics baseAndPerLevel(SkyBlockItem pet) {
         PetComponent component = pet.getComponent(PetComponent.class);
         ItemStatistics baseStatistics = component.getBaseStatistics();
         ItemStatistics perLevelStatistics = component.getPerLevelStatistics(
                 pet.getAttributeHandler().getRarity()
         );
         int level = pet.getAttributeHandler().getPetData().getAsLevel(pet.getAttributeHandler().getRarity());
-        ItemStatistics stats = ItemStatistics.add(baseStatistics, ItemStatistics.multiply(perLevelStatistics, level));
-
-        for (PetAbility ability : player.getPetData().getAbilities(pet)) {
-            stats = ItemStatistics.add(stats, ability.getStatistics(player, pet));
-        }
-
-        return stats;
+        return ItemStatistics.add(baseStatistics, ItemStatistics.multiply(perLevelStatistics, level));
     }
 
     public ItemStatistics spareStatistics() {
@@ -310,9 +320,10 @@ public class PlayerStatistics {
                 StatisticSourceType.ATTRIBUTE, StatisticModifierType.ATTRIBUTE, null, Material.PRISMARINE_SHARD, null);
         addTemporaryModifiers(modifiers);
 
-        SkyBlockItem pet = player.getPetData().getEnabledPet();
-        if (pet != null) modifiers.add(new StatisticModifier(pet.getDisplayName(), pet.getMaterial(),
-            texture(pet), petStatistics(), StatisticSourceType.PET, StatisticModifierType.BASIC, null));
+        for (SkyBlockItem pet : player.getPetData().getActivePets()) {
+            addModifier(modifiers, pet.getDisplayName(), petStatsFor(pet),
+                StatisticSourceType.PET, StatisticModifierType.BASIC, null, pet.getMaterial(), texture(pet));
+        }
 
         Set<ItemType> usedAccessories = new HashSet<>();
         for (ItemStack stack : player.getInventory().getItemStacks()) {

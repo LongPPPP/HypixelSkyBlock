@@ -137,6 +137,7 @@ items:
         skill_category: COMBAT
         skull_texture: e897c5640ccfc68ffb65e331b7070ce5d14439ad2cd7d9612a6feb023eedac18
         handler_id: GRANDMA_WOLF
+        passive: true
       - id: TRACKED_UNIQUE
   - id: CROW_PET
     material: player_head
@@ -1298,6 +1299,7 @@ items:
         skill_category: COMBAT
         skull_texture: ""
         handler_id: KUUDRA
+        passive: true
       - id: TRACKED_UNIQUE
   - id: LION_PET
     material: player_head
@@ -1718,6 +1720,7 @@ items:
         skill_category: TAMING
         skull_texture: ""
         handler_id: OWL
+        passive: true
       - id: TRACKED_UNIQUE
   - id: PARROT_PET
     material: player_head
@@ -2501,6 +2504,7 @@ items:
         skill_category: COMBAT
         skull_texture: ""
         handler_id: SPIRIT
+        passive: true
       - id: TRACKED_UNIQUE
   - id: SQUID_PET
     material: player_head

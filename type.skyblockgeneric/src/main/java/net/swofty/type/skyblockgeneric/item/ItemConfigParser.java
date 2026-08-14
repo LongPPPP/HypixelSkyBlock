@@ -656,6 +656,7 @@ public class ItemConfigParser {
 					String skillCategory = safeConfig.getString("skill_category");
 					String skullTexture = safeConfig.getString("skull_texture");
 					String handlerId = safeConfig.getString("handler_id");
+					boolean passive = safeConfig.getBoolean("passive", false);
 
 					yield new PetComponent(
 							petName,
@@ -666,7 +667,8 @@ public class ItemConfigParser {
 							particleId,
 							skillCategory,
 							skullTexture,
-							handlerId
+							handlerId,
+							passive
 					);
 				}
 				case "UPGRADES" -> {

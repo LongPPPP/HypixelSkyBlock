@@ -15,6 +15,8 @@ public @interface PetAbilityRegistration {
 
     Rarity minimumRarity();
 
+    Rarity maximumRarity() default Rarity.MYTHIC;
+
     int order() default 0;
 
     boolean implemented() default true;

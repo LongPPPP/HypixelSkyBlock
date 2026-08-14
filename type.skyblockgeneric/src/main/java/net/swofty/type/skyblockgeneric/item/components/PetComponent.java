@@ -25,7 +25,6 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 @Getter
 public class PetComponent extends SkyBlockItemComponent {
@@ -38,12 +37,13 @@ public class PetComponent extends SkyBlockItemComponent {
     private final SkillCategories skillCategory;
     private final String skullTexture;
     private final String handlerId;
+    private final boolean passive;
 
     public PetComponent(String petName, RarityValue<Integer> georgePrice,
                         @Nullable RarityValue<KatUpgrade> katUpgrades,
                         ItemStatistics baseStatistics, RarityValue<ItemStatistics> perLevelStatistics,
                         Particle particleId, String skillCategory, String skullTexture,
-                        String handlerId) {
+                        String handlerId, boolean passive) {
         this.petName = petName;
         this.georgePrice = georgePrice;
         this.katUpgrades = katUpgrades;
@@ -53,6 +53,7 @@ public class PetComponent extends SkyBlockItemComponent {
         this.skillCategory = SkillCategories.valueOf(skillCategory);
         this.skullTexture = skullTexture;
         this.handlerId = handlerId;
+        this.passive = passive;
 
         addInheritedComponent(new SkullHeadComponent((item) -> skullTexture));
         addInheritedComponent(new TrackedUniqueComponent());
@@ -118,6 +119,12 @@ public class PetComponent extends SkyBlockItemComponent {
                 lore.add(" ");
                 lore.add(notImplemented);
             }
+        }
+
+        if (item.getComponent(PetComponent.class).isPassive()) {
+            lore.add(" ");
+            lore.add("<8>This pet's perks are active even");
+            lore.add("<8>when the pet is not summoned!");
         }
 
         if (level < 100) {

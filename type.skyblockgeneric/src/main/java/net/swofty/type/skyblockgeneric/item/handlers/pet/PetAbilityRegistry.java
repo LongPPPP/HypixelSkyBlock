@@ -19,12 +19,10 @@ import java.util.EnumMap;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.concurrent.ConcurrentHashMap;
 
 public final class PetAbilityRegistry {
     private static final Map<Class<? extends PetAbility>, AbilityDescriptor> BY_ABILITY = new HashMap<>();
     private static final Map<PetHandler, List<AbilityDescriptor>> ABILITIES = load();
-    private static final Map<Class<?>, Map<Class<? extends PetEvent>, List<Method>>> HANDLERS = new ConcurrentHashMap<>();
 
     private PetAbilityRegistry() {
     }
@@ -43,6 +41,7 @@ public final class PetAbilityRegistry {
         return ABILITIES.getOrDefault(pet, List.of())
                 .stream()
                 .filter(descriptor -> rarity.isAtLeast(descriptor.minimumRarity))
+                .filter(descriptor -> rarity.isAtMost(descriptor.maximumRarity))
                 .map(descriptor -> instantiate(descriptor.type))
                 .toList();
     }
@@ -70,8 +69,11 @@ public final class PetAbilityRegistry {
     }
 
     public static void invoke(PetAbility ability, PetEvent event) {
-        for (Method handler : HANDLERS.computeIfAbsent(ability.getClass(), PetAbilityRegistry::buildHandlers)
-                .getOrDefault(event.getClass(), List.of())) {
+        AbilityDescriptor descriptor = BY_ABILITY.get(ability.getClass());
+        Map<Class<? extends PetEvent>, List<Method>> handlers = descriptor != null
+                ? descriptor.handlers
+                : buildHandlers(ability.getClass());
+        for (Method handler : handlers.getOrDefault(event.getClass(), List.of())) {
             try {
                 handler.invoke(ability, event);
             } catch (IllegalAccessException | InvocationTargetException e) {
@@ -87,7 +89,8 @@ public final class PetAbilityRegistry {
             PetAbilityRegistration meta = clazz.getAnnotation(PetAbilityRegistration.class);
             Class<? extends PetAbility> type = clazz.asSubclass(PetAbility.class);
             AbilityDescriptor descriptor = new AbilityDescriptor(type, instantiate(clazz),
-                    meta.minimumRarity(), meta.order(), meta.implemented(), meta.notImplementedReason());
+                    meta.minimumRarity(), meta.maximumRarity(), meta.order(), meta.implemented(), meta.notImplementedReason(),
+                    buildHandlers(type));
             registry.computeIfAbsent(meta.pet(), _ -> new ArrayList<>()).add(descriptor);
             BY_ABILITY.put(type, descriptor);
         }
@@ -105,7 +108,7 @@ public final class PetAbilityRegistry {
         }
     }
 
-    private static Map<Class<? extends PetEvent>, List<Method>> buildHandlers(Class<?> clazz) {
+    private static Map<Class<? extends PetEvent>, List<Method>> buildHandlers(Class<? extends PetAbility> clazz) {
         Map<Class<? extends PetEvent>, List<Method>> handlers = new HashMap<>();
         for (Method method : clazz.getDeclaredMethods()) {
             PetEventHandler meta = method.getAnnotation(PetEventHandler.class);
@@ -122,10 +125,11 @@ public final class PetAbilityRegistry {
         handlers.values().forEach(list -> list.sort(
                 Comparator.comparingInt((Method m) -> m.getAnnotation(PetEventHandler.class).order())
                         .thenComparing(Method::getName)));
-        return handlers;
+        return Map.copyOf(handlers);
     }
 
     private record AbilityDescriptor(Class<? extends PetAbility> type, PetAbility prototype, Rarity minimumRarity,
-                                     int order, boolean implemented, String notImplementedReason) {
+                                     Rarity maximumRarity, int order, boolean implemented, String notImplementedReason,
+                                     Map<Class<? extends PetEvent>, List<Method>> handlers) {
     }
 }
