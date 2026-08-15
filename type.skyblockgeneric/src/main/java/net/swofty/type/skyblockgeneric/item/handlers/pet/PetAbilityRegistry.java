@@ -73,11 +73,15 @@ public final class PetAbilityRegistry {
         Map<Class<? extends PetEvent>, List<Method>> handlers = descriptor != null
                 ? descriptor.handlers
                 : buildHandlers(ability.getClass());
-        for (Method handler : handlers.getOrDefault(event.getClass(), List.of())) {
-            try {
-                handler.invoke(ability, event);
-            } catch (IllegalAccessException | InvocationTargetException e) {
-                throw new IllegalStateException("Failed to invoke " + handler + " for " + event.getClass().getSimpleName(), e);
+        for (Class<?> eventType = event.getClass();
+             eventType != null && PetEvent.class.isAssignableFrom(eventType);
+             eventType = eventType.getSuperclass()) {
+            for (Method handler : handlers.getOrDefault(eventType.asSubclass(PetEvent.class), List.of())) {
+                try {
+                    handler.invoke(ability, event);
+                } catch (IllegalAccessException | InvocationTargetException e) {
+                    throw new IllegalStateException("Failed to invoke " + handler + " for " + event.getClass().getSimpleName(), e);
+                }
             }
         }
     }

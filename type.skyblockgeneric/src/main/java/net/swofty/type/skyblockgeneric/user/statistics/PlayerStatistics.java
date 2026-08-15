@@ -321,7 +321,7 @@ public class PlayerStatistics {
         addTemporaryModifiers(modifiers);
 
         for (SkyBlockItem pet : player.getPetData().getActivePets()) {
-            addModifier(modifiers, pet.getDisplayName(), petStatsFor(pet),
+            addModifier(modifiers, pet.getDisplayName(), petStatsFor(pet, null),
                 StatisticSourceType.PET, StatisticModifierType.BASIC, null, pet.getMaterial(), texture(pet));
         }
 

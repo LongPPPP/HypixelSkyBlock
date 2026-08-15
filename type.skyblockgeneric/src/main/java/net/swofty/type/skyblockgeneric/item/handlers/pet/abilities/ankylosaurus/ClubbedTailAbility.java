@@ -1,9 +1,9 @@
 package net.swofty.type.skyblockgeneric.item.handlers.pet.abilities.ankylosaurus;
 
-import net.minestom.server.entity.Entity;
 import net.minestom.server.entity.EntityType;
 import net.minestom.server.entity.damage.Damage;
 import net.minestom.server.entity.damage.DamageType;
+import net.minestom.server.instance.EntityTracker;
 import net.swofty.commons.skyblock.item.Rarity;
 import net.swofty.type.skyblockgeneric.entity.mob.SkyBlockMob;
 import net.swofty.type.skyblockgeneric.item.SkyBlockItem;
@@ -56,13 +56,14 @@ public final class ClubbedTailAbility implements PetAbility {
         double percent = DAMAGE_PERCENT_PER_LEVEL.getForRarity(rarity) * level;
         double clubDamage = event.damage() * percent / 100;
 
-        for (Entity entity : event.player().getInstance().getNearbyEntities(event.player().getPosition(), AOE_RADIUS)) {
-            if (entity == event.player()) continue;
-            if (!(entity instanceof SkyBlockMob mob)) continue;
-            if (entity.getEntityType() == EntityType.PLAYER || entity.getEntityType() == EntityType.VILLAGER) continue;
+        event.player().getInstance().getEntityTracker().nearbyEntities(
+                event.player().getPosition(), AOE_RADIUS, EntityTracker.Target.ENTITIES, entity -> {
+            if (entity == event.player()) return;
+            if (!(entity instanceof SkyBlockMob mob)) return;
+            if (entity.getEntityType() == EntityType.PLAYER || entity.getEntityType() == EntityType.VILLAGER) return;
 
             mob.damage(new Damage(DamageType.PLAYER_ATTACK, event.player(), event.player(),
                     event.player().getPosition(), (float) clubDamage));
-        }
+        });
     }
 }

@@ -1,21 +1,20 @@
 package net.swofty.type.skyblockgeneric.item.handlers.pet.abilities.ghoul;
 
 import net.swofty.commons.skyblock.item.Rarity;
-import net.swofty.type.skyblockgeneric.entity.mob.MobType;
 import net.swofty.type.skyblockgeneric.item.SkyBlockItem;
 import net.swofty.type.skyblockgeneric.item.handlers.pet.PetHandler;
 import net.swofty.type.skyblockgeneric.item.handlers.pet.abstr.PetAbility;
 import net.swofty.type.skyblockgeneric.item.handlers.pet.abstr.PetAbilityRegistration;
 import net.swofty.type.skyblockgeneric.item.handlers.pet.abstr.PetEvent;
 import net.swofty.type.skyblockgeneric.item.handlers.pet.abstr.PetEventHandler;
-import net.swofty.type.skyblockgeneric.skill.SkillCategories;
 import net.swofty.type.skyblockgeneric.utility.RarityValue;
 
 import java.util.List;
 
 import static net.swofty.commons.StringUtility.decimalify;
 
-@PetAbilityRegistration(pet = PetHandler.GHOUL, minimumRarity = Rarity.EPIC, order = 0)
+@PetAbilityRegistration(pet = PetHandler.GHOUL, minimumRarity = Rarity.EPIC, order = 0,
+        implemented = false, notImplementedReason = "awaits a unified XP-modifier pipeline; XP bonuses combine multiplicative (1.1x) + additive (+10%), so the kill handler can't just add XP")
 public final class UndeadSlayerAbility implements PetAbility {
     private static final RarityValue<Double> XP_MULTIPLIER_PER_LEVEL =
             new RarityValue<>(0.0, 0.0, 0.0, 0.005, 0.005, 0.0, 0.0);
@@ -39,14 +38,5 @@ public final class UndeadSlayerAbility implements PetAbility {
 
     @PetEventHandler
     public void onKill(PetEvent.KilledMob kill) {
-        if (!kill.mob().getMobTypes().contains(MobType.UNDEAD)) return;
-
-        Rarity rarity = kill.pet().getAttributeHandler().getRarity();
-        int level = kill.pet().getAttributeHandler().getPetData().getAsLevel(rarity);
-        double extra = kill.mob().getOtherLoot().getSkillXPAmount()
-                * XP_MULTIPLIER_PER_LEVEL.getForRarity(rarity) * level;
-        if (extra > 0) {
-            kill.player().getSkills().increase(kill.player(), SkillCategories.COMBAT, extra);
-        }
     }
 }

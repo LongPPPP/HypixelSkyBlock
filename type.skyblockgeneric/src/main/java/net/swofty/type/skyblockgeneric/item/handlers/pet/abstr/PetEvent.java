@@ -24,10 +24,6 @@ public sealed interface PetEvent {
 
     PetEvent pet(SkyBlockItem pet);
 
-    enum XpType {
-        SKILL, SLAYER, HOTM, HOTF
-    }
-
     /**
      * when the mob is killed
      */
@@ -268,28 +264,6 @@ public sealed interface PetEvent {
             super(player, pet, mob, weapon, damage);
         }
     }
-
-    @Getter
-    @Accessors(fluent = true)
-    final class XpGain implements PetEvent {
-        private final SkyBlockPlayer player;
-        @Setter
-        private SkyBlockItem pet;
-        private final XpType type;
-        @Nullable
-        private final SkyBlockMob mob;
-        @Setter
-        private double amount;
-
-        public XpGain(SkyBlockPlayer player, SkyBlockItem pet, XpType type, @Nullable SkyBlockMob mob, double amount) {
-            this.player = player;
-            this.pet = pet;
-            this.type = type;
-            this.mob = mob;
-            this.amount = amount;
-        }
-    }
-
 
     @Getter
     @Accessors(fluent = true)
