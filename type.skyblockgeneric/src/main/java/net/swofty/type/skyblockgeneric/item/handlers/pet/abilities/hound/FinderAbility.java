@@ -1,4 +1,4 @@
-package net.swofty.type.skyblockgeneric.item.handlers.pet.abilities.bal;
+package net.swofty.type.skyblockgeneric.item.handlers.pet.abilities.hound;
 
 import net.swofty.commons.skyblock.item.Rarity;
 import net.swofty.type.skyblockgeneric.item.SkyBlockItem;
@@ -7,35 +7,37 @@ import net.swofty.type.skyblockgeneric.item.handlers.pet.abstr.PetAbility;
 import net.swofty.type.skyblockgeneric.item.handlers.pet.abstr.PetAbilityRegistration;
 import net.swofty.type.skyblockgeneric.item.handlers.pet.abstr.PetEvent;
 import net.swofty.type.skyblockgeneric.item.handlers.pet.abstr.PetEventHandler;
+import net.swofty.type.skyblockgeneric.utility.RarityValue;
 
 import java.util.List;
 
 import static net.swofty.commons.StringUtility.decimalify;
 
-@PetAbilityRegistration(pet = PetHandler.BAL, minimumRarity = Rarity.LEGENDARY, order = 0,
-        implemented = false, notImplementedReason = "awaits a Bal boss mob")
-public final class CannibalAbility implements PetAbility {
-    private static final double PER_LEVEL = 1;
+@PetAbilityRegistration(pet = PetHandler.HOUND, minimumRarity = Rarity.EPIC, order = 1,
+        implemented = false, notImplementedReason = "awaits a LootRoll/armor-drop system + dispatch(PetEvent.KilledMob already connected)")
+public final class FinderAbility implements PetAbility {
+    private static final RarityValue<Double> CHANCE_PER_LEVEL =
+            new RarityValue<>(0.0, 0.0, 0.0, 0.3, 0.3, 0.0, 0.0);
 
     @Override
     public String getName() {
-        return "Cannibal";
+        return "Finder";
     }
 
     @Override
     public List<String> getDescription(SkyBlockItem pet) {
         Rarity rarity = pet.getAttributeHandler().getRarity();
         int level = pet.getAttributeHandler().getPetData().getAsLevel(rarity);
-        double value = PER_LEVEL * level;
+        String chance = decimalify(CHANCE_PER_LEVEL.getForRarity(rarity) * level, 1);
 
         return List.of(
-                "<7>Increases damage dealt to <c><l>Bal<r> <7>by",
-                "<a>" + decimalify(value, 1) + "%<7>."
+                "<7>Increases the chance for monsters",
+                "<7>to drop their armor by <a>" + chance + "%<7>."
         );
     }
 
     @PetEventHandler
-    public void onDamageDealt(PetEvent.DamageDealt event) {
+    public void onKilledMob(PetEvent.KilledMob event) {
 
     }
 }

@@ -1,4 +1,4 @@
-package net.swofty.type.skyblockgeneric.item.handlers.pet.abilities.bal;
+package net.swofty.type.skyblockgeneric.item.handlers.pet.abilities.lion;
 
 import net.swofty.commons.skyblock.item.Rarity;
 import net.swofty.type.skyblockgeneric.item.SkyBlockItem;
@@ -7,35 +7,36 @@ import net.swofty.type.skyblockgeneric.item.handlers.pet.abstr.PetAbility;
 import net.swofty.type.skyblockgeneric.item.handlers.pet.abstr.PetAbilityRegistration;
 import net.swofty.type.skyblockgeneric.item.handlers.pet.abstr.PetEvent;
 import net.swofty.type.skyblockgeneric.item.handlers.pet.abstr.PetEventHandler;
+import net.swofty.type.skyblockgeneric.utility.RarityValue;
 
 import java.util.List;
 
 import static net.swofty.commons.StringUtility.decimalify;
 
-@PetAbilityRegistration(pet = PetHandler.BAL, minimumRarity = Rarity.LEGENDARY, order = 0,
-        implemented = false, notImplementedReason = "awaits a Bal boss mob")
-public final class CannibalAbility implements PetAbility {
-    private static final double PER_LEVEL = 1;
+@PetAbilityRegistration(pet = PetHandler.LION, minimumRarity = Rarity.LEGENDARY, order = 2,
+        implemented = false, notImplementedReason = "awaits mob-attacked-you tracking + dispatch(PetEvent.DamageDealt)")
+public final class KingOfTheJungleAbility implements PetAbility {
+    private static final RarityValue<Double> DAMAGE_PER_LEVEL =
+            new RarityValue<>(0.0, 0.0, 0.0, 0.0, 1.5, 0.0, 0.0);
 
     @Override
     public String getName() {
-        return "Cannibal";
+        return "King of the Jungle";
     }
 
     @Override
     public List<String> getDescription(SkyBlockItem pet) {
         Rarity rarity = pet.getAttributeHandler().getRarity();
         int level = pet.getAttributeHandler().getPetData().getAsLevel(rarity);
-        double value = PER_LEVEL * level;
+        String percent = decimalify(DAMAGE_PER_LEVEL.getForRarity(rarity) * level, 1);
 
         return List.of(
-                "<7>Increases damage dealt to <c><l>Bal<r> <7>by",
-                "<a>" + decimalify(value, 1) + "%<7>."
+                "<7>Deal <c>+" + percent + "% <stat:damage>",
+                "<7>against mobs that have attacked you."
         );
     }
 
     @PetEventHandler
     public void onDamageDealt(PetEvent.DamageDealt event) {
-
     }
 }

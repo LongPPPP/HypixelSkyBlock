@@ -1,4 +1,4 @@
-package net.swofty.type.skyblockgeneric.item.handlers.pet.abilities.bal;
+package net.swofty.type.skyblockgeneric.item.handlers.pet.abilities.jerry;
 
 import net.swofty.commons.skyblock.item.Rarity;
 import net.swofty.type.skyblockgeneric.item.SkyBlockItem;
@@ -10,32 +10,24 @@ import net.swofty.type.skyblockgeneric.item.handlers.pet.abstr.PetEventHandler;
 
 import java.util.List;
 
-import static net.swofty.commons.StringUtility.decimalify;
-
-@PetAbilityRegistration(pet = PetHandler.BAL, minimumRarity = Rarity.LEGENDARY, order = 0,
-        implemented = false, notImplementedReason = "awaits a Bal boss mob")
-public final class CannibalAbility implements PetAbility {
-    private static final double PER_LEVEL = 1;
+@PetAbilityRegistration(pet = PetHandler.JERRY, minimumRarity = Rarity.COMMON, order = 0,
+        implemented = false, notImplementedReason = "awaits dispatch(PetEvent.DamageDealt)")
+public final class JerryDamageAbility implements PetAbility {
 
     @Override
     public String getName() {
-        return "Cannibal";
+        return "Jerry";
     }
 
     @Override
     public List<String> getDescription(SkyBlockItem pet) {
-        Rarity rarity = pet.getAttributeHandler().getRarity();
-        int level = pet.getAttributeHandler().getPetData().getAsLevel(rarity);
-        double value = PER_LEVEL * level;
-
         return List.of(
-                "<7>Increases damage dealt to <c><l>Bal<r> <7>by",
-                "<a>" + decimalify(value, 1) + "%<7>."
+                "<7>Gain <a>50% <7>chance to deal",
+                "<7>your regular damage."
         );
     }
 
     @PetEventHandler
     public void onDamageDealt(PetEvent.DamageDealt event) {
-
     }
 }

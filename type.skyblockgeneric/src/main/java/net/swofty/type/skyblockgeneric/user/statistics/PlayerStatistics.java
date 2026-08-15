@@ -190,20 +190,20 @@ public class PlayerStatistics {
                 ));
     }
 
-    public ItemStatistics petStatistics() {
+    public ItemStatistics petStatistics(@Nullable SkyBlockMob mob) {
         ItemStatistics stats = ItemStatistics.empty();
         for (SkyBlockItem pet : player.getPetData().getActivePets()) {
-            stats = ItemStatistics.add(stats, petStatsFor(pet));
+            stats = ItemStatistics.add(stats, petStatsFor(pet, mob));
         }
         return stats;
     }
 
-    private ItemStatistics petStatsFor(SkyBlockItem pet) {
+    private ItemStatistics petStatsFor(SkyBlockItem pet, @Nullable SkyBlockMob mob) {
         ItemStatistics stats = player.getPetData().getEnabledPet() == pet
                 ? baseAndPerLevel(pet)
                 : ItemStatistics.empty();
         for (PetAbility ability : player.getPetData().getAbilities(pet)) {
-            stats = ItemStatistics.add(stats, ability.getStatistics(player, pet));
+            stats = ItemStatistics.add(stats, ability.getStatistics(player, pet, mob));
         }
         return stats;
     }
@@ -252,7 +252,7 @@ public class PlayerStatistics {
 
     public ItemStatistics allStatistics(SkyBlockPlayer causer, LivingEntity enemy) {
         ItemStatistics base = allNonPetStatistics(causer, enemy);
-        return ItemStatistics.add(base, petStatistics());
+        return ItemStatistics.add(base, petStatistics(enemy instanceof SkyBlockMob s ? s : null));
     }
 
     public ItemStatistics allNonPetStatistics(SkyBlockPlayer causer, LivingEntity enemy) {

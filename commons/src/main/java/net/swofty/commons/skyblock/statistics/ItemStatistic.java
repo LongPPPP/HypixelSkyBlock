@@ -10,6 +10,8 @@ import net.minestom.server.item.Material;
 import net.swofty.commons.skyblock.PackSprite;
 import org.jetbrains.annotations.NotNull;
 
+import java.util.List;
+
 @Getter
 public enum ItemStatistic {
     // Combat Stats
@@ -109,6 +111,22 @@ public enum ItemStatistic {
     DAMAGE("Damage", NamedTextColor.RED, NamedTextColor.RED, false, PackSprite.STAT_ABILITY_DAMAGE,
             5D, 1D),
     ;
+
+    public static final List<ItemStatistic> COMBAT_STATS = List.of(
+            HEALTH, DEFENSE, TRUE_DEFENSE, STRENGTH, CRITICAL_CHANCE, CRITICAL_DAMAGE,
+            BONUS_ATTACK_SPEED, FEROCITY, SWING_RANGE, INTELLIGENCE, ABILITY_DAMAGE,
+            HEALTH_REGENERATION, VITALITY, MENDING);
+
+    public static final List<ItemStatistic> FISHING_STATS = List.of(
+            ItemStatistic.SEA_CREATURE_CHANCE, ItemStatistic.FISHING_SPEED,
+            ItemStatistic.DOUBLE_HOOK_CHANCE, ItemStatistic.TREASURE_CHANCE,
+            ItemStatistic.TROPHY_FISH_CHANCE, ItemStatistic.FISHING_WISDOM);
+
+    public static final List<ItemStatistic> MISC_STATS = List.of(
+            ItemStatistic.SPEED, ItemStatistic.MAGIC_FIND, ItemStatistic.PET_LUCK,
+            ItemStatistic.HEAT_RESISTANCE, ItemStatistic.COLD_RESISTANCE,
+            ItemStatistic.RESPIRATION, ItemStatistic.PRESSURE_RESISTANCE,
+            ItemStatistic.FEAR, ItemStatistic.TRACKING);
 
     private final @NonNull String displayName;
     private final @NonNull TextColor loreColor;

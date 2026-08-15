@@ -1,4 +1,4 @@
-package net.swofty.type.skyblockgeneric.item.handlers.pet.abilities.bat;
+package net.swofty.type.skyblockgeneric.item.handlers.pet.abilities.hound;
 
 import net.swofty.commons.skyblock.item.Rarity;
 import net.swofty.type.skyblockgeneric.item.SkyBlockItem;
@@ -11,33 +11,33 @@ import net.swofty.type.skyblockgeneric.utility.RarityValue;
 
 import java.util.List;
 
-import static net.swofty.commons.StringUtility.decimalify;
+import static net.swofty.commons.StringUtility.commaify;
 
-@PetAbilityRegistration(pet = PetHandler.BAT, minimumRarity = Rarity.LEGENDARY, order = 2,
-        implemented = false, notImplementedReason = "awaits a Spooky Festival / Spooky enemy system")
-public final class WingsOfSteelAbility implements PetAbility {
-    private static final RarityValue<Double> DAMAGE_PER_LEVEL =
-            new RarityValue<>(0.0, 0.0, 0.0, 0.0, 0.5, 0.5, 0.0);
+@PetAbilityRegistration(pet = PetHandler.HOUND, minimumRarity = Rarity.EPIC, order = 0)
+public final class ScavengerAbility implements PetAbility {
+    private static final RarityValue<Double> COINS_PER_LEVEL =
+            new RarityValue<>(0.0, 0.0, 0.0, 1.0, 1.0, 0.0, 0.0);
 
     @Override
     public String getName() {
-        return "Wings of Steel";
+        return "Scavenger";
     }
 
     @Override
     public List<String> getDescription(SkyBlockItem pet) {
         Rarity rarity = pet.getAttributeHandler().getRarity();
         int level = pet.getAttributeHandler().getPetData().getAsLevel(rarity);
-        double value = DAMAGE_PER_LEVEL.getForRarity(rarity) * level;
+        String coins = commaify(COINS_PER_LEVEL.getForRarity(rarity) * level);
 
         return List.of(
-                "<7>Deals <a>+" + decimalify(value, 2) + "% <7>damage to <6>Spooky",
-                "<7>enemies during the <6>Spooky Festival<7>."
+                "<7>Gain +<a>" + coins + " <7>coins per monster kill."
         );
     }
 
     @PetEventHandler
-    public void onDamageDealt(PetEvent.DamageDealt event) {
-
+    public void onKilledMob(PetEvent.KilledMob event) {
+        Rarity rarity = event.pet().getAttributeHandler().getRarity();
+        int level = event.pet().getAttributeHandler().getPetData().getAsLevel(rarity);
+        event.player().addCoins(COINS_PER_LEVEL.getForRarity(rarity) * level);
     }
 }

@@ -215,6 +215,7 @@ public sealed interface PetEvent {
         public FallDamage(SkyBlockPlayer player, SkyBlockItem pet, double damage) {
             super(player, pet, DamageType.FALL, damage);
         }
+
     }
 
     /**

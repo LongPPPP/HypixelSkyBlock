@@ -10,7 +10,7 @@ import java.util.Arrays;
 import java.util.List;
 
 @PetAbilityRegistration(pet = PetHandler.EERIE, minimumRarity = Rarity.RARE,
-        implemented = false, notImplementedReason = "awaits a Fear value system (Great Spook Armor) + Primal Fears mobs; DamageDealt not yet dispatched")
+        implemented = false, notImplementedReason = "awaits a Fear value system (Great Spook Armor) + Primal Fears mobs")
 public final class FearamaAbility implements PetAbility {
     @Override
     public String getName() {

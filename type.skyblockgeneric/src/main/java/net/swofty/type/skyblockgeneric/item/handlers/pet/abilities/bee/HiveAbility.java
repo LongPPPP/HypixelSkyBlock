@@ -3,6 +3,7 @@ package net.swofty.type.skyblockgeneric.item.handlers.pet.abilities.bee;
 import net.swofty.type.skyblockgeneric.item.handlers.pet.PetHandler;
 import net.swofty.type.skyblockgeneric.item.handlers.pet.abstr.PetAbilityRegistration;
 
+import net.minestom.server.instance.EntityTracker;
 import net.minestom.server.instance.Instance;
 import net.swofty.commons.skyblock.item.Rarity;
 import net.swofty.commons.skyblock.statistics.ItemStatistic;
@@ -55,21 +56,23 @@ public final class HiveAbility implements PetAbility {
         int level = pet.getAttributeHandler().getPetData().getAsLevel(rarity);
 
         Instance instance = player.getInstance();
-        int count = 0;
-        if (instance != null) {
-            count = Math.min((int) instance.getPlayers().stream()
-                    .filter(p -> p != player && p.getPosition().distance(player.getPosition()) <= 25)
-                    .count(), 15);
-        }
+        if (instance == null) return ItemStatistics.empty();
+
+        int[] count = {0};
+        instance.getEntityTracker().nearbyEntities(player.getPosition(), 25,
+                EntityTracker.Target.PLAYERS, other -> {
+                    if (count[0] >= 15) return;
+                    if (other != player) count[0]++;
+                });
 
         double perPlayerIntel = INTELLIGENCE + INTELLIGENCE_BONUSES.getForRarity(rarity) * level;
         double perPlayerStr = STRENGTH + STRENGTH_BONUSES.getForRarity(rarity) * level;
         double perPlayerDef = DEFENSE + DEFENSE_BONUSES.getForRarity(rarity) * level;
 
         return ItemStatistics.builder()
-                .withBase(ItemStatistic.INTELLIGENCE, perPlayerIntel * count)
-                .withBase(ItemStatistic.STRENGTH, perPlayerStr * count)
-                .withBase(ItemStatistic.DEFENSE, perPlayerDef * count)
+                .withBase(ItemStatistic.INTELLIGENCE, perPlayerIntel * count[0])
+                .withBase(ItemStatistic.STRENGTH, perPlayerStr * count[0])
+                .withBase(ItemStatistic.DEFENSE, perPlayerDef * count[0])
                 .build();
     }
 }

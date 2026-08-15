@@ -38,7 +38,7 @@ public class PlayerActionArrowDamageMob implements HypixelEventClass {
 
         SkyBlockItem arrowItem = arrow.getArrowItem();
         ItemStatistics entityStats = mob.getStatistics();
-        ItemStatistics playerStats = shooter.getStatistics().allStatistics();
+        ItemStatistics playerStats = shooter.getStatistics().allStatistics(shooter, collidedWith);
 
         // Add the arrow's statistics to the player's statistics
         playerStats = ItemStatistics.add(playerStats, arrowItem.getAttributeHandler().getStatistics());

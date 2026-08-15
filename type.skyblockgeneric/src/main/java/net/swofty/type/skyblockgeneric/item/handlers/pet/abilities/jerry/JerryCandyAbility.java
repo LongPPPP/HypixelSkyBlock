@@ -1,4 +1,4 @@
-package net.swofty.type.skyblockgeneric.item.handlers.pet.abilities.golem;
+package net.swofty.type.skyblockgeneric.item.handlers.pet.abilities.jerry;
 
 import net.swofty.commons.skyblock.item.Rarity;
 import net.swofty.type.skyblockgeneric.item.SkyBlockItem;
@@ -10,24 +10,25 @@ import net.swofty.type.skyblockgeneric.item.handlers.pet.abstr.PetEventHandler;
 
 import java.util.List;
 
-@PetAbilityRegistration(pet = PetHandler.GOLEM, minimumRarity = Rarity.LEGENDARY, order = 2,
-        implemented = false, notImplementedReason = "awaits pet-dealt separate damage instance + damage-type indicator system")
-public final class TossAbility implements PetAbility {
+@PetAbilityRegistration(pet = PetHandler.JERRY, minimumRarity = Rarity.MYTHIC, order = 3,
+        implemented = false, notImplementedReason = "awaits a Jerry Candy item")
+public final class JerryCandyAbility implements PetAbility {
 
     @Override
     public String getName() {
-        return "Toss";
+        return "Jerry";
     }
 
     @Override
     public List<String> getDescription(SkyBlockItem pet) {
         return List.of(
-                "<7>Every 5 hits, throw the enemy up into",
-                "<7>the air and deal <a>5x <7>damage <8>(5s cooldown)<7>."
+                "<7>Tiny chance to find Jerry",
+                "<7>Candies when killing mobs."
         );
     }
 
     @PetEventHandler
-    public void onDamageDealt(PetEvent.DamageDealt event) {
+    public void onKilledMob(PetEvent.KilledMob event) {
+
     }
 }

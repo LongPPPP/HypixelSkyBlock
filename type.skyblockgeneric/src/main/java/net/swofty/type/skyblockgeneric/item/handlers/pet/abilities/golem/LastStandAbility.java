@@ -3,6 +3,8 @@ package net.swofty.type.skyblockgeneric.item.handlers.pet.abilities.golem;
 import net.minestom.server.MinecraftServer;
 import net.minestom.server.timer.TaskSchedule;
 import net.swofty.commons.skyblock.item.Rarity;
+import net.swofty.commons.skyblock.statistics.ItemStatistic;
+import net.swofty.commons.skyblock.statistics.ItemStatistics;
 import net.swofty.type.skyblockgeneric.item.SkyBlockItem;
 import net.swofty.type.skyblockgeneric.item.handlers.pet.PetHandler;
 import net.swofty.type.skyblockgeneric.item.handlers.pet.abstr.PetAbility;
@@ -14,7 +16,7 @@ import net.swofty.type.skyblockgeneric.user.SkyBlockPlayer;
 import java.util.List;
 
 @PetAbilityRegistration(pet = PetHandler.GOLEM, minimumRarity = Rarity.EPIC, order = 0,
-        implemented = false, notImplementedReason = "logic complete; awaits dispatch(PetEvent.Damaged) + dispatch(PetEvent.DamageDealt)")
+        implemented = false, notImplementedReason = "logic complete; awaits dispatch(PetEvent.Damaged)")
 public final class LastStandAbility implements PetAbility {
     private static final double HP_THRESHOLD = 0.20;
     private static final double INCOMING_DAMAGE_REDUCTION = 0.20;
@@ -61,9 +63,11 @@ public final class LastStandAbility implements PetAbility {
                 TaskSchedule.millis(WINDOW_MILLIS), TaskSchedule.stop());
     }
 
-    @PetEventHandler
-    public void onDamageDealt(PetEvent.DamageDealt event) {
-        if (System.currentTimeMillis() >= buffUntil) return;
-        event.damage(event.damage() * (1 + DEALT_DAMAGE_BONUS));
+    @Override
+    public ItemStatistics getStatistics(SkyBlockPlayer player, SkyBlockItem pet) {
+        if (System.currentTimeMillis() >= buffUntil) return ItemStatistics.empty();
+        return ItemStatistics.builder()
+                .withMultiplicative(ItemStatistic.DAMAGE, 1 + DEALT_DAMAGE_BONUS)
+                .build();
     }
 }
