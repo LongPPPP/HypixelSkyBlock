@@ -15,8 +15,7 @@ import net.swofty.type.skyblockgeneric.user.SkyBlockPlayer;
 
 import java.util.List;
 
-@PetAbilityRegistration(pet = PetHandler.GOLEM, minimumRarity = Rarity.EPIC, order = 0,
-        implemented = false, notImplementedReason = "logic complete; awaits dispatch(PetEvent.Damaged)")
+@PetAbilityRegistration(pet = PetHandler.GOLEM, minimumRarity = Rarity.EPIC, order = 0)
 public final class LastStandAbility implements PetAbility {
     private static final double HP_THRESHOLD = 0.20;
     private static final double INCOMING_DAMAGE_REDUCTION = 0.20;

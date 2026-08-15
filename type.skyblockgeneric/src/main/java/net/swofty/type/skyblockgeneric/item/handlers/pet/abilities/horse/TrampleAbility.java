@@ -53,7 +53,7 @@ public final class TrampleAbility implements PetAbility {
         double percent = BASE + PER_LEVEL * level;
 
         double weaponDamage = new SkyBlockItem(event.player().getItemInMainHand())
-                .getAttributeHandler().getStatistics().getOverall(ItemStatistic.DAMAGE);
+                .getAttributeHandler().getStatistics().getBase(ItemStatistic.DAMAGE) - 5D;
         double damagePerBlock = weaponDamage * percent / 100 * event.fallHeight();
 
         event.damage(0);
