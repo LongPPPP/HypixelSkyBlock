@@ -212,10 +212,12 @@ public sealed interface PetEvent {
     @Getter
     @Accessors(fluent = true)
     final class FallDamage extends Damaged {
-        public FallDamage(SkyBlockPlayer player, SkyBlockItem pet, double damage) {
-            super(player, pet, DamageType.FALL, damage);
-        }
+        private final int fallHeight;
 
+        public FallDamage(SkyBlockPlayer player, SkyBlockItem pet, double damage, int fallHeight) {
+            super(player, pet, DamageType.FALL, damage);
+            this.fallHeight = fallHeight;
+        }
     }
 
     /**
