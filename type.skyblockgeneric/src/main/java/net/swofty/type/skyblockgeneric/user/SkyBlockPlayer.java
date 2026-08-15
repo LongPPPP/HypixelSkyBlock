@@ -38,6 +38,7 @@ import net.swofty.type.skyblockgeneric.collection.CustomCollectionAward;
 import net.swofty.type.skyblockgeneric.data.SkyBlockDataHandler;
 import net.swofty.type.skyblockgeneric.data.datapoints.*;
 import net.swofty.type.skyblockgeneric.data.monogdb.CoopDatabase;
+import net.swofty.type.generic.entity.drop.ItemDrops;
 import net.swofty.type.skyblockgeneric.entity.DroppedItemEntityImpl;
 import net.swofty.type.skyblockgeneric.event.actions.player.ActionPlayerChangeHypixelMenuDisplay;
 import net.swofty.type.skyblockgeneric.event.value.SkyBlockValueEvent;
@@ -548,9 +549,7 @@ public class SkyBlockPlayer extends HypixelPlayer {
         }
 
         Pos dropPosition = nearest == null ? origin.add(0.5, 1.5, 0.5) : nearest.add(0.5, 0.5, 0.5);
-        DroppedItemEntityImpl entity = new DroppedItemEntityImpl(item, this);
-        entity.setInstance(instance, dropPosition);
-        entity.addViewer(this);
+        ItemDrops.dropAt(new DroppedItemEntityImpl(item, this), instance, dropPosition);
     }
 
     public int countItem(ItemType item) {
