@@ -1,6 +1,6 @@
 package net.swofty.type.skyblockgeneric.item.handlers.pet.abilities.hermit_crab;
 
-import net.minestom.server.instance.EntityTracker;
+import net.minestom.server.entity.Entity;
 import net.minestom.server.instance.Instance;
 import net.swofty.commons.skyblock.item.ItemType;
 import net.swofty.commons.skyblock.item.Rarity;
@@ -60,17 +60,15 @@ public final class CrabRaveAbility implements PetAbility {
         Instance instance = player.getInstance();
         if (instance == null) return 0;
 
-        int[] count = {0};
-        instance.getEntityTracker().nearbyEntities(player.getPosition(), RADIUS_BLOCKS,
-                EntityTracker.Target.PLAYERS, other -> {
-                    if (count[0] >= MAX_PLAYERS) return;
-                    if (other == player) return;
-                    if (!(other instanceof SkyBlockPlayer skyPlayer)) return;
+        int count = 0;
+        for (Entity entity : instance.getNearbyEntities(player.getPosition(), RADIUS_BLOCKS)) {
+            if (count >= MAX_PLAYERS) break;
+            if (!(entity instanceof SkyBlockPlayer skyPlayer) || skyPlayer == player) continue;
 
-                    SkyBlockItem enabledPet = skyPlayer.getPetData().getEnabledPet();
-                    if (enabledPet == null) return;
-                    if (enabledPet.getAttributeHandler().getPotentialType() == ItemType.HERMIT_CRAB_PET) count[0]++;
-                });
-        return count[0];
+            SkyBlockItem enabledPet = skyPlayer.getPetData().getEnabledPet();
+            if (enabledPet == null) continue;
+            if (enabledPet.getAttributeHandler().getPotentialType() == ItemType.HERMIT_CRAB_PET) count++;
+        }
+        return count;
     }
 }

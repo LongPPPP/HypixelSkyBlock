@@ -1,6 +1,6 @@
 package net.swofty.type.skyblockgeneric.item.handlers.pet.abilities.dolphin;
 
-import net.minestom.server.instance.EntityTracker;
+import net.minestom.server.entity.Entity;
 import net.minestom.server.instance.Instance;
 import net.swofty.commons.skyblock.item.Rarity;
 import net.swofty.commons.skyblock.statistics.ItemStatistic;
@@ -48,15 +48,15 @@ public final class PodTacticsAbility implements PetAbility {
         Instance instance = player.getInstance();
         if (instance == null) return ItemStatistics.empty();
 
-        int[] count = {0};
-        instance.getEntityTracker().nearbyEntities(player.getPosition(), 30,
-                EntityTracker.Target.PLAYERS, other -> {
-                    if (count[0] >= 5) return;
-                    if (other != player) count[0]++;
-                });
+        int count = 0;
+        for (Entity entity : instance.getNearbyEntities(player.getPosition(), 30)) {
+            if (count >= 5) break;
+            if (!(entity instanceof SkyBlockPlayer) || entity == player) continue;
+            count++;
+        }
 
         return ItemStatistics.builder()
-                .withBase(ItemStatistic.FISHING_SPEED, perPlayer * count[0])
+                .withBase(ItemStatistic.FISHING_SPEED, perPlayer * count)
                 .build();
     }
 }
