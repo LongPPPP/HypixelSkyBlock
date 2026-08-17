@@ -1,7 +1,6 @@
-package net.swofty.type.skyblockgeneric.item.handlers.pet.abilities.magma_cube;
+package net.swofty.type.skyblockgeneric.item.handlers.pet.abilities.pigman;
 
-import net.minestom.server.entity.EntityType;
-import net.minestom.server.entity.LivingEntity;
+import net.swofty.commons.skyblock.item.ItemType;
 import net.swofty.commons.skyblock.item.Rarity;
 import net.swofty.commons.skyblock.statistics.ItemStatistic;
 import net.swofty.commons.skyblock.statistics.ItemStatistics;
@@ -11,42 +10,47 @@ import net.swofty.type.skyblockgeneric.item.handlers.pet.abstr.PetAbility;
 import net.swofty.type.skyblockgeneric.item.handlers.pet.abstr.PetAbilityRegistration;
 import net.swofty.type.skyblockgeneric.user.SkyBlockPlayer;
 import net.swofty.type.skyblockgeneric.utility.RarityValue;
-import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
 import static net.swofty.commons.StringUtility.decimalify;
 
-@PetAbilityRegistration(pet = PetHandler.MAGMA_CUBE, minimumRarity = Rarity.RARE, order = 1)
-public final class SaltBladeAbility implements PetAbility {
+@PetAbilityRegistration(pet = PetHandler.PIGMAN, minimumRarity = Rarity.RARE, order = 0)
+public final class PorkMasterAbility implements PetAbility {
     private static final RarityValue<Double> DAMAGE_PER_LEVEL =
-            new RarityValue<>(0.0, 0.0, 0.2, 0.25, 0.25, 0.0, 0.0);
+            new RarityValue<>(0.0, 0.0, 0.3, 0.4, 0.4, 0.0, 0.0);
+    private static final RarityValue<Double> STRENGTH_PER_LEVEL =
+            new RarityValue<>(0.0, 0.0, 0.15, 0.25, 0.25, 0.0, 0.0);
 
     @Override
     public String getName() {
-        return "Salt Blade";
+        return "Pork Master";
     }
 
     @Override
     public List<String> getDescription(SkyBlockItem pet) {
         Rarity rarity = pet.getAttributeHandler().getRarity();
         int level = pet.getAttributeHandler().getPetData().getAsLevel(rarity);
-        String percent = decimalify(DAMAGE_PER_LEVEL.getForRarity(rarity) * level, 1);
+        String damage = decimalify(DAMAGE_PER_LEVEL.getForRarity(rarity) * level, 1);
+        String strength = decimalify(STRENGTH_PER_LEVEL.getForRarity(rarity) * level, 2);
 
         return List.of(
-                "<7>Deal <a>" + percent + "% <7>more damage to slimes."
+                "<7>Buffs the <6>Pigman Sword <7>by <c>+" + damage,
+                "<stat:damage> <7>and <c>+" + strength + " <stat:strength>."
         );
     }
 
     @Override
-    public ItemStatistics getStatistics(SkyBlockPlayer player, SkyBlockItem pet, @Nullable LivingEntity entity) {
-        if (entity == null || (entity.getEntityType() != EntityType.SLIME && entity.getEntityType() != EntityType.MAGMA_CUBE))
+    public ItemStatistics getStatistics(SkyBlockPlayer player, SkyBlockItem pet) {
+        if (player.getItemInMainHand().isAir()
+                || new SkyBlockItem(player.getItemInMainHand()).getItemType() != ItemType.PIGMAN_SWORD)
             return ItemStatistics.empty();
 
         Rarity rarity = pet.getAttributeHandler().getRarity();
         int level = pet.getAttributeHandler().getPetData().getAsLevel(rarity);
         return ItemStatistics.builder()
-                .withMultiplicative(ItemStatistic.DAMAGE, 1 + DAMAGE_PER_LEVEL.getForRarity(rarity) * level)
+                .withBase(ItemStatistic.DAMAGE, DAMAGE_PER_LEVEL.getForRarity(rarity) * level)
+                .withBase(ItemStatistic.STRENGTH, STRENGTH_PER_LEVEL.getForRarity(rarity) * level)
                 .build();
     }
 }

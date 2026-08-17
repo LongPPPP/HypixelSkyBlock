@@ -1,9 +1,9 @@
 package net.swofty.type.skyblockgeneric.item.handlers.pet.abilities.giraffe;
 
+import net.minestom.server.entity.LivingEntity;
 import net.swofty.commons.skyblock.item.Rarity;
 import net.swofty.commons.skyblock.statistics.ItemStatistic;
 import net.swofty.commons.skyblock.statistics.ItemStatistics;
-import net.swofty.type.skyblockgeneric.entity.mob.SkyBlockMob;
 import net.swofty.type.skyblockgeneric.item.SkyBlockItem;
 import net.swofty.type.skyblockgeneric.item.handlers.pet.PetHandler;
 import net.swofty.type.skyblockgeneric.item.handlers.pet.abstr.PetAbility;
@@ -42,10 +42,10 @@ public final class LongNeckAbility implements PetAbility {
     }
 
     @Override
-    public ItemStatistics getStatistics(SkyBlockPlayer player, SkyBlockItem pet, @Nullable SkyBlockMob mob) {
-        if (mob == null) return ItemStatistics.empty();
+    public ItemStatistics getStatistics(SkyBlockPlayer player, SkyBlockItem pet, @Nullable LivingEntity entity) {
+        if (entity == null) return ItemStatistics.empty();
 
-        double distance = player.getPosition().distance(mob.getPosition());
+        double distance = player.getPosition().distance(entity.getPosition());
         if (distance <= 3) return ItemStatistics.empty();
 
         Rarity rarity = pet.getAttributeHandler().getRarity();

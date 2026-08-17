@@ -1,5 +1,6 @@
 package net.swofty.type.skyblockgeneric.item.handlers.pet.abstr;
 
+import net.minestom.server.entity.LivingEntity;
 import net.swofty.commons.skyblock.statistics.ItemStatistics;
 import net.swofty.type.skyblockgeneric.entity.mob.SkyBlockMob;
 import net.swofty.type.skyblockgeneric.item.SkyBlockItem;
@@ -26,12 +27,7 @@ public interface PetAbility {
         return ItemStatistics.empty();
     }
 
-    /**
-     * Same as {@link #getStatistics(SkyBlockPlayer, SkyBlockItem)} but with the current target mob
-     * when stats are computed during combat; null outside combat. Override this (not the 2-arg
-     * overload) to make a mob-conditional bonus part of the player's stats.
-     */
-    default ItemStatistics getStatistics(SkyBlockPlayer player, SkyBlockItem pet, @Nullable SkyBlockMob mob) {
+    default ItemStatistics getStatistics(SkyBlockPlayer player, SkyBlockItem pet, @Nullable LivingEntity entity) {
         return getStatistics(player, pet);
     }
 }

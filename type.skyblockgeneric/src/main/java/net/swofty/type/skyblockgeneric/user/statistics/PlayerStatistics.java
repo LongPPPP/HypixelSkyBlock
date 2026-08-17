@@ -190,32 +190,29 @@ public class PlayerStatistics {
                 ));
     }
 
-    public ItemStatistics petStatistics(@Nullable SkyBlockMob mob) {
+    public ItemStatistics petStatistics(@Nullable LivingEntity entity) {
         ItemStatistics stats = ItemStatistics.empty();
         for (SkyBlockItem pet : player.getPetData().getActivePets()) {
-            stats = ItemStatistics.add(stats, petStatsFor(pet, mob));
+            stats = ItemStatistics.add(stats, petStatsFor(pet, entity));
         }
         return stats;
     }
 
-    private ItemStatistics petStatsFor(SkyBlockItem pet, @Nullable SkyBlockMob mob) {
-        ItemStatistics stats = player.getPetData().getEnabledPet() == pet
-                ? baseAndPerLevel(pet)
-                : ItemStatistics.empty();
+    private ItemStatistics petStatsFor(SkyBlockItem pet, @Nullable LivingEntity entity) {
+        ItemStatistics stats = ItemStatistics.empty();
+        if (player.getPetData().getEnabledPet() == pet) {
+            PetComponent component = pet.getComponent(PetComponent.class);
+            ItemStatistics baseStatistics = component.getBaseStatistics();
+            ItemStatistics perLevelStatistics = component.getPerLevelStatistics(
+                    pet.getAttributeHandler().getRarity()
+            );
+            int level = pet.getAttributeHandler().getPetData().getAsLevel(pet.getAttributeHandler().getRarity());
+            stats = ItemStatistics.add(baseStatistics, ItemStatistics.multiply(perLevelStatistics, level));
+        }
         for (PetAbility ability : player.getPetData().getAbilities(pet)) {
-            stats = ItemStatistics.add(stats, ability.getStatistics(player, pet, mob));
+            stats = ItemStatistics.add(stats, ability.getStatistics(player, pet, entity));
         }
         return stats;
-    }
-
-    private ItemStatistics baseAndPerLevel(SkyBlockItem pet) {
-        PetComponent component = pet.getComponent(PetComponent.class);
-        ItemStatistics baseStatistics = component.getBaseStatistics();
-        ItemStatistics perLevelStatistics = component.getPerLevelStatistics(
-                pet.getAttributeHandler().getRarity()
-        );
-        int level = pet.getAttributeHandler().getPetData().getAsLevel(pet.getAttributeHandler().getRarity());
-        return ItemStatistics.add(baseStatistics, ItemStatistics.multiply(perLevelStatistics, level));
     }
 
     public ItemStatistics spareStatistics() {
@@ -252,7 +249,7 @@ public class PlayerStatistics {
 
     public ItemStatistics allStatistics(SkyBlockPlayer causer, LivingEntity enemy) {
         ItemStatistics base = allNonPetStatistics(causer, enemy);
-        return ItemStatistics.add(base, petStatistics(enemy instanceof SkyBlockMob s ? s : null));
+        return ItemStatistics.add(base, petStatistics(enemy));
     }
 
     public ItemStatistics allNonPetStatistics(SkyBlockPlayer causer, LivingEntity enemy) {
