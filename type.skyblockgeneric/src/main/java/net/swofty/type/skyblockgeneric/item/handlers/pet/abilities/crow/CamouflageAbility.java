@@ -9,7 +9,9 @@ import net.swofty.type.skyblockgeneric.item.handlers.pet.abstr.*;
 import net.swofty.type.skyblockgeneric.user.SkyBlockPlayer;
 import net.swofty.type.skyblockgeneric.utility.RarityValue;
 
+import java.util.ArrayDeque;
 import java.util.Arrays;
+import java.util.Deque;
 import java.util.List;
 
 import static net.swofty.commons.StringUtility.decimalify;
@@ -21,7 +23,7 @@ public final class CamouflageAbility implements PetAbility {
     private static final long BUFF_DURATION_MS = 20_000L;
     private static final int DEFENSE_CAP = 500;
 
-    private final ProcWindow procs = new ProcWindow();
+    private final ProcWindow window = new ProcWindow();
 
     @Override
     public String getName() {
@@ -44,12 +46,12 @@ public final class CamouflageAbility implements PetAbility {
 
     @PetEventHandler
     public void onAbilityCast(PetEvent.AbilityCast event) {
-        procs.record(System.currentTimeMillis());
+        window.record(System.currentTimeMillis());
     }
 
     @Override
     public ItemStatistics getStatistics(SkyBlockPlayer player, SkyBlockItem pet) {
-        int active = procs.active(System.currentTimeMillis(), BUFF_DURATION_MS);
+        int active = window.active(System.currentTimeMillis(), BUFF_DURATION_MS);
         if (active == 0) return ItemStatistics.empty();
 
         Rarity rarity = pet.getAttributeHandler().getRarity();
@@ -59,6 +61,20 @@ public final class CamouflageAbility implements PetAbility {
         return ItemStatistics.builder()
                 .withBase(ItemStatistic.DEFENSE, Math.min(active * perCast, DEFENSE_CAP))
                 .build();
+    }
+
+    private static final class ProcWindow {
+        private final Deque<Long> window = new ArrayDeque<>();
+
+        public void record(long now) {
+            window.addLast(now);
+        }
+
+        public int active(long now, long durationMs) {
+            while (!window.isEmpty() && window.peekFirst() + durationMs <= now)
+                window.removeFirst();
+            return window.size();
+        }
     }
 }
 
