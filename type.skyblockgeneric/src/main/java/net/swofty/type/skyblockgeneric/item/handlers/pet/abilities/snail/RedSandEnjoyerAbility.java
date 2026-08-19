@@ -10,7 +10,7 @@ import java.util.List;
 
 import static net.swofty.commons.StringUtility.decimalify;
 
-@PetAbilityRegistration(pet = PetHandler.SNAIL, minimumRarity = Rarity.COMMON, order = 0,
+@PetAbilityRegistration(pet = PetHandler.SNAIL, minimumRarity = Rarity.COMMON,
         implemented = false, notImplementedReason = "awaits a Red Sand Minion system")
 public final class RedSandEnjoyerAbility implements PetAbility {
     private static final RarityValue<Double> SPEED_PER_LEVEL =

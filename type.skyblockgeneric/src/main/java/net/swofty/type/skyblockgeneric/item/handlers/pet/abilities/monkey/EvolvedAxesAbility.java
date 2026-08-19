@@ -15,7 +15,7 @@ import java.util.List;
 
 import static net.swofty.commons.StringUtility.decimalify;
 
-@PetAbilityRegistration(pet = PetHandler.MONKEY, minimumRarity = Rarity.LEGENDARY, order = 2)
+@PetAbilityRegistration(pet = PetHandler.MONKEY, minimumRarity = Rarity.LEGENDARY)
 public final class EvolvedAxesAbility implements PetAbility {
     private static final RarityValue<Double> SWEEP_PER_LEVEL =
             new RarityValue<>(0.0, 0.0, 0.0, 0.0, 0.1, 0.0, 0.0);

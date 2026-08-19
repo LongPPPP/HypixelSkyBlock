@@ -13,7 +13,7 @@ import java.util.List;
 
 import static net.swofty.commons.StringUtility.commaify;
 
-@PetAbilityRegistration(pet = PetHandler.GIRAFFE, minimumRarity = Rarity.COMMON, order = 0)
+@PetAbilityRegistration(pet = PetHandler.GIRAFFE, minimumRarity = Rarity.COMMON)
 public final class GoodHeartAbility implements PetAbility {
     private static final RarityValue<Double> HEALTH_REGEN_BASE = new RarityValue<>(1.0, 35.0, 35.0, 50.0, 50.0, 0.0, 0.0);
     private static final RarityValue<Double> HEALTH_REGEN_PER_LEVEL = new RarityValue<>(0.49, 0.35, 0.35, 0.5, 0.5, 0.0, 0.0);

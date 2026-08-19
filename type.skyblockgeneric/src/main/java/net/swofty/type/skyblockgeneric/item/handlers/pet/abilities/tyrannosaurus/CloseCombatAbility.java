@@ -16,7 +16,7 @@ import java.util.List;
 
 import static net.swofty.commons.StringUtility.decimalify;
 
-@PetAbilityRegistration(pet = PetHandler.TYRANNOSAURUS, minimumRarity = Rarity.LEGENDARY, order = 0)
+@PetAbilityRegistration(pet = PetHandler.TYRANNOSAURUS, minimumRarity = Rarity.LEGENDARY)
 public final class CloseCombatAbility implements PetAbility {
     private static final double PER_LEVEL = 1.0;
     private static final double RANGE = 1.5;

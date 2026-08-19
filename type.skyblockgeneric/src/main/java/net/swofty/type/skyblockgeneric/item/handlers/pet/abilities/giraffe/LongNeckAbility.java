@@ -16,7 +16,7 @@ import java.util.List;
 
 import static net.swofty.commons.StringUtility.decimalify;
 
-@PetAbilityRegistration(pet = PetHandler.GIRAFFE, minimumRarity = Rarity.LEGENDARY, order = 2,
+@PetAbilityRegistration(pet = PetHandler.GIRAFFE, minimumRarity = Rarity.LEGENDARY,
         implemented = false, notImplementedReason = "can't determine damage type")
 public final class LongNeckAbility implements PetAbility {
     private static final double BASE_DAMAGE = 50;

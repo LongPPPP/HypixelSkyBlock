@@ -12,7 +12,7 @@ import java.util.List;
 
 import static net.swofty.commons.StringUtility.decimalify;
 
-@PetAbilityRegistration(pet = PetHandler.SQUID, minimumRarity = Rarity.LEGENDARY, order = 2)
+@PetAbilityRegistration(pet = PetHandler.SQUID, minimumRarity = Rarity.LEGENDARY)
 public final class FishingWisdomBoostAbility implements PetAbility {
     private static final double WISDOM_PER_LEVEL = 0.3;
 

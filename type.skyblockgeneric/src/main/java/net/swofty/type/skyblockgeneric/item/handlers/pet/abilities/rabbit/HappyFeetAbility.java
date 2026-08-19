@@ -10,7 +10,7 @@ import java.util.List;
 
 import static net.swofty.commons.StringUtility.decimalify;
 
-@PetAbilityRegistration(pet = PetHandler.RABBIT, minimumRarity = Rarity.COMMON, order = 0,
+@PetAbilityRegistration(pet = PetHandler.RABBIT, minimumRarity = Rarity.COMMON,
         implemented = false, notImplementedReason = "awaits a PotionEffectApplied event + a Jump potion effect hook")
 public final class HappyFeetAbility implements PetAbility {
     private static final RarityValue<Double> SPEED_PER_LEVEL =

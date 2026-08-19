@@ -17,7 +17,7 @@ import java.util.List;
 
 import static net.swofty.commons.StringUtility.decimalify;
 
-@PetAbilityRegistration(pet = PetHandler.HERMIT_CRAB, minimumRarity = Rarity.LEGENDARY, order = 2)
+@PetAbilityRegistration(pet = PetHandler.HERMIT_CRAB, minimumRarity = Rarity.LEGENDARY)
 public final class CrabRaveAbility implements PetAbility {
     private static final int MAX_PLAYERS = 5;
     private static final double RADIUS_BLOCKS = 30;

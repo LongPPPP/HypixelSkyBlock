@@ -10,7 +10,7 @@ import java.util.List;
 
 import static net.swofty.commons.StringUtility.decimalify;
 
-@PetAbilityRegistration(pet = PetHandler.SHEEP, minimumRarity = Rarity.LEGENDARY, order = 2,
+@PetAbilityRegistration(pet = PetHandler.SHEEP, minimumRarity = Rarity.LEGENDARY,
         implemented = false, notImplementedReason = "awaits a Dungeons system")
 public final class DungeonWizardAbility implements PetAbility {
     private static final RarityValue<Double> MANA_PER_LEVEL =

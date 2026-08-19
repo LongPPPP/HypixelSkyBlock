@@ -12,7 +12,7 @@ import java.util.List;
 
 import static net.swofty.commons.StringUtility.decimalify;
 
-@PetAbilityRegistration(pet = PetHandler.ENDERMITE, minimumRarity = Rarity.LEGENDARY, order = 2,
+@PetAbilityRegistration(pet = PetHandler.ENDERMITE, minimumRarity = Rarity.LEGENDARY,
         implemented = false, notImplementedReason = "awaits dispatch(PetEvent.BlockMined) hook + a Nest Endermite mob")
 public final class MiteBaitAbility implements PetAbility {
     private static final RarityValue<Double> CHANCE_PER_LEVEL =

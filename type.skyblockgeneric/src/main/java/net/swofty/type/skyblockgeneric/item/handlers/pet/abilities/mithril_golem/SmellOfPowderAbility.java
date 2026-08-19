@@ -10,7 +10,7 @@ import java.util.List;
 
 import static net.swofty.commons.StringUtility.decimalify;
 
-@PetAbilityRegistration(pet = PetHandler.MITHRIL_GOLEM, minimumRarity = Rarity.LEGENDARY, order = 2,
+@PetAbilityRegistration(pet = PetHandler.MITHRIL_GOLEM, minimumRarity = Rarity.LEGENDARY,
         implemented = false, notImplementedReason = "awaits a PowderGain event + Mithril Powder gain hook")
 public final class SmellOfPowderAbility implements PetAbility {
     private static final RarityValue<Double> POWDER_PER_LEVEL =

@@ -10,7 +10,7 @@ import java.util.List;
 
 import static net.swofty.commons.StringUtility.decimalify;
 
-@PetAbilityRegistration(pet = PetHandler.PIG, minimumRarity = Rarity.COMMON, order = 0,
+@PetAbilityRegistration(pet = PetHandler.PIG, minimumRarity = Rarity.COMMON,
         implemented = false, notImplementedReason = "awaits a Shiny Pig coin-drop system")
 public final class HamfistedAbility implements PetAbility {
     private static final RarityValue<Double> COIN_PER_LEVEL =

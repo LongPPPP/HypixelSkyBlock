@@ -13,7 +13,7 @@ import java.util.List;
 
 import static net.swofty.commons.StringUtility.decimalify;
 
-@PetAbilityRegistration(pet = PetHandler.GIRAFFE, minimumRarity = Rarity.RARE, order = 1)
+@PetAbilityRegistration(pet = PetHandler.GIRAFFE, minimumRarity = Rarity.RARE)
 public final class HigherGroundAbility implements PetAbility {
     private static final double BASE_SWING_RANGE = 3;
     private static final double MAX_SWING_RANGE = 6;

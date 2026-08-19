@@ -12,7 +12,7 @@ import java.util.List;
 
 import static net.swofty.commons.StringUtility.commaify;
 
-@PetAbilityRegistration(pet = PetHandler.FROG, minimumRarity = Rarity.COMMON, order = 0,
+@PetAbilityRegistration(pet = PetHandler.FROG, minimumRarity = Rarity.COMMON,
         implemented = false, notImplementedReason = "awaits dispatch(PetEvent.FishCaught) in FishingLootResolver + a Shard catch system")
 public final class HuntingEnjoyerAbility implements PetAbility {
     private static final RarityValue<Double> CHANCE_PER_LEVEL =

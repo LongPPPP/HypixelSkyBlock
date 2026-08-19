@@ -12,7 +12,7 @@ import java.util.List;
 
 import static net.swofty.commons.StringUtility.decimalify;
 
-@PetAbilityRegistration(pet = PetHandler.ORCHID_MANTIS, minimumRarity = Rarity.LEGENDARY, order = 2,
+@PetAbilityRegistration(pet = PetHandler.ORCHID_MANTIS, minimumRarity = Rarity.LEGENDARY,
         implemented = false, notImplementedReason = "awaits CropHarvested dispatch + a Jelly/Plant Matter drop system")
 public final class OrchidNectarAbility implements PetAbility {
     private static final RarityValue<Double> CHANCE_PER_LEVEL =

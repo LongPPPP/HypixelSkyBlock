@@ -17,7 +17,7 @@ import java.util.List;
 
 import static net.swofty.commons.StringUtility.decimalify;
 
-@PetAbilityRegistration(pet = PetHandler.MAGMA_CUBE, minimumRarity = Rarity.RARE, order = 1)
+@PetAbilityRegistration(pet = PetHandler.MAGMA_CUBE, minimumRarity = Rarity.RARE)
 public final class SaltBladeAbility implements PetAbility {
     private static final RarityValue<Double> DAMAGE_PER_LEVEL =
             new RarityValue<>(0.0, 0.0, 0.2, 0.25, 0.25, 0.0, 0.0);

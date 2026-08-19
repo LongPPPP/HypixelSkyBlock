@@ -10,7 +10,7 @@ import java.util.List;
 
 import static net.swofty.commons.StringUtility.decimalify;
 
-@PetAbilityRegistration(pet = PetHandler.SCATHA, minimumRarity = Rarity.LEGENDARY, order = 2,
+@PetAbilityRegistration(pet = PetHandler.SCATHA, minimumRarity = Rarity.LEGENDARY,
         implemented = false, notImplementedReason = "awaits a Gemstone Powder gain pipeline (PetEvent.PowderGain)")
 public final class BejeweledEyesAbility implements PetAbility {
     private static final RarityValue<Double> POWDER_PER_LEVEL =

@@ -10,7 +10,7 @@ import java.util.List;
 
 import static net.swofty.commons.StringUtility.decimalify;
 
-@PetAbilityRegistration(pet = PetHandler.SHEEP, minimumRarity = Rarity.RARE, order = 1,
+@PetAbilityRegistration(pet = PetHandler.SHEEP, minimumRarity = Rarity.RARE,
         implemented = false, notImplementedReason = "awaits a shield mechanic")
 public final class OverhealAbility implements PetAbility {
     private static final RarityValue<Double> SHIELD_PER_LEVEL =

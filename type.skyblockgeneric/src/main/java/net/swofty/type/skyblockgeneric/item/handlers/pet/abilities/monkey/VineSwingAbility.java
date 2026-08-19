@@ -15,7 +15,7 @@ import java.util.List;
 
 import static net.swofty.commons.StringUtility.decimalify;
 
-@PetAbilityRegistration(pet = PetHandler.MONKEY, minimumRarity = Rarity.RARE, order = 1)
+@PetAbilityRegistration(pet = PetHandler.MONKEY, minimumRarity = Rarity.RARE)
 public final class VineSwingAbility implements PetAbility {
     private static final RarityValue<Double> SPEED_PER_LEVEL =
             new RarityValue<>(0.0, 0.0, 0.75, 1.0, 1.0, 0.0, 0.0);

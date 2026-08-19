@@ -17,7 +17,7 @@ import java.util.List;
 
 import static net.swofty.commons.StringUtility.decimalify;
 
-@PetAbilityRegistration(pet = PetHandler.ZOMBIE, minimumRarity = Rarity.RARE, order = 1)
+@PetAbilityRegistration(pet = PetHandler.ZOMBIE, minimumRarity = Rarity.RARE)
 public final class RottenBladeAbility implements PetAbility {
     private static final double BASE = 25.0;
     private static final double PER_LEVEL = 1.25;

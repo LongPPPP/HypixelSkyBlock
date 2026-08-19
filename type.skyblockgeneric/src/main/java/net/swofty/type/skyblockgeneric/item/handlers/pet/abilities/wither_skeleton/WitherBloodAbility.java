@@ -18,7 +18,7 @@ import java.util.List;
 
 import static net.swofty.commons.StringUtility.decimalify;
 
-@PetAbilityRegistration(pet = PetHandler.WITHER_SKELETON, minimumRarity = Rarity.RARE, order = 1)
+@PetAbilityRegistration(pet = PetHandler.WITHER_SKELETON, minimumRarity = Rarity.RARE)
 public final class WitherBloodAbility implements PetAbility {
     private static final RarityValue<Double> PER_LEVEL =
             new RarityValue<>(0.0, 0.0, 1.0, 1.0, 1.0, 0.0, 0.0);

@@ -12,7 +12,7 @@ import java.util.List;
 
 import static net.swofty.commons.StringUtility.decimalify;
 
-@PetAbilityRegistration(pet = PetHandler.FROG, minimumRarity = Rarity.MYTHIC, order = 3,
+@PetAbilityRegistration(pet = PetHandler.FROG, minimumRarity = Rarity.MYTHIC,
         implemented = false, notImplementedReason = "awaits dispatch(PetEvent.FishCaught) in FishingLootResolver + a Trophy Frog catch system")
 public final class HomeSweetHomeAbility implements PetAbility {
     private static final RarityValue<Double> CHANCE_PER_LEVEL =

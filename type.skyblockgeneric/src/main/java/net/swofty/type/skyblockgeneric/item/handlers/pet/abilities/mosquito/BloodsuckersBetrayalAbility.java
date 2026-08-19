@@ -10,7 +10,7 @@ import java.util.List;
 
 import static net.swofty.commons.StringUtility.decimalify;
 
-@PetAbilityRegistration(pet = PetHandler.MOSQUITO, minimumRarity = Rarity.LEGENDARY, order = 2,
+@PetAbilityRegistration(pet = PetHandler.MOSQUITO, minimumRarity = Rarity.LEGENDARY,
         implemented = false, notImplementedReason = "awaits a Pest system (Pest Trap collection hook)")
 public final class BloodsuckersBetrayalAbility implements PetAbility {
     private static final RarityValue<Double> SPEED_PER_LEVEL =

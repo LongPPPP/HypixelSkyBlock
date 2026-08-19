@@ -12,7 +12,7 @@ import java.util.List;
 
 import static net.swofty.commons.StringUtility.decimalify;
 
-@PetAbilityRegistration(pet = PetHandler.SNAIL, minimumRarity = Rarity.LEGENDARY, order = 2,
+@PetAbilityRegistration(pet = PetHandler.SNAIL, minimumRarity = Rarity.LEGENDARY,
         implemented = false, notImplementedReason = "no mining-context hook to gate 'while mining Blocks'; Mining Spread is not consumed by mining yet")
 public final class SlimyReachAbility implements PetAbility {
     private static final RarityValue<Double> MINING_SPREAD_PER_LEVEL =

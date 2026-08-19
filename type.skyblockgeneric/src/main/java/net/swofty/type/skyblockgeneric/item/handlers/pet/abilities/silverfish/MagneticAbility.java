@@ -10,7 +10,7 @@ import java.util.List;
 
 import static net.swofty.commons.StringUtility.decimalify;
 
-@PetAbilityRegistration(pet = PetHandler.SILVERFISH, minimumRarity = Rarity.COMMON, order = 0,
+@PetAbilityRegistration(pet = PetHandler.SILVERFISH, minimumRarity = Rarity.COMMON,
         implemented = false, notImplementedReason = "awaits a unified XP-modifier pipeline")
 public final class MagneticAbility implements PetAbility {
     private static final RarityValue<Double> EXP_PER_LEVEL =

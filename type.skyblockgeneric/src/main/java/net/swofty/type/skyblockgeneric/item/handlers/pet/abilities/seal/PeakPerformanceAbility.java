@@ -12,7 +12,7 @@ import java.util.List;
 
 import static net.swofty.commons.StringUtility.decimalify;
 
-@PetAbilityRegistration(pet = PetHandler.SEAL, minimumRarity = Rarity.RARE, order = 1,
+@PetAbilityRegistration(pet = PetHandler.SEAL, minimumRarity = Rarity.RARE,
         implemented = false, notImplementedReason = "awaits dispatch(PetEvent.FishCaught) + a Treasure Bait item")
 public final class PeakPerformanceAbility implements PetAbility {
     private static final RarityValue<Double> CHANCE_PER_LEVEL =

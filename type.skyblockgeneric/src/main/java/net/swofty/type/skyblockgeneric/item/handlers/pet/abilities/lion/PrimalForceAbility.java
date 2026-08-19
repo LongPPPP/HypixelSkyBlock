@@ -10,7 +10,7 @@ import java.util.List;
 
 import static net.swofty.commons.StringUtility.decimalify;
 
-@PetAbilityRegistration(pet = PetHandler.LION, minimumRarity = Rarity.COMMON, order = 0,
+@PetAbilityRegistration(pet = PetHandler.LION, minimumRarity = Rarity.COMMON,
         implemented = false, notImplementedReason = "awaits a per-item stat augmentation system for weapons")
 public final class PrimalForceAbility implements PetAbility {
     private static final RarityValue<Double> DAMAGE_PER_LEVEL =

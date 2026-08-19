@@ -12,7 +12,7 @@ import java.util.List;
 
 import static net.swofty.commons.StringUtility.decimalify;
 
-@PetAbilityRegistration(pet = PetHandler.SPIDER, minimumRarity = Rarity.RARE, order = 1,
+@PetAbilityRegistration(pet = PetHandler.SPIDER, minimumRarity = Rarity.RARE,
         implemented = false, notImplementedReason = "awaits DamageDealt dispatch in PlayerActionDamageMob + a mob slow effect")
 public final class WebWeaverAbility implements PetAbility {
     private static final RarityValue<Double> SLOWNESS_PER_LEVEL =

@@ -10,7 +10,7 @@ import java.util.List;
 
 import static net.swofty.commons.StringUtility.decimalify;
 
-@PetAbilityRegistration(pet = PetHandler.KUUDRA, minimumRarity = Rarity.RARE, order = 2,
+@PetAbilityRegistration(pet = PetHandler.KUUDRA, minimumRarity = Rarity.RARE,
         implemented = false, notImplementedReason = "awaits a Crimson Essence drop system")
 public final class CrimsonAbility implements PetAbility {
     private static final RarityValue<Double> ESSENCE_PER_LEVEL =

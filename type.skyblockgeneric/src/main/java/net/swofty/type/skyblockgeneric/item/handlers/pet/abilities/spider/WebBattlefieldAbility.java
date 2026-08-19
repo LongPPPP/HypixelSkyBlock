@@ -12,7 +12,7 @@ import java.util.List;
 
 import static net.swofty.commons.StringUtility.decimalify;
 
-@PetAbilityRegistration(pet = PetHandler.SPIDER, minimumRarity = Rarity.MYTHIC, order = 3,
+@PetAbilityRegistration(pet = PetHandler.SPIDER, minimumRarity = Rarity.MYTHIC,
         implemented = false, notImplementedReason = "awaits a buff-zone system granting Strength + Magic Find to nearby players for 40s on kill")
 public final class WebBattlefieldAbility implements PetAbility {
     private static final RarityValue<Double> STRENGTH_PER_LEVEL =

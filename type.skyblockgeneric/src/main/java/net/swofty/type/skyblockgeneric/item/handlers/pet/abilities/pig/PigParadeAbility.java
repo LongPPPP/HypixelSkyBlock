@@ -10,7 +10,7 @@ import java.util.List;
 
 import static net.swofty.commons.StringUtility.commaify;
 
-@PetAbilityRegistration(pet = PetHandler.PIG, minimumRarity = Rarity.LEGENDARY, order = 0,
+@PetAbilityRegistration(pet = PetHandler.PIG, minimumRarity = Rarity.LEGENDARY,
         implemented = false, notImplementedReason = "awaits a Year of the Pig festival system (calendar event)")
 public final class PigParadeAbility implements PetAbility {
     private static final RarityValue<Double> BASE_STAT_PER_LEVEL =

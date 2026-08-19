@@ -29,8 +29,7 @@ public final class PetAbilityRegistry {
     }
 
     /**
-     * Returns a fresh instance of every ability.
-     * Instances are per-player
+     * Returns new instance of every ability.
      */
     public static List<PetAbility> getAbilitiesFor(PetHandler pet, Rarity rarity) {
         return ABILITIES.getOrDefault(pet, List.of())
@@ -46,21 +45,6 @@ public final class PetAbilityRegistry {
         if (descriptor == null || descriptor.implemented) return null;
         String reason = descriptor.notImplementedReason;
         return "<c>⚠ <l>NOT IMPLEMENTED<r><c>" + (reason.isEmpty() ? "" : " — " + reason);
-    }
-
-    public static List<NotImplementedAbility> notImplementedAbilities() {
-        List<NotImplementedAbility> out = new ArrayList<>();
-        ABILITIES.forEach((pet, descriptors) -> {
-            for (AbilityDescriptor descriptor : descriptors) {
-                if (!descriptor.implemented) {
-                    out.add(new NotImplementedAbility(pet, descriptor.prototype.getName(), descriptor.notImplementedReason));
-                }
-            }
-        });
-        return out;
-    }
-
-    public record NotImplementedAbility(PetHandler pet, String name, String reason) {
     }
 
     public static void invoke(PetAbility ability, PetEvent event) {

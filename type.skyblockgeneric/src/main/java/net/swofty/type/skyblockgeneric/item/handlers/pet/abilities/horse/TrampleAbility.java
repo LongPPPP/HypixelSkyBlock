@@ -18,7 +18,7 @@ import java.util.List;
 
 import static net.swofty.commons.StringUtility.decimalify;
 
-@PetAbilityRegistration(pet = PetHandler.HORSE, minimumRarity = Rarity.LEGENDARY, order = 2)
+@PetAbilityRegistration(pet = PetHandler.HORSE, minimumRarity = Rarity.LEGENDARY)
 public final class TrampleAbility implements PetAbility {
     private static final double BASE = 0.5;
     private static final double PER_LEVEL = 0.045;

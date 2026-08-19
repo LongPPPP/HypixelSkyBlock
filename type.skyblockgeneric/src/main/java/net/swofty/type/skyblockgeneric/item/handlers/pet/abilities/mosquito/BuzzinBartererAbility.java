@@ -10,7 +10,7 @@ import java.util.List;
 
 import static net.swofty.commons.StringUtility.decimalify;
 
-@PetAbilityRegistration(pet = PetHandler.MOSQUITO, minimumRarity = Rarity.RARE, order = 1,
+@PetAbilityRegistration(pet = PetHandler.MOSQUITO, minimumRarity = Rarity.RARE,
         implemented = false, notImplementedReason = "awaits a Garden visitor system (unique visitors served)")
 public final class BuzzinBartererAbility implements PetAbility {
     private static final RarityValue<Double> SUGAR_CANE_FORTUNE_PER_LEVEL =

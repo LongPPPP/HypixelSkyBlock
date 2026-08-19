@@ -17,7 +17,7 @@ import java.util.List;
 
 import static net.swofty.commons.StringUtility.decimalify;
 
-@PetAbilityRegistration(pet = PetHandler.FROG, minimumRarity = Rarity.LEGENDARY, order = 2)
+@PetAbilityRegistration(pet = PetHandler.FROG, minimumRarity = Rarity.LEGENDARY)
 public final class HappyTreeFriendsAbility implements PetAbility {
     private static final int MAX_FROGS = 10;
     private static final RarityValue<Double> FORAGING_FORTUNE_BASE = new RarityValue<>(0.0, 0.0, 0.0, 0.0, 1.0, 1.0, 0.0);

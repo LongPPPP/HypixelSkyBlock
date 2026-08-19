@@ -10,7 +10,7 @@ import java.util.List;
 
 import static net.swofty.commons.StringUtility.decimalify;
 
-@PetAbilityRegistration(pet = PetHandler.SLOTH, minimumRarity = Rarity.RARE, order = 1,
+@PetAbilityRegistration(pet = PetHandler.SLOTH, minimumRarity = Rarity.RARE,
         implemented = false, notImplementedReason = "awaits an Axe-throw mechanic")
 public final class StronkArmAbility implements PetAbility {
     private static final RarityValue<Double> SWEEP_PER_LEVEL =

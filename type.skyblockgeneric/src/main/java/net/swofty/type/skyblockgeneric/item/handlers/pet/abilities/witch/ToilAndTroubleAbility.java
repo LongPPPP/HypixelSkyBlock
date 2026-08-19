@@ -10,7 +10,7 @@ import java.util.List;
 
 import static net.swofty.commons.StringUtility.decimalify;
 
-@PetAbilityRegistration(pet = PetHandler.WITCH, minimumRarity = Rarity.COMMON, order = 0,
+@PetAbilityRegistration(pet = PetHandler.WITCH, minimumRarity = Rarity.COMMON,
         implemented = false, notImplementedReason = "awaits the Year of the Witch event + an ingredient drop system")
 public final class ToilAndTroubleAbility implements PetAbility {
     private static final RarityValue<Double> CHANCE_PER_LEVEL =

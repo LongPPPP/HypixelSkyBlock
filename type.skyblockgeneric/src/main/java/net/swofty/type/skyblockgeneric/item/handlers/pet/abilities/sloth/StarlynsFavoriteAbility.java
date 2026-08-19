@@ -10,7 +10,7 @@ import java.util.List;
 
 import static net.swofty.commons.StringUtility.decimalify;
 
-@PetAbilityRegistration(pet = PetHandler.SLOTH, minimumRarity = Rarity.LEGENDARY, order = 2,
+@PetAbilityRegistration(pet = PetHandler.SLOTH, minimumRarity = Rarity.LEGENDARY,
         implemented = false, notImplementedReason = "awaits a Starlyn Contests system")
 public final class StarlynsFavoriteAbility implements PetAbility {
     private static final RarityValue<Double> POINTS_PER_LEVEL =

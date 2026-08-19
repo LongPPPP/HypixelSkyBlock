@@ -12,7 +12,7 @@ import java.util.List;
 
 import static net.swofty.commons.StringUtility.decimalify;
 
-@PetAbilityRegistration(pet = PetHandler.LION, minimumRarity = Rarity.LEGENDARY, order = 2,
+@PetAbilityRegistration(pet = PetHandler.LION, minimumRarity = Rarity.LEGENDARY,
         implemented = false, notImplementedReason = "awaits mob-attacked-you tracking + dispatch(PetEvent.DamageDealt)")
 public final class KingOfTheJungleAbility implements PetAbility {
     private static final RarityValue<Double> DAMAGE_PER_LEVEL =

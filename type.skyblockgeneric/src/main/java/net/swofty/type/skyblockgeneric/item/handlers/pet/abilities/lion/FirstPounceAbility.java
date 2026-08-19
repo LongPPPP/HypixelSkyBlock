@@ -10,7 +10,7 @@ import java.util.List;
 
 import static net.swofty.commons.StringUtility.decimalify;
 
-@PetAbilityRegistration(pet = PetHandler.LION, minimumRarity = Rarity.RARE, order = 1,
+@PetAbilityRegistration(pet = PetHandler.LION, minimumRarity = Rarity.RARE,
         implemented = false, notImplementedReason = "awaits an EnchantmentProc hook (First Strike/Triple-Strike/Combo)")
 public final class FirstPounceAbility implements PetAbility {
     private static final RarityValue<Double> EFFECTIVENESS_PER_LEVEL =

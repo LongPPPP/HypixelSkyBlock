@@ -13,7 +13,7 @@ import java.util.List;
 
 import static net.swofty.commons.StringUtility.decimalify;
 
-@PetAbilityRegistration(pet = PetHandler.SILVERFISH, minimumRarity = Rarity.LEGENDARY, order = 2,
+@PetAbilityRegistration(pet = PetHandler.SILVERFISH, minimumRarity = Rarity.LEGENDARY,
         implemented = false, notImplementedReason = "awaits a permanent potion-effect application system (Haste I/II/III)")
 public final class DexterityAbility implements PetAbility {
     private static final double MINING_SPEED_PER_LEVEL = 1.5;

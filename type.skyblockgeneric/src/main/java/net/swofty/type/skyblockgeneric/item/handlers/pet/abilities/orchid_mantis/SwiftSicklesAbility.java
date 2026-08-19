@@ -13,7 +13,7 @@ import java.util.List;
 
 import static net.swofty.commons.StringUtility.decimalify;
 
-@PetAbilityRegistration(pet = PetHandler.ORCHID_MANTIS, minimumRarity = Rarity.RARE, order = 1)
+@PetAbilityRegistration(pet = PetHandler.ORCHID_MANTIS, minimumRarity = Rarity.RARE)
 public final class SwiftSicklesAbility implements PetAbility {
     private static final double SPEED_PER_BRACKET = 3;
     private static final double SPEED_BASELINE = 100;

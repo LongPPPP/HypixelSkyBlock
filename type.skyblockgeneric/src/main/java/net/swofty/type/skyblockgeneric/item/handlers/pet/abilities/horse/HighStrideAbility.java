@@ -8,7 +8,7 @@ import net.swofty.type.skyblockgeneric.item.handlers.pet.abstr.PetAbilityRegistr
 
 import java.util.List;
 
-@PetAbilityRegistration(pet = PetHandler.HORSE, minimumRarity = Rarity.COMMON, order = 0,
+@PetAbilityRegistration(pet = PetHandler.HORSE, minimumRarity = Rarity.COMMON,
         implemented = false, notImplementedReason = "awaits a permanent potion-effect application system")
 public final class HighStrideAbility implements PetAbility {
 

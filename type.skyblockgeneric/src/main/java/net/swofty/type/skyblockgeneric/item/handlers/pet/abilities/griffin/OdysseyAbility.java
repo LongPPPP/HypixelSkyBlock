@@ -8,7 +8,7 @@ import net.swofty.type.skyblockgeneric.utility.RarityValue;
 
 import java.util.List;
 
-@PetAbilityRegistration(pet = PetHandler.GRIFFIN, minimumRarity = Rarity.COMMON, order = 0,
+@PetAbilityRegistration(pet = PetHandler.GRIFFIN, minimumRarity = Rarity.COMMON,
         implemented = false, notImplementedReason = "awaits Griffin Burrows + a Mythological mob spawn system")
 public final class OdysseyAbility implements PetAbility {
     private static final RarityValue<Integer> TYPES = new RarityValue<>(2, 4, 6, 8, 10, 12, 0);

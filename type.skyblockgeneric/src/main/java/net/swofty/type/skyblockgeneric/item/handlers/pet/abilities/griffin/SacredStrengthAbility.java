@@ -14,7 +14,7 @@ import java.util.List;
 
 import static net.swofty.commons.StringUtility.decimalify;
 
-@PetAbilityRegistration(pet = PetHandler.GRIFFIN, minimumRarity = Rarity.RARE, order = 1)
+@PetAbilityRegistration(pet = PetHandler.GRIFFIN, minimumRarity = Rarity.RARE)
 public final class SacredStrengthAbility implements PetAbility {
     private static final double HEALTH_THRESHOLD = 0.85;
     private static final RarityValue<Double> STRENGTH_PER_LEVEL =

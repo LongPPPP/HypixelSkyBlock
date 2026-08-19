@@ -10,7 +10,7 @@ import java.util.List;
 
 import static net.swofty.commons.StringUtility.decimalify;
 
-@PetAbilityRegistration(pet = PetHandler.RABBIT, minimumRarity = Rarity.MYTHIC, order = 0,
+@PetAbilityRegistration(pet = PetHandler.RABBIT, minimumRarity = Rarity.MYTHIC,
         implemented = false, notImplementedReason = "awaits a Chocolate Factory system (production + duplicate Chocolate Rabbit hook)")
 public final class ChocolateInjectionsAbility implements PetAbility {
     private static final RarityValue<Double> PRODUCTION_BASE =

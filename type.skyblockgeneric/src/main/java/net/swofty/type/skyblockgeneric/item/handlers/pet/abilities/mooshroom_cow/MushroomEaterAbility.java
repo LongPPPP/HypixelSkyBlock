@@ -12,7 +12,7 @@ import java.util.List;
 
 import static net.swofty.commons.StringUtility.decimalify;
 
-@PetAbilityRegistration(pet = PetHandler.MOOSHROOM_COW, minimumRarity = Rarity.COMMON, order = 0,
+@PetAbilityRegistration(pet = PetHandler.MOOSHROOM_COW, minimumRarity = Rarity.COMMON,
         implemented = false, notImplementedReason = "awaits CropHarvested dispatch in the farming crop harvest + a Mushroom drop handler")
 public final class MushroomEaterAbility implements PetAbility {
     private static final RarityValue<Double> CHANCE_PER_LEVEL =

@@ -11,7 +11,7 @@ import java.util.List;
 
 import static net.swofty.commons.StringUtility.decimalify;
 
-@PetAbilityRegistration(pet = PetHandler.WITHER_SKELETON, minimumRarity = Rarity.LEGENDARY, order = 2,
+@PetAbilityRegistration(pet = PetHandler.WITHER_SKELETON, minimumRarity = Rarity.LEGENDARY,
         implemented = false, notImplementedReason = "awaits DamageDealt dispatch in PlayerActionDamageMob + a wither damage-over-time effect")
 public final class DeathsTouchAbility implements PetAbility {
     private static final double PER_LEVEL = 2.0;

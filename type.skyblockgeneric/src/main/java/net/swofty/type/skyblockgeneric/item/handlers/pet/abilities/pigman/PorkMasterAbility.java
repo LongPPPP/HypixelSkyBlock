@@ -15,7 +15,7 @@ import java.util.List;
 
 import static net.swofty.commons.StringUtility.decimalify;
 
-@PetAbilityRegistration(pet = PetHandler.PIGMAN, minimumRarity = Rarity.RARE, order = 0)
+@PetAbilityRegistration(pet = PetHandler.PIGMAN, minimumRarity = Rarity.RARE)
 public final class PorkMasterAbility implements PetAbility {
     private static final RarityValue<Double> DAMAGE_PER_LEVEL =
             new RarityValue<>(0.0, 0.0, 0.3, 0.4, 0.4, 0.0, 0.0);

@@ -14,7 +14,7 @@ import java.util.List;
 
 import static net.swofty.commons.StringUtility.commaify;
 
-@PetAbilityRegistration(pet = PetHandler.KUUDRA, minimumRarity = Rarity.EPIC, order = 3)
+@PetAbilityRegistration(pet = PetHandler.KUUDRA, minimumRarity = Rarity.EPIC)
 public final class KuudraFortuneAbility implements PetAbility {
     private static final RarityValue<Double> MINING_FORTUNE_PER_LEVEL =
             new RarityValue<>(0.0, 0.0, 0.0, 1.0, 1.0, 0.0, 0.0);

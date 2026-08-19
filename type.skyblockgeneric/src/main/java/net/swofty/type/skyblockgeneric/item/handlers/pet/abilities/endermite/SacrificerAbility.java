@@ -10,7 +10,7 @@ import java.util.List;
 
 import static net.swofty.commons.StringUtility.decimalify;
 
-@PetAbilityRegistration(pet = PetHandler.ENDERMITE, minimumRarity = Rarity.MYTHIC, order = 3,
+@PetAbilityRegistration(pet = PetHandler.ENDERMITE, minimumRarity = Rarity.MYTHIC,
         implemented = false, notImplementedReason = "awaits a Draconic Altar system")
 public final class SacrificerAbility implements PetAbility {
     private static final RarityValue<Double> PER_LEVEL =

@@ -7,7 +7,7 @@ import net.swofty.type.skyblockgeneric.item.handlers.pet.abstr.PetAbilityRegistr
 
 import java.util.List;
 
-@PetAbilityRegistration(pet = PetHandler.SKELETON, minimumRarity = Rarity.LEGENDARY, order = 2,
+@PetAbilityRegistration(pet = PetHandler.SKELETON, minimumRarity = Rarity.LEGENDARY,
         implemented = false, notImplementedReason = "awaits a proximity-trigger system for nearby mobs + a minion arrow projectile")
 public final class SkeletalDefenseAbility implements PetAbility {
 

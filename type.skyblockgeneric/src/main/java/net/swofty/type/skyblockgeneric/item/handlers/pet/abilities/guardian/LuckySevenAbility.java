@@ -10,7 +10,7 @@ import java.util.List;
 
 import static net.swofty.commons.StringUtility.decimalify;
 
-@PetAbilityRegistration(pet = PetHandler.GUARDIAN, minimumRarity = Rarity.MYTHIC, order = 3,
+@PetAbilityRegistration(pet = PetHandler.GUARDIAN, minimumRarity = Rarity.MYTHIC,
         implemented = false, notImplementedReason = "awaits a Superpairs (Experiment Table) system")
 public final class LuckySevenAbility implements PetAbility {
     private static final RarityValue<Double> CHANCE_PER_LEVEL =

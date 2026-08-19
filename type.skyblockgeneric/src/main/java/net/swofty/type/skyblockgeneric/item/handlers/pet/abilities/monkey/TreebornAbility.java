@@ -13,7 +13,7 @@ import java.util.List;
 
 import static net.swofty.commons.StringUtility.decimalify;
 
-@PetAbilityRegistration(pet = PetHandler.MONKEY, minimumRarity = Rarity.COMMON, order = 0)
+@PetAbilityRegistration(pet = PetHandler.MONKEY, minimumRarity = Rarity.COMMON)
 public final class TreebornAbility implements PetAbility {
     private static final RarityValue<Double> FORAGING_FORTUNE_PER_LEVEL =
             new RarityValue<>(0.4, 0.5, 0.5, 0.6, 0.6, 0.0, 0.0);

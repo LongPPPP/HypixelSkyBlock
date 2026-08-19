@@ -10,7 +10,7 @@ import java.util.List;
 
 import static net.swofty.commons.StringUtility.decimalify;
 
-@PetAbilityRegistration(pet = PetHandler.SEAL, minimumRarity = Rarity.COMMON, order = 0,
+@PetAbilityRegistration(pet = PetHandler.SEAL, minimumRarity = Rarity.COMMON,
         implemented = false, notImplementedReason = "awaits a Year of the Seal flag + Bouncy Beach Ball catches")
 public final class ShowboaterAbility implements PetAbility {
     private static final RarityValue<Double> CHANCE_PER_LEVEL =

@@ -18,7 +18,7 @@ import java.util.List;
 
 import static net.swofty.commons.StringUtility.decimalify;
 
-@PetAbilityRegistration(pet = PetHandler.TIGER, minimumRarity = Rarity.LEGENDARY, order = 2)
+@PetAbilityRegistration(pet = PetHandler.TIGER, minimumRarity = Rarity.LEGENDARY)
 public final class ApexPredatorAbility implements PetAbility {
     private static final double PER_LEVEL = 1.0;
     private static final double RANGE = 15;

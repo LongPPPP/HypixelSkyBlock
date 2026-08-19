@@ -12,7 +12,7 @@ import java.util.List;
 
 import static net.swofty.commons.StringUtility.decimalify;
 
-@PetAbilityRegistration(pet = PetHandler.HERMIT_CRAB, minimumRarity = Rarity.RARE, order = 1,
+@PetAbilityRegistration(pet = PetHandler.HERMIT_CRAB, minimumRarity = Rarity.RARE,
         implemented = false, notImplementedReason = "awaits treasure-quality tiers in CatchPayload + dispatch(PetEvent.FishCaught)")
 public final class SeafloorScalperAbility implements PetAbility {
     private static final RarityValue<Double> CHANCE_PER_LEVEL =

@@ -12,7 +12,7 @@ import java.util.List;
 
 import static net.swofty.commons.StringUtility.decimalify;
 
-@PetAbilityRegistration(pet = PetHandler.ENDERMITE, minimumRarity = Rarity.RARE, order = 1,
+@PetAbilityRegistration(pet = PetHandler.ENDERMITE, minimumRarity = Rarity.RARE,
         implemented = false, notImplementedReason = "Transmission Abilities contains what?")
 public final class DailyCommuterAbility implements PetAbility {
     private static final RarityValue<Double> PER_LEVEL =

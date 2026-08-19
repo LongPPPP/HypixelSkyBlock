@@ -9,7 +9,7 @@ import java.util.List;
 
 import static net.swofty.commons.StringUtility.decimalify;
 
-@PetAbilityRegistration(pet = PetHandler.WITCH, minimumRarity = Rarity.LEGENDARY, order = 2,
+@PetAbilityRegistration(pet = PetHandler.WITCH, minimumRarity = Rarity.LEGENDARY,
         implemented = false, notImplementedReason = "awaits the Year of the Witch event")
 public final class WitchingHourAbility implements PetAbility {
     private static final double PER_LEVEL = 1.0;

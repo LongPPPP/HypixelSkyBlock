@@ -9,7 +9,7 @@ import net.swofty.type.skyblockgeneric.item.handlers.pet.abstr.PetEventHandler;
 
 import java.util.List;
 
-@PetAbilityRegistration(pet = PetHandler.KUUDRA, minimumRarity = Rarity.LEGENDARY, order = 4,
+@PetAbilityRegistration(pet = PetHandler.KUUDRA, minimumRarity = Rarity.LEGENDARY,
         implemented = false, notImplementedReason = "awaits a Kuudra boss mob")
 public final class KuudraSpecialistAbility implements PetAbility {
 

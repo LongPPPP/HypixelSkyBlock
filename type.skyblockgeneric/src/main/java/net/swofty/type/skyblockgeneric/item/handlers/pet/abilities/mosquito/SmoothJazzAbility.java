@@ -10,7 +10,7 @@ import java.util.List;
 
 import static net.swofty.commons.StringUtility.decimalify;
 
-@PetAbilityRegistration(pet = PetHandler.MOSQUITO, minimumRarity = Rarity.COMMON, order = 0,
+@PetAbilityRegistration(pet = PetHandler.MOSQUITO, minimumRarity = Rarity.COMMON,
         implemented = false, notImplementedReason = "awaits a Pest Vinyl system")
 public final class SmoothJazzAbility implements PetAbility {
     private static final RarityValue<Double> EFFECTIVENESS_PER_LEVEL =

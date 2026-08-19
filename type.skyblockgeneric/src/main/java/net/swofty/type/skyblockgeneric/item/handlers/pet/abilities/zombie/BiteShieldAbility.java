@@ -14,7 +14,7 @@ import java.util.List;
 
 import static net.swofty.commons.StringUtility.decimalify;
 
-@PetAbilityRegistration(pet = PetHandler.ZOMBIE, minimumRarity = Rarity.COMMON, order = 0)
+@PetAbilityRegistration(pet = PetHandler.ZOMBIE, minimumRarity = Rarity.COMMON)
 public final class BiteShieldAbility implements PetAbility {
     private static final RarityValue<Double> BASE =
             new RarityValue<>(5.0, 10.0, 10.0, 15.0, 15.0, 0.0, 0.0);

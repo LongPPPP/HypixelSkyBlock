@@ -14,7 +14,7 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
-@PetAbilityRegistration(pet = PetHandler.PIGMAN, minimumRarity = Rarity.LEGENDARY, order = 0)
+@PetAbilityRegistration(pet = PetHandler.PIGMAN, minimumRarity = Rarity.LEGENDARY)
 public final class GiantSlayerAbility implements PetAbility {
     @Override
     public String getName() {

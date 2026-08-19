@@ -10,7 +10,7 @@ import java.util.List;
 
 import static net.swofty.commons.StringUtility.decimalify;
 
-@PetAbilityRegistration(pet = PetHandler.SCATHA, minimumRarity = Rarity.RARE, order = 0,
+@PetAbilityRegistration(pet = PetHandler.SCATHA, minimumRarity = Rarity.RARE,
         implemented = false, notImplementedReason = "awaits a treasure-chest discovery system while mining")
 public final class BurrowingAbility implements PetAbility {
     private static final RarityValue<Double> CHANCE_PER_LEVEL =

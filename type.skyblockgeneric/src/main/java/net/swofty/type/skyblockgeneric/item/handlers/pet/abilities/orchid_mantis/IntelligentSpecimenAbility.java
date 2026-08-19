@@ -10,7 +10,7 @@ import java.util.List;
 
 import static net.swofty.commons.StringUtility.decimalify;
 
-@PetAbilityRegistration(pet = PetHandler.ORCHID_MANTIS, minimumRarity = Rarity.COMMON, order = 0,
+@PetAbilityRegistration(pet = PetHandler.ORCHID_MANTIS, minimumRarity = Rarity.COMMON,
         implemented = false, notImplementedReason = "awaits a Farming Tool EXP system")
 public final class IntelligentSpecimenAbility implements PetAbility {
     private static final RarityValue<Double> EXP_PER_LEVEL =

@@ -10,7 +10,7 @@ import java.util.List;
 
 import static net.swofty.commons.StringUtility.decimalify;
 
-@PetAbilityRegistration(pet = PetHandler.GUARDIAN, minimumRarity = Rarity.COMMON, order = 0,
+@PetAbilityRegistration(pet = PetHandler.GUARDIAN, minimumRarity = Rarity.COMMON,
         implemented = false, notImplementedReason = "no animation yet;awaits a periodic Tick/Pulse event + enemy targeting")
 public final class LazerbeamAbility implements PetAbility {
     private static final RarityValue<Double> INTELLIGENCE_MULTIPLIER_PER_LEVEL =

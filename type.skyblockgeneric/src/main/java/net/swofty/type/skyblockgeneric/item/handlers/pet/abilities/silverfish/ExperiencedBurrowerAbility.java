@@ -13,7 +13,7 @@ import java.util.List;
 
 import static net.swofty.commons.StringUtility.decimalify;
 
-@PetAbilityRegistration(pet = PetHandler.SILVERFISH, minimumRarity = Rarity.RARE, order = 1)
+@PetAbilityRegistration(pet = PetHandler.SILVERFISH, minimumRarity = Rarity.RARE)
 public final class ExperiencedBurrowerAbility implements PetAbility {
     private static final RarityValue<Double> MINING_WISDOM_PER_LEVEL =
             new RarityValue<>(0.0, 0.0, 0.2, 0.25, 0.3, 0.0, 0.0);

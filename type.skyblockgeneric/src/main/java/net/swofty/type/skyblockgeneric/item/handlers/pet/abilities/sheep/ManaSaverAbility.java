@@ -12,7 +12,7 @@ import java.util.List;
 
 import static net.swofty.commons.StringUtility.decimalify;
 
-@PetAbilityRegistration(pet = PetHandler.SHEEP, minimumRarity = Rarity.COMMON, order = 0)
+@PetAbilityRegistration(pet = PetHandler.SHEEP, minimumRarity = Rarity.COMMON)
 public final class ManaSaverAbility implements PetAbility {
     private static final RarityValue<Double> REDUCTION_PER_LEVEL =
             new RarityValue<>(0.1, 0.1, 0.1, 0.2, 0.2, 0.0, 0.0);

@@ -10,7 +10,7 @@ import java.util.List;
 
 import static net.swofty.commons.StringUtility.decimalify;
 
-@PetAbilityRegistration(pet = PetHandler.GLACITE_GOLEM, minimumRarity = Rarity.LEGENDARY, order = 2,
+@PetAbilityRegistration(pet = PetHandler.GLACITE_GOLEM, minimumRarity = Rarity.LEGENDARY,
         implemented = false, notImplementedReason = "awaits a Frozen Corpse looted-count system (per Glacite Mineshaft run)")
 public final class FrozenPerfectionAbility implements PetAbility {
     private static final RarityValue<Double> PRISTINE_PER_CORPSE =

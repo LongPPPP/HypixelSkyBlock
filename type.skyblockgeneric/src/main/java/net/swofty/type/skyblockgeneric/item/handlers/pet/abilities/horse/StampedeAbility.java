@@ -15,7 +15,7 @@ import java.util.List;
 
 import static net.swofty.commons.StringUtility.decimalify;
 
-@PetAbilityRegistration(pet = PetHandler.HORSE, minimumRarity = Rarity.RARE, order = 1)
+@PetAbilityRegistration(pet = PetHandler.HORSE, minimumRarity = Rarity.RARE)
 public final class StampedeAbility implements PetAbility {
     private static final int MAX_STACKS = 20;
     private static final long DURATION_MILLIS = 5_000L;

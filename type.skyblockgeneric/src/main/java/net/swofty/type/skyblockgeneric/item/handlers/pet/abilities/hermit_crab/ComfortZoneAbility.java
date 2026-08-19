@@ -16,7 +16,7 @@ import java.util.List;
 
 import static net.swofty.commons.StringUtility.decimalify;
 
-@PetAbilityRegistration(pet = PetHandler.HERMIT_CRAB, minimumRarity = Rarity.COMMON, order = 0,
+@PetAbilityRegistration(pet = PetHandler.HERMIT_CRAB, minimumRarity = Rarity.COMMON,
         implemented = false, notImplementedReason = "Treasure is not defined; awaits dispatch(PetEvent.FishCaught) in FishingLootResolver")
 public final class ComfortZoneAbility implements PetAbility {
     private static final long DURATION_MILLIS = 30_000L;

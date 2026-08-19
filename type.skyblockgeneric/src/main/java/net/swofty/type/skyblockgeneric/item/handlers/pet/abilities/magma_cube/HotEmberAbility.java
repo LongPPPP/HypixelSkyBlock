@@ -10,7 +10,7 @@ import java.util.List;
 
 import static net.swofty.commons.StringUtility.decimalify;
 
-@PetAbilityRegistration(pet = PetHandler.MAGMA_CUBE, minimumRarity = Rarity.LEGENDARY, order = 2,
+@PetAbilityRegistration(pet = PetHandler.MAGMA_CUBE, minimumRarity = Rarity.LEGENDARY,
         implemented = false, notImplementedReason = "awaits a per-item stat augmentation system for Rekindled Ember Armor")
 public final class HotEmberAbility implements PetAbility {
     private static final RarityValue<Double> BUFF_PER_LEVEL =

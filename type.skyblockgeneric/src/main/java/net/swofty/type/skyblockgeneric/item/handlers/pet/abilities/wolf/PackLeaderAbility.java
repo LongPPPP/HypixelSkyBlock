@@ -17,7 +17,7 @@ import java.util.List;
 
 import static net.swofty.commons.StringUtility.decimalify;
 
-@PetAbilityRegistration(pet = PetHandler.WOLF, minimumRarity = Rarity.RARE, order = 1)
+@PetAbilityRegistration(pet = PetHandler.WOLF, minimumRarity = Rarity.RARE)
 public final class PackLeaderAbility implements PetAbility {
     private static final int MAX_WOLVES = 10;
     private static final double WOLF_RANGE = 20;

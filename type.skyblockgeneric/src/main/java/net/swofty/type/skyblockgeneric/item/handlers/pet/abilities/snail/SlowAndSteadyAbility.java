@@ -13,7 +13,7 @@ import java.util.List;
 
 import static net.swofty.commons.StringUtility.decimalify;
 
-@PetAbilityRegistration(pet = PetHandler.SNAIL, minimumRarity = Rarity.RARE, order = 1)
+@PetAbilityRegistration(pet = PetHandler.SNAIL, minimumRarity = Rarity.RARE)
 public final class SlowAndSteadyAbility implements PetAbility {
     private static final RarityValue<Double> SPEED_NEEDED_BASE =
             new RarityValue<>(0.0, 0.0, 6.0, 6.0, 5.0, 0.0, 0.0);

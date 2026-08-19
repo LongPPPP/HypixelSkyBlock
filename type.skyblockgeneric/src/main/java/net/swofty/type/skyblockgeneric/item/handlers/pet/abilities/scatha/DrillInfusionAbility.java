@@ -10,7 +10,7 @@ import java.util.List;
 
 import static net.swofty.commons.StringUtility.decimalify;
 
-@PetAbilityRegistration(pet = PetHandler.SCATHA, minimumRarity = Rarity.EPIC, order = 1,
+@PetAbilityRegistration(pet = PetHandler.SCATHA, minimumRarity = Rarity.EPIC,
         implemented = false, notImplementedReason = "awaits Drill items")
 public final class DrillInfusionAbility implements PetAbility {
     private static final RarityValue<Double> GEMSTONE_FORTUNE_PER_LEVEL =

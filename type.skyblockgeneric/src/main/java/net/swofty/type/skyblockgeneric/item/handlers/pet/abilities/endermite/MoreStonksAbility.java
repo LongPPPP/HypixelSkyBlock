@@ -12,7 +12,7 @@ import java.util.List;
 
 import static net.swofty.commons.StringUtility.decimalify;
 
-@PetAbilityRegistration(pet = PetHandler.ENDERMITE, minimumRarity = Rarity.COMMON, order = 0,
+@PetAbilityRegistration(pet = PetHandler.ENDERMITE, minimumRarity = Rarity.COMMON,
         implemented = false, notImplementedReason = "awaits dispatch(PetEvent.BlockMined) hook + exp orb's type need to be confirmed")
 public final class MoreStonksAbility implements PetAbility {
     private static final RarityValue<Double> PER_LEVEL =

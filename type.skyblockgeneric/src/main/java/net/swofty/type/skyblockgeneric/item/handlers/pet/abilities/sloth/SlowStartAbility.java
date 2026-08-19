@@ -12,7 +12,7 @@ import java.util.List;
 
 import static net.swofty.commons.StringUtility.decimalify;
 
-@PetAbilityRegistration(pet = PetHandler.SLOTH, minimumRarity = Rarity.COMMON, order = 0,
+@PetAbilityRegistration(pet = PetHandler.SLOTH, minimumRarity = Rarity.COMMON,
         implemented = false, notImplementedReason = "awaits dispatch(PetEvent.BlockMined) + a timed next-cut buff system")
 public final class SlowStartAbility implements PetAbility {
     private static final RarityValue<Double> SWEEP_PER_LEVEL =

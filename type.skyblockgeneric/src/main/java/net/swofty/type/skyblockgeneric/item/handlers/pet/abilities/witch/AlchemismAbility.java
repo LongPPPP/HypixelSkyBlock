@@ -10,7 +10,7 @@ import java.util.List;
 
 import static net.swofty.commons.StringUtility.decimalify;
 
-@PetAbilityRegistration(pet = PetHandler.WITCH, minimumRarity = Rarity.RARE, order = 1,
+@PetAbilityRegistration(pet = PetHandler.WITCH, minimumRarity = Rarity.RARE,
         implemented = false, notImplementedReason = "awaits a brewing system")
 public final class AlchemismAbility implements PetAbility {
     private static final RarityValue<Double> REDUCTION_PER_LEVEL =

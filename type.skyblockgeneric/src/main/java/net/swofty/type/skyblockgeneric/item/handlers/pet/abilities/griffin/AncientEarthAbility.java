@@ -7,7 +7,7 @@ import net.swofty.type.skyblockgeneric.item.handlers.pet.abstr.PetAbilityRegistr
 
 import java.util.List;
 
-@PetAbilityRegistration(pet = PetHandler.GRIFFIN, minimumRarity = Rarity.MYTHIC, order = 3,
+@PetAbilityRegistration(pet = PetHandler.GRIFFIN, minimumRarity = Rarity.MYTHIC,
         implemented = false, notImplementedReason = "awaits a Griffin Burrow excavation system")
 public final class AncientEarthAbility implements PetAbility {
     private static final int TRACKING_PER_BURROW = 1;

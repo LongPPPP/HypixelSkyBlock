@@ -10,7 +10,7 @@ import java.util.List;
 
 import static net.swofty.commons.StringUtility.decimalify;
 
-@PetAbilityRegistration(pet = PetHandler.GRIFFIN, minimumRarity = Rarity.EPIC, order = 2,
+@PetAbilityRegistration(pet = PetHandler.GRIFFIN, minimumRarity = Rarity.EPIC,
         implemented = false, notImplementedReason = "awaits per-mob Magic Find application against Mythological mobs")
 public final class KingOfKingsAbility implements PetAbility {
     private static final RarityValue<Double> MAGIC_FIND_PER_LEVEL =

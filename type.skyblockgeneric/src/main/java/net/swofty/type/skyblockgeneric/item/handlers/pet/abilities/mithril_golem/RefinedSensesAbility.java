@@ -15,7 +15,7 @@ import java.util.List;
 
 import static net.swofty.commons.StringUtility.decimalify;
 
-@PetAbilityRegistration(pet = PetHandler.MITHRIL_GOLEM, minimumRarity = Rarity.MYTHIC, order = 3)
+@PetAbilityRegistration(pet = PetHandler.MITHRIL_GOLEM, minimumRarity = Rarity.MYTHIC)
 public final class RefinedSensesAbility implements PetAbility {
     private static final RarityValue<Double> MAGIC_FIND_PER_LEVEL =
             new RarityValue<>(0.0, 0.0, 0.0, 0.0, 0.0, 0.1, 0.0);

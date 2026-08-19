@@ -11,7 +11,7 @@ import java.util.List;
 
 import static net.swofty.commons.StringUtility.decimalify;
 
-@PetAbilityRegistration(pet = PetHandler.TYRANNOSAURUS, minimumRarity = Rarity.LEGENDARY, order = 1,
+@PetAbilityRegistration(pet = PetHandler.TYRANNOSAURUS, minimumRarity = Rarity.LEGENDARY,
         implemented = false, notImplementedReason = "awaits DamageDealt dispatch in PlayerActionDamageMob + a stun effect")
 public final class FerociousRoarAbility implements PetAbility {
     private static final double PER_LEVEL = 0.1;

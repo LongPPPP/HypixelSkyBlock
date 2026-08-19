@@ -13,7 +13,7 @@ import java.util.List;
 
 import static net.swofty.commons.StringUtility.decimalify;
 
-@PetAbilityRegistration(pet = PetHandler.OCELOT, minimumRarity = Rarity.COMMON, order = 0)
+@PetAbilityRegistration(pet = PetHandler.OCELOT, minimumRarity = Rarity.COMMON)
 public final class ForagingWisdomBoostAbility implements PetAbility {
     private static final RarityValue<Double> WISDOM_PER_LEVEL =
             new RarityValue<>(0.2, 0.25, 0.25, 0.3, 0.3, 0.0, 0.0);

@@ -10,7 +10,7 @@ import java.util.List;
 
 import static net.swofty.commons.StringUtility.commaify;
 
-@PetAbilityRegistration(pet = PetHandler.GLACITE_GOLEM, minimumRarity = Rarity.RARE, order = 1,
+@PetAbilityRegistration(pet = PetHandler.GLACITE_GOLEM, minimumRarity = Rarity.RARE,
         implemented = false, notImplementedReason = "awaits a Glacite Mineshafts region; region-gated MINING_FORTUNE stat")
 public final class IcebornAbility implements PetAbility {
     private static final RarityValue<Double> MINING_FORTUNE_PER_LEVEL =

@@ -9,7 +9,7 @@ import java.util.List;
 
 import static net.swofty.commons.StringUtility.decimalify;
 
-@PetAbilityRegistration(pet = PetHandler.ZOMBIE, minimumRarity = Rarity.LEGENDARY, order = 2,
+@PetAbilityRegistration(pet = PetHandler.ZOMBIE, minimumRarity = Rarity.LEGENDARY,
         implemented = false, notImplementedReason = "awaits Undead armor items + an armor-stats-increase hook")
 public final class LivingDeadAbility implements PetAbility {
     private static final double PER_LEVEL = 0.25;

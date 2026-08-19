@@ -15,7 +15,7 @@ import java.util.List;
 
 import static net.swofty.commons.StringUtility.decimalify;
 
-@PetAbilityRegistration(pet = PetHandler.SQUID, minimumRarity = Rarity.RARE, order = 1)
+@PetAbilityRegistration(pet = PetHandler.SQUID, minimumRarity = Rarity.RARE)
 public final class InkSpecialtyAbility implements PetAbility {
     private static final RarityValue<Double> DAMAGE_PER_LEVEL =
             new RarityValue<>(0.0, 0.0, 0.3, 0.4, 0.4, 0.0, 0.0);

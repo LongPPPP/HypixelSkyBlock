@@ -12,7 +12,7 @@ import java.util.List;
 
 import static net.swofty.commons.StringUtility.commaify;
 
-@PetAbilityRegistration(pet = PetHandler.MITHRIL_GOLEM, minimumRarity = Rarity.COMMON, order = 0,
+@PetAbilityRegistration(pet = PetHandler.MITHRIL_GOLEM, minimumRarity = Rarity.COMMON,
         implemented = false, notImplementedReason = "awaits BlockMined dispatch in CustomBlockBreakEvent + a Mithril block check")
 public final class MithrilAffinityAbility implements PetAbility {
     private static final RarityValue<Double> MINING_SPEED_PER_LEVEL =

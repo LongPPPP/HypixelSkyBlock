@@ -10,7 +10,7 @@ import java.util.List;
 
 import static net.swofty.commons.StringUtility.decimalify;
 
-@PetAbilityRegistration(pet = PetHandler.OCELOT, minimumRarity = Rarity.RARE, order = 1,
+@PetAbilityRegistration(pet = PetHandler.OCELOT, minimumRarity = Rarity.RARE,
         implemented = false, notImplementedReason = "awaits a MinionTick event + minion speed hook")
 public final class TreeHuggerAbility implements PetAbility {
     private static final RarityValue<Double> SPEED_PER_LEVEL =

@@ -13,7 +13,7 @@ import java.util.List;
 
 import static net.swofty.commons.StringUtility.decimalify;
 
-@PetAbilityRegistration(pet = PetHandler.MOOSHROOM_COW, minimumRarity = Rarity.RARE, order = 1)
+@PetAbilityRegistration(pet = PetHandler.MOOSHROOM_COW, minimumRarity = Rarity.RARE)
 public final class FarmingStrengthAbility implements PetAbility {
     private static final double FARMING_FORTUNE_PER_BRACKET = 0.7;
     private static final RarityValue<Double> STRENGTH_BASE =
