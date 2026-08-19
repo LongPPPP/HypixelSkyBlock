@@ -237,16 +237,13 @@ public sealed interface PetEvent {
         private final SkyBlockMob mob;
         @Nullable
         private final SkyBlockItem weapon;
-        @Setter
-        private double damage;
 
         public DamageDealt(SkyBlockPlayer player, SkyBlockItem pet, SkyBlockMob mob,
-                           @Nullable SkyBlockItem weapon, double damage) {
+                           @Nullable SkyBlockItem weapon) {
             this.player = player;
             this.pet = pet;
             this.mob = mob;
             this.weapon = weapon;
-            this.damage = damage;
         }
     }
 
@@ -258,8 +255,8 @@ public sealed interface PetEvent {
     @Accessors(fluent = true)
     final class MeleeDamageDealt extends DamageDealt {
         public MeleeDamageDealt(SkyBlockPlayer player, SkyBlockItem pet, SkyBlockMob mob,
-                                @Nullable SkyBlockItem weapon, double damage) {
-            super(player, pet, mob, weapon, damage);
+                                @Nullable SkyBlockItem weapon) {
+            super(player, pet, mob, weapon);
         }
     }
 
@@ -271,8 +268,8 @@ public sealed interface PetEvent {
     @Accessors(fluent = true)
     final class RangedDamageDealt extends DamageDealt {
         public RangedDamageDealt(SkyBlockPlayer player, SkyBlockItem pet, SkyBlockMob mob,
-                                 @Nullable SkyBlockItem weapon, double damage) {
-            super(player, pet, mob, weapon, damage);
+                                 @Nullable SkyBlockItem weapon) {
+            super(player, pet, mob, weapon);
         }
     }
 

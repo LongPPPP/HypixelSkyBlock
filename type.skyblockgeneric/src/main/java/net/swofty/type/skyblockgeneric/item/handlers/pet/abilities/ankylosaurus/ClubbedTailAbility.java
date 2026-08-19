@@ -18,7 +18,7 @@ import java.util.List;
 import static net.swofty.commons.StringUtility.decimalify;
 
 @PetAbilityRegistration(pet = PetHandler.ANKYLOSAURUS, minimumRarity = Rarity.LEGENDARY, order = 2,
-        implemented = false, notImplementedReason = "awaits decision on splash-damage semantics (raw mob.damage vs defense-reduced) + a mob-damage-debuff system for the -10% part")
+        implemented = false, notImplementedReason = "awaits mob-damage-debuff system for the -10% part")
 public final class ClubbedTailAbility implements PetAbility {
     private static final int HITS_REQUIRED = 5;
     private static final double AOE_RADIUS = 5;
@@ -46,20 +46,5 @@ public final class ClubbedTailAbility implements PetAbility {
 
     @PetEventHandler
     public void onDamageDealt(PetEvent.DamageDealt event) {
-        if (++hits % HITS_REQUIRED != 0) return;
-
-        Rarity rarity = event.pet().getAttributeHandler().getRarity();
-        int level = event.pet().getAttributeHandler().getPetData().getAsLevel(rarity);
-        double percent = DAMAGE_PERCENT_PER_LEVEL.getForRarity(rarity) * level;
-        double clubDamage = event.damage() * percent / 100;
-
-        for (Entity entity : event.player().getInstance().getNearbyEntities(event.player().getPosition(), AOE_RADIUS)) {
-            if (entity == event.player()) continue;
-            if (!(entity instanceof SkyBlockMob mob)) continue;
-            if (entity.getEntityType() == EntityType.PLAYER || entity.getEntityType() == EntityType.VILLAGER) continue;
-
-            mob.damage(new Damage(DamageType.PLAYER_ATTACK, event.player(), event.player(),
-                    event.player().getPosition(), (float) clubDamage));
-        }
     }
 }
