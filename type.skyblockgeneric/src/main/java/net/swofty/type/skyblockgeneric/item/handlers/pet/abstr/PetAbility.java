@@ -26,7 +26,7 @@ public interface PetAbility {
     default ItemStatistics getStatistics(SkyBlockPlayer player, SkyBlockItem pet, @Nullable LivingEntity entity) {
         Rarity rarity = pet.getAttributeHandler().getRarity();
         int level = pet.getAttributeHandler().getPetData().getAsLevel(rarity);
-        return getStatistics(player, rarity,level);
+        return getStatistics(player, rarity, level);
     }
 
     /**

@@ -1,12 +1,11 @@
 package net.swofty.type.skyblockgeneric.item.handlers.pet.abilities.chicken;
 
-import net.swofty.type.skyblockgeneric.item.handlers.pet.PetHandler;
-import net.swofty.type.skyblockgeneric.item.handlers.pet.abstr.PetAbilityRegistration;
-import net.swofty.type.skyblockgeneric.item.handlers.pet.abstr.PetEventHandler;
 import net.swofty.commons.skyblock.item.Rarity;
-
+import net.swofty.type.skyblockgeneric.item.handlers.pet.PetHandler;
 import net.swofty.type.skyblockgeneric.item.handlers.pet.abstr.PetAbility;
+import net.swofty.type.skyblockgeneric.item.handlers.pet.abstr.PetAbilityRegistration;
 import net.swofty.type.skyblockgeneric.item.handlers.pet.abstr.PetEvent;
+import net.swofty.type.skyblockgeneric.item.handlers.pet.abstr.PetEventHandler;
 
 import java.util.List;
 

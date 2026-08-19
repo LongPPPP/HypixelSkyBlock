@@ -13,7 +13,7 @@ import java.util.List;
 import static net.swofty.commons.StringUtility.decimalify;
 
 @PetAbilityRegistration(pet = PetHandler.ARMADILLO, minimumRarity = Rarity.LEGENDARY, order = 0,
-    implemented = false, notImplementedReason = "no mining-context hook to gate 'while mining Hard Stone'; Mining Spread is not consumed by mining yet")
+        implemented = false, notImplementedReason = "no mining-context hook to gate 'while mining Hard Stone'; Mining Spread is not consumed by mining yet")
 public final class LongClawsAbility implements PetAbility {
     private static final RarityValue<Double> MINING_SPREAD_PER_LEVEL =
             new RarityValue<>(0.0, 0.0, 0.0, 0.0, 3.0, 3.0, 0.0);

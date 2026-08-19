@@ -1,15 +1,13 @@
 package net.swofty.type.skyblockgeneric.item.handlers.pet.abilities.grandma_wolf;
 
-import net.swofty.type.skyblockgeneric.item.handlers.pet.PetHandler;
-import net.swofty.type.skyblockgeneric.item.handlers.pet.abstr.PetAbility;
-import net.swofty.type.skyblockgeneric.item.handlers.pet.abstr.PetAbilityRegistration;
-import net.swofty.type.skyblockgeneric.item.handlers.pet.abstr.PetEventHandler;
-
 import net.swofty.commons.skyblock.item.Rarity;
 import net.swofty.commons.skyblock.statistics.ItemStatistic;
 import net.swofty.commons.skyblock.statistics.ItemStatistics;
-import net.swofty.type.skyblockgeneric.item.SkyBlockItem;
+import net.swofty.type.skyblockgeneric.item.handlers.pet.PetHandler;
+import net.swofty.type.skyblockgeneric.item.handlers.pet.abstr.PetAbility;
+import net.swofty.type.skyblockgeneric.item.handlers.pet.abstr.PetAbilityRegistration;
 import net.swofty.type.skyblockgeneric.item.handlers.pet.abstr.PetEvent;
+import net.swofty.type.skyblockgeneric.item.handlers.pet.abstr.PetEventHandler;
 import net.swofty.type.skyblockgeneric.user.SkyBlockPlayer;
 import net.swofty.type.skyblockgeneric.utility.RarityValue;
 
@@ -79,7 +77,7 @@ public final class KillComboAbility implements PetAbility {
     @Override
     public ItemStatistics getStatistics(SkyBlockPlayer player, Rarity rarity, int level) {
         if (stacks <= 0) return ItemStatistics.empty();
-        if (System.currentTimeMillis() - lastProc > activeDuration(rarity, level,stacks)) {
+        if (System.currentTimeMillis() - lastProc > activeDuration(rarity, level, stacks)) {
             stacks = 0;
             return ItemStatistics.empty();
         }
@@ -95,7 +93,7 @@ public final class KillComboAbility implements PetAbility {
                 .build();
     }
 
-    private long activeDuration(Rarity rarity,int level ,int stacks) {
+    private long activeDuration(Rarity rarity, int level, int stacks) {
         double activeDuration = 0;
         for (int i = 0; i < THRESHOLDS.length; i++) {
             if (stacks >= THRESHOLDS[i]) {
