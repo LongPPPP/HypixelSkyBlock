@@ -193,12 +193,12 @@ public class PlayerStatistics {
     public ItemStatistics petStatistics(@Nullable LivingEntity entity) {
         ItemStatistics stats = ItemStatistics.empty();
         for (SkyBlockItem pet : player.getPetData().getActivePets()) {
-            stats = ItemStatistics.add(stats, petStatsFor(pet, entity));
+            stats = ItemStatistics.add(stats, petStats(pet, entity));
         }
         return stats;
     }
 
-    private ItemStatistics petStatsFor(SkyBlockItem pet, @Nullable LivingEntity entity) {
+    private ItemStatistics petStats(SkyBlockItem pet, @Nullable LivingEntity entity) {
         ItemStatistics stats = ItemStatistics.empty();
         if (player.getPetData().getEnabledPet() == pet) {
             PetComponent component = pet.getComponent(PetComponent.class);
@@ -318,7 +318,7 @@ public class PlayerStatistics {
         addTemporaryModifiers(modifiers);
 
         for (SkyBlockItem pet : player.getPetData().getActivePets()) {
-            addModifier(modifiers, pet.getDisplayName(), petStatsFor(pet, null),
+            addModifier(modifiers, pet.getDisplayName(), petStats(pet, null),
                 StatisticSourceType.PET, StatisticModifierType.BASIC, null, pet.getMaterial(), texture(pet));
         }
 
