@@ -5,7 +5,6 @@ import net.swofty.type.skyblockgeneric.item.handlers.pet.abstr.PetAbilityRegistr
 import net.swofty.type.skyblockgeneric.item.handlers.pet.abstr.PetEventHandler;
 import net.swofty.commons.skyblock.item.Rarity;
 
-import net.swofty.type.skyblockgeneric.item.SkyBlockItem;
 import net.swofty.type.skyblockgeneric.item.handlers.pet.abstr.PetAbility;
 import net.swofty.type.skyblockgeneric.item.handlers.pet.abstr.PetEvent;
 
@@ -21,9 +20,8 @@ public final class LightFeetAbility implements PetAbility {
     }
 
     @Override
-    public List<String> getDescription(SkyBlockItem instance) {
-        double reduction = instance.getAttributeHandler().getPetData()
-                .getAsLevel(instance.getAttributeHandler().getRarity());
+    public List<String> getDescription(Rarity rarity, int level) {
+        double reduction = level;
         return List.of("<7>Reduces fall damage by <a>" + commaify(reduction) + "%<7>.");
     }
 

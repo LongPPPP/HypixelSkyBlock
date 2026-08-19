@@ -1,7 +1,6 @@
 package net.swofty.type.skyblockgeneric.item.handlers.pet.abilities.griffin;
 
 import net.swofty.commons.skyblock.item.Rarity;
-import net.swofty.type.skyblockgeneric.item.SkyBlockItem;
 import net.swofty.type.skyblockgeneric.item.handlers.pet.PetHandler;
 import net.swofty.type.skyblockgeneric.item.handlers.pet.abstr.PetAbility;
 import net.swofty.type.skyblockgeneric.item.handlers.pet.abstr.PetAbilityRegistration;
@@ -19,7 +18,7 @@ public final class AncientEarthAbility implements PetAbility {
     }
 
     @Override
-    public List<String> getDescription(SkyBlockItem pet) {
+    public List<String> getDescription(Rarity rarity, int level) {
         return List.of(
                 "<7>Grants <d>+" + TRACKING_PER_BURROW + " <stat:tracking> <7>on <e>Griffin",
                 "<7>Burrows <7>for each burrow excavated in your",

@@ -27,9 +27,7 @@ public final class SacredStrengthAbility implements PetAbility {
     }
 
     @Override
-    public List<String> getDescription(SkyBlockItem pet) {
-        Rarity rarity = pet.getAttributeHandler().getRarity();
-        int level = pet.getAttributeHandler().getPetData().getAsLevel(rarity);
+    public List<String> getDescription(Rarity rarity, int level) {
         String strength = decimalify(STRENGTH_PER_LEVEL.getForRarity(rarity) * level, 2);
 
         return List.of(
@@ -39,12 +37,9 @@ public final class SacredStrengthAbility implements PetAbility {
     }
 
     @Override
-    public ItemStatistics getStatistics(SkyBlockPlayer player, SkyBlockItem pet) {
+    public ItemStatistics getStatistics(SkyBlockPlayer player, Rarity rarity, int level) {
         double maxHealth = player.getAttributeValue(Attribute.MAX_HEALTH);
         if (maxHealth <= 0 || player.getHealth() / maxHealth <= HEALTH_THRESHOLD) return ItemStatistics.empty();
-
-        Rarity rarity = pet.getAttributeHandler().getRarity();
-        int level = pet.getAttributeHandler().getPetData().getAsLevel(rarity);
 
         return ItemStatistics.builder()
                 .withAdditivePercentage(ItemStatistic.STRENGTH, STRENGTH_PER_LEVEL.getForRarity(rarity) * level)

@@ -1,15 +1,11 @@
 package net.swofty.type.skyblockgeneric.item.handlers.pet.abilities.armadillo;
 
 import net.swofty.commons.skyblock.item.Rarity;
-import net.swofty.commons.skyblock.statistics.ItemStatistic;
-import net.swofty.commons.skyblock.statistics.ItemStatistics;
-import net.swofty.type.skyblockgeneric.item.SkyBlockItem;
 import net.swofty.type.skyblockgeneric.item.handlers.pet.PetHandler;
 import net.swofty.type.skyblockgeneric.item.handlers.pet.abstr.PetAbility;
 import net.swofty.type.skyblockgeneric.item.handlers.pet.abstr.PetAbilityRegistration;
 import net.swofty.type.skyblockgeneric.item.handlers.pet.abstr.PetEvent;
 import net.swofty.type.skyblockgeneric.item.handlers.pet.abstr.PetEventHandler;
-import net.swofty.type.skyblockgeneric.user.SkyBlockPlayer;
 import net.swofty.type.skyblockgeneric.utility.RarityValue;
 
 import java.util.List;
@@ -28,9 +24,7 @@ public final class LongClawsAbility implements PetAbility {
     }
 
     @Override
-    public List<String> getDescription(SkyBlockItem pet) {
-        Rarity rarity = pet.getAttributeHandler().getRarity();
-        int level = pet.getAttributeHandler().getPetData().getAsLevel(rarity);
+    public List<String> getDescription(Rarity rarity, int level) {
         double value = MINING_SPREAD_PER_LEVEL.getForRarity(rarity) * level;
 
         return List.of(

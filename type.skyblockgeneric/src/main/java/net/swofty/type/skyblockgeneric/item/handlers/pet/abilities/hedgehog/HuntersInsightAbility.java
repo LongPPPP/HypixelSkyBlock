@@ -1,7 +1,6 @@
 package net.swofty.type.skyblockgeneric.item.handlers.pet.abilities.hedgehog;
 
 import net.swofty.commons.skyblock.item.Rarity;
-import net.swofty.type.skyblockgeneric.item.SkyBlockItem;
 import net.swofty.type.skyblockgeneric.item.handlers.pet.PetHandler;
 import net.swofty.type.skyblockgeneric.item.handlers.pet.abstr.PetAbility;
 import net.swofty.type.skyblockgeneric.item.handlers.pet.abstr.PetAbilityRegistration;
@@ -21,7 +20,7 @@ public final class HuntersInsightAbility implements PetAbility {
     }
 
     @Override
-    public List<String> getDescription(SkyBlockItem pet) {
+    public List<String> getDescription(Rarity rarity, int level) {
         return List.of(
                 "<7>Grants <6>+" + decimalify(FARMING_FORTUNE_PER_TIER, 1) + " <stat:farming_fortune>",
                 "<7>per <7>Pest Bestiary Tier."

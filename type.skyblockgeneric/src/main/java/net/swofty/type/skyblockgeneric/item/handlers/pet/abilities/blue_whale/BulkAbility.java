@@ -25,9 +25,7 @@ public final class BulkAbility implements PetAbility {
     }
 
     @Override
-    public List<String> getDescription(SkyBlockItem pet) {
-        Rarity rarity = pet.getAttributeHandler().getRarity();
-        int level = pet.getAttributeHandler().getPetData().getAsLevel(rarity);
+    public List<String> getDescription(Rarity rarity, int level) {
         double defense = level * 0.01;
         int threshold = MAX_HEALTH_THRESHOLD.getForRarity(rarity);
 
@@ -38,9 +36,7 @@ public final class BulkAbility implements PetAbility {
     }
 
     @Override
-    public ItemStatistics getStatistics(SkyBlockPlayer player, SkyBlockItem pet) {
-        Rarity rarity = pet.getAttributeHandler().getRarity();
-        int level = pet.getAttributeHandler().getPetData().getAsLevel(rarity);
+    public ItemStatistics getStatistics(SkyBlockPlayer player, Rarity rarity, int level) {
         double defense = level * 0.01;
         int threshold = MAX_HEALTH_THRESHOLD.getForRarity(rarity);
 

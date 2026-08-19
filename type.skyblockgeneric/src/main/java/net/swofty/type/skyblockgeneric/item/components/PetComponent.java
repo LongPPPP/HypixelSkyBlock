@@ -113,7 +113,7 @@ public class PetComponent extends SkyBlockItemComponent {
         for (PetAbility ability : abilities) {
             lore.add(" ");
             lore.add("<6>" + ability.getName());
-            lore.addAll(ability.getDescription(item));
+            lore.addAll(ability.getDescription(rarity, level));
             String notImplemented = PetAbilityRegistry.notImplementedLine(ability);
             if (notImplemented != null) {
                 lore.add(" ");

@@ -1,7 +1,6 @@
 package net.swofty.type.skyblockgeneric.item.handlers.pet.abilities.jade_dragon;
 
 import net.swofty.commons.skyblock.item.Rarity;
-import net.swofty.type.skyblockgeneric.item.SkyBlockItem;
 import net.swofty.type.skyblockgeneric.item.handlers.pet.PetHandler;
 import net.swofty.type.skyblockgeneric.item.handlers.pet.abstr.PetAbility;
 import net.swofty.type.skyblockgeneric.item.handlers.pet.abstr.PetAbilityRegistration;
@@ -24,9 +23,7 @@ public final class ForestPowerAbility implements PetAbility {
     }
 
     @Override
-    public List<String> getDescription(SkyBlockItem pet) {
-        Rarity rarity = pet.getAttributeHandler().getRarity();
-        int level = pet.getAttributeHandler().getPetData().getAsLevel(rarity);
+    public List<String> getDescription(Rarity rarity, int level) {
         String strength = decimalify(STRENGTH_BASE + STRENGTH_PER_LEVEL * level, 1);
         String speed = decimalify(SPEED_BASE + SPEED_PER_LEVEL * level, 1);
 

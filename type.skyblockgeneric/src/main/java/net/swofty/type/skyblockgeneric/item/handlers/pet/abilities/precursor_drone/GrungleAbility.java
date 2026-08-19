@@ -1,7 +1,6 @@
 package net.swofty.type.skyblockgeneric.item.handlers.pet.abilities.precursor_drone;
 
 import net.swofty.commons.skyblock.item.Rarity;
-import net.swofty.type.skyblockgeneric.item.SkyBlockItem;
 import net.swofty.type.skyblockgeneric.item.handlers.pet.PetHandler;
 import net.swofty.type.skyblockgeneric.item.handlers.pet.abstr.PetAbility;
 import net.swofty.type.skyblockgeneric.item.handlers.pet.abstr.PetAbilityRegistration;
@@ -17,7 +16,7 @@ public final class GrungleAbility implements PetAbility {
     }
 
     @Override
-    public List<String> getDescription(SkyBlockItem pet) {
+    public List<String> getDescription(Rarity rarity, int level) {
         return List.of(
                 "<7>You can now <c>ONLY <7>throw your",
                 "<7>Foraging Axe, but it has <c>no",

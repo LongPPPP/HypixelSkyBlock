@@ -26,9 +26,7 @@ public final class TrophyBaitAbility implements PetAbility {
     }
 
     @Override
-    public List<String> getDescription(SkyBlockItem pet) {
-        Rarity rarity = pet.getAttributeHandler().getRarity();
-        int level = pet.getAttributeHandler().getPetData().getAsLevel(rarity);
+    public List<String> getDescription(Rarity rarity, int level) {
         String chance = decimalify(TROPHY_CHANCE_PER_LEVEL.getForRarity(rarity) * level, 2);
 
         return List.of(
@@ -38,13 +36,11 @@ public final class TrophyBaitAbility implements PetAbility {
     }
 
     @Override
-    public ItemStatistics getStatistics(SkyBlockPlayer player, SkyBlockItem pet) {
+    public ItemStatistics getStatistics(SkyBlockPlayer player, Rarity rarity, int level) {
         if (player.getRegion() == null || player.getRegion().getType() != RegionType.CRIMSON_ISLE) {
             return ItemStatistics.empty();
         }
 
-        Rarity rarity = pet.getAttributeHandler().getRarity();
-        int level = pet.getAttributeHandler().getPetData().getAsLevel(rarity);
         return ItemStatistics.builder()
                 .withBase(ItemStatistic.TROPHY_FISH_CHANCE, TROPHY_CHANCE_PER_LEVEL.getForRarity(rarity) * level)
                 .build();

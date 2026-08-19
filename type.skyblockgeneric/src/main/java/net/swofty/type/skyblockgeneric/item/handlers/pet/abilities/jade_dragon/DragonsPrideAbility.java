@@ -21,7 +21,7 @@ public final class DragonsPrideAbility implements PetAbility {
     }
 
     @Override
-    public List<String> getDescription(SkyBlockItem pet) {
+    public List<String> getDescription(Rarity rarity, int level) {
         return List.of(
                 "<7>Grants <6>+1 <stat:foraging_fortune> <7>per",
                 "<2>5 <stat:sweep><7>."
@@ -29,7 +29,7 @@ public final class DragonsPrideAbility implements PetAbility {
     }
 
     @Override
-    public ItemStatistics getStatistics(SkyBlockPlayer player, SkyBlockItem pet) {
+    public ItemStatistics getStatistics(SkyBlockPlayer player, Rarity rarity, int level) {
         double sweep = player.getStatistics().allNonPetStatistics(null, null).getOverall(ItemStatistic.SWEEP);
         double foragingFortune = sweep * FORAGING_FORTUNE_PER_SWEEP;
         if (foragingFortune <= 0) return ItemStatistics.empty();

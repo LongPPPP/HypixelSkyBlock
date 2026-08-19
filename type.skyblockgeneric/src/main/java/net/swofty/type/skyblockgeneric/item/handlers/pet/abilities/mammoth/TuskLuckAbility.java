@@ -27,9 +27,7 @@ public final class TuskLuckAbility implements PetAbility {
     }
 
     @Override
-    public List<String> getDescription(SkyBlockItem pet) {
-        Rarity rarity = pet.getAttributeHandler().getRarity();
-        int level = pet.getAttributeHandler().getPetData().getAsLevel(rarity);
+    public List<String> getDescription(Rarity rarity, int level) {
         String value = decimalify(MAGIC_FIND_PER_LEVEL.getForRarity(rarity) * level, 3);
 
         return List.of(
@@ -41,13 +39,9 @@ public final class TuskLuckAbility implements PetAbility {
     }
 
     @Override
-    public ItemStatistics getStatistics(SkyBlockPlayer player, SkyBlockItem pet) {
-        Rarity rarity = pet.getAttributeHandler().getRarity();
-        int level = pet.getAttributeHandler().getPetData().getAsLevel(rarity);
-        double miningFortune = player.getStatistics().allNonPetStatistics(null, null)
-                .getOverall(ItemStatistic.MINING_FORTUNE);
-        double magicFind = (miningFortune / MINING_FORTUNE_PER_MAGIC_FIND)
-                * MAGIC_FIND_PER_LEVEL.getForRarity(rarity) * level;
+    public ItemStatistics getStatistics(SkyBlockPlayer player, Rarity rarity, int level) {
+        double miningFortune = player.getStatistics().allNonPetStatistics(null, null).getOverall(ItemStatistic.MINING_FORTUNE);
+        double magicFind = (miningFortune / MINING_FORTUNE_PER_MAGIC_FIND) * MAGIC_FIND_PER_LEVEL.getForRarity(rarity) * level;
         if (magicFind <= 0) return ItemStatistics.empty();
 
         double multiplier = isInGlacite(player) ? 2 : 1;

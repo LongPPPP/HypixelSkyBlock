@@ -1,7 +1,6 @@
 package net.swofty.type.skyblockgeneric.item.handlers.pet.abilities.griffin;
 
 import net.swofty.commons.skyblock.item.Rarity;
-import net.swofty.type.skyblockgeneric.item.SkyBlockItem;
 import net.swofty.type.skyblockgeneric.item.handlers.pet.PetHandler;
 import net.swofty.type.skyblockgeneric.item.handlers.pet.abstr.PetAbility;
 import net.swofty.type.skyblockgeneric.item.handlers.pet.abstr.PetAbilityRegistration;
@@ -20,8 +19,8 @@ public final class OdysseyAbility implements PetAbility {
     }
 
     @Override
-    public List<String> getDescription(SkyBlockItem pet) {
-        int types = TYPES.getForRarity(pet.getAttributeHandler().getRarity());
+    public List<String> getDescription(Rarity rarity, int level) {
+        int types = TYPES.getForRarity(rarity);
 
         return List.of(
                 "<c>" + types + " <7>types of <2>Mythological <7>can spawn",

@@ -28,9 +28,7 @@ public final class LootingAbility implements PetAbility {
     }
 
     @Override
-    public List<String> getDescription(SkyBlockItem pet) {
-        Rarity rarity = pet.getAttributeHandler().getRarity();
-        int level = pet.getAttributeHandler().getPetData().getAsLevel(rarity);
+    public List<String> getDescription(Rarity rarity, int level) {
         double value = PER_LEVEL.getForRarity(rarity) * level;
 
         return List.of(

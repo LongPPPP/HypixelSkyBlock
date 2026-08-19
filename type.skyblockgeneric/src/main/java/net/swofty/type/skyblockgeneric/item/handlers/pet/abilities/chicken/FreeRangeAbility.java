@@ -27,9 +27,7 @@ public final class FreeRangeAbility implements PetAbility {
     }
 
     @Override
-    public List<String> getDescription(SkyBlockItem instance) {
-        Rarity rarity = instance.getAttributeHandler().getRarity();
-        int level = instance.getAttributeHandler().getPetData().getAsLevel(rarity);
+    public List<String> getDescription(Rarity rarity, int level) {
         double ff = PER_LEVEL.getForRarity(rarity) * level;
 
         return Arrays.asList(
@@ -39,22 +37,17 @@ public final class FreeRangeAbility implements PetAbility {
     }
 
     @Override
-    public ItemStatistics getStatistics(SkyBlockPlayer player, SkyBlockItem pet) {
+    public ItemStatistics getStatistics(SkyBlockPlayer player, Rarity rarity, int level) {
         if (!isPublicIsland(player)) return ItemStatistics.empty();
-        return farmingFortuneFor(pet);
-    }
-
-    private boolean isPublicIsland(SkyBlockPlayer player) {
-        return player.getRegion() != null && player.getRegion().getType() != RegionType.PRIVATE_ISLAND;
-    }
-
-    private ItemStatistics farmingFortuneFor(SkyBlockItem pet) {
-        Rarity rarity = pet.getAttributeHandler().getRarity();
-        int level = pet.getAttributeHandler().getPetData().getAsLevel(rarity);
         double ff = PER_LEVEL.getForRarity(rarity) * level;
 
         return ItemStatistics.builder()
                 .withBase(ItemStatistic.FARMING_FORTUNE, ff)
                 .build();
     }
+
+    private boolean isPublicIsland(SkyBlockPlayer player) {
+        return player.getRegion() != null && player.getRegion().getType() != RegionType.PRIVATE_ISLAND;
+    }
+
 }

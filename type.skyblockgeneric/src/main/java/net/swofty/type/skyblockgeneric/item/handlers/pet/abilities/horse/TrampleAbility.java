@@ -31,9 +31,7 @@ public final class TrampleAbility implements PetAbility {
     }
 
     @Override
-    public List<String> getDescription(SkyBlockItem pet) {
-        Rarity rarity = pet.getAttributeHandler().getRarity();
-        int level = pet.getAttributeHandler().getPetData().getAsLevel(rarity);
+    public List<String> getDescription(Rarity rarity, int level) {
         String percent = decimalify(BASE + PER_LEVEL * level, 2);
 
         return List.of(

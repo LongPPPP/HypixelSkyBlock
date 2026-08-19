@@ -28,9 +28,7 @@ public final class FarmingStrengthAbility implements PetAbility {
     }
 
     @Override
-    public List<String> getDescription(SkyBlockItem pet) {
-        Rarity rarity = pet.getAttributeHandler().getRarity();
-        int level = pet.getAttributeHandler().getPetData().getAsLevel(rarity);
+    public List<String> getDescription(Rarity rarity, int level) {
         String threshold = decimalify(STRENGTH_BASE.getForRarity(rarity)
                 + STRENGTH_PER_LEVEL.getForRarity(rarity) * level, 1);
 
@@ -41,9 +39,7 @@ public final class FarmingStrengthAbility implements PetAbility {
     }
 
     @Override
-    public ItemStatistics getStatistics(SkyBlockPlayer player, SkyBlockItem pet) {
-        Rarity rarity = pet.getAttributeHandler().getRarity();
-        int level = pet.getAttributeHandler().getPetData().getAsLevel(rarity);
+    public ItemStatistics getStatistics(SkyBlockPlayer player, Rarity rarity, int level) {
         double threshold = STRENGTH_BASE.getForRarity(rarity) + STRENGTH_PER_LEVEL.getForRarity(rarity) * level;
         if (threshold <= 0) return ItemStatistics.empty();
 

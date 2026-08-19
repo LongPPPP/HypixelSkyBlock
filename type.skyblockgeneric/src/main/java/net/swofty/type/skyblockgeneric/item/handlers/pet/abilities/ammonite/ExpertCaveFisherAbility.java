@@ -26,9 +26,7 @@ public final class ExpertCaveFisherAbility implements PetAbility {
     }
 
     @Override
-    public List<String> getDescription(SkyBlockItem pet) {
-        Rarity rarity = pet.getAttributeHandler().getRarity();
-        int level = pet.getAttributeHandler().getPetData().getAsLevel(rarity);
+    public List<String> getDescription(Rarity rarity, int level) {
         double value = PER_LEVEL * level;
 
         return List.of(
@@ -39,12 +37,10 @@ public final class ExpertCaveFisherAbility implements PetAbility {
     }
 
     @Override
-    public ItemStatistics getStatistics(SkyBlockPlayer player, SkyBlockItem pet) {
+    public ItemStatistics getStatistics(SkyBlockPlayer player, Rarity rarity, int level) {
         if (player.getRegion() == null || player.getRegion().getType() != RegionType.CRYSTAL_HOLLOWS)
             return ItemStatistics.empty();
 
-        Rarity rarity = pet.getAttributeHandler().getRarity();
-        int level = pet.getAttributeHandler().getPetData().getAsLevel(rarity);
         int hotmTier = player.getSkyblockDataHandler()
                 .get(SkyBlockDataHandler.Data.HOTM, DatapointHOTM.class)
                 .getValue().getTier();

@@ -24,9 +24,7 @@ public final class PoweredByPollenAbility implements PetAbility {
     }
 
     @Override
-    public List<String> getDescription(SkyBlockItem instance) {
-        Rarity rarity = instance.getAttributeHandler().getRarity();
-        int level = instance.getAttributeHandler().getPetData().getAsLevel(rarity);
+    public List<String> getDescription(Rarity rarity, int level) {
         double fortune = PER_LEVEL * level;
 
         return List.of(
@@ -37,12 +35,10 @@ public final class PoweredByPollenAbility implements PetAbility {
     }
 
     @Override
-    public ItemStatistics getStatistics(SkyBlockPlayer player, SkyBlockItem pet) {
+    public ItemStatistics getStatistics(SkyBlockPlayer player, Rarity rarity, int level) {
         if (player.getRegion() == null || player.getRegion().getType() != RegionType.THE_GARDEN)
             return ItemStatistics.empty();
 
-        Rarity rarity = pet.getAttributeHandler().getRarity();
-        int level = pet.getAttributeHandler().getPetData().getAsLevel(rarity);
         double fortune = PER_LEVEL * level;
 
         return ItemStatistics.builder()

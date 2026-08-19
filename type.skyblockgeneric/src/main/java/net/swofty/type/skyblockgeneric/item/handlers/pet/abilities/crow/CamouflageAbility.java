@@ -31,9 +31,7 @@ public final class CamouflageAbility implements PetAbility {
     }
 
     @Override
-    public List<String> getDescription(SkyBlockItem pet) {
-        Rarity rarity = pet.getAttributeHandler().getRarity();
-        int level = pet.getAttributeHandler().getPetData().getAsLevel(rarity);
+    public List<String> getDescription(Rarity rarity, int level) {
         double value = BASE + PER_LEVEL.getForRarity(rarity) * level;
 
         return Arrays.asList(
@@ -50,12 +48,10 @@ public final class CamouflageAbility implements PetAbility {
     }
 
     @Override
-    public ItemStatistics getStatistics(SkyBlockPlayer player, SkyBlockItem pet) {
+    public ItemStatistics getStatistics(SkyBlockPlayer player, Rarity rarity, int level) {
         int active = window.active(System.currentTimeMillis(), BUFF_DURATION_MS);
         if (active == 0) return ItemStatistics.empty();
 
-        Rarity rarity = pet.getAttributeHandler().getRarity();
-        int level = pet.getAttributeHandler().getPetData().getAsLevel(rarity);
         double perCast = BASE + PER_LEVEL.getForRarity(rarity) * level;
 
         return ItemStatistics.builder()

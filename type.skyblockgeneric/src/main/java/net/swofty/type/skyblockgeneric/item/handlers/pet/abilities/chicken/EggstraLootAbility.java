@@ -36,9 +36,7 @@ public final class EggstraLootAbility implements PetAbility {
     }
 
     @Override
-    public List<String> getDescription(SkyBlockItem pet) {
-        Rarity rarity = pet.getAttributeHandler().getRarity();
-        int level = pet.getAttributeHandler().getPetData().getAsLevel(rarity);
+    public List<String> getDescription(Rarity rarity, int level) {
         double chance = CHANCE_PER_LEVEL.getForRarity(rarity) * level;
 
         return Arrays.asList(

@@ -26,9 +26,7 @@ public final class FetidThiefAbility implements PetAbility {
     }
 
     @Override
-    public List<String> getDescription(SkyBlockItem pet) {
-        Rarity rarity = pet.getAttributeHandler().getRarity();
-        int level = pet.getAttributeHandler().getPetData().getAsLevel(rarity);
+    public List<String> getDescription(Rarity rarity, int level) {
         String value = commaify(MINING_SPREAD_PER_LEVEL.getForRarity(rarity) * level);
 
         return List.of(
@@ -38,12 +36,10 @@ public final class FetidThiefAbility implements PetAbility {
     }
 
     @Override
-    public ItemStatistics getStatistics(SkyBlockPlayer player, SkyBlockItem pet) {
+    public ItemStatistics getStatistics(SkyBlockPlayer player, Rarity rarity, int level) {
         if (player.getRegion() == null || player.getRegion().getType() != RegionType.MINES_OF_DIVAN)
             return ItemStatistics.empty();
 
-        Rarity rarity = pet.getAttributeHandler().getRarity();
-        int level = pet.getAttributeHandler().getPetData().getAsLevel(rarity);
         return ItemStatistics.builder()
                 .withBase(ItemStatistic.MINING_SPREAD, MINING_SPREAD_PER_LEVEL.getForRarity(rarity) * level)
                 .build();

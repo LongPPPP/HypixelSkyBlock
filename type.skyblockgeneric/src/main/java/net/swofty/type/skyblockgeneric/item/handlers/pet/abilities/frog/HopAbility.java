@@ -3,7 +3,6 @@ package net.swofty.type.skyblockgeneric.item.handlers.pet.abilities.frog;
 import net.swofty.commons.skyblock.item.Rarity;
 import net.swofty.commons.skyblock.statistics.ItemStatistic;
 import net.swofty.commons.skyblock.statistics.ItemStatistics;
-import net.swofty.type.skyblockgeneric.item.SkyBlockItem;
 import net.swofty.type.skyblockgeneric.item.handlers.pet.PetHandler;
 import net.swofty.type.skyblockgeneric.item.handlers.pet.abstr.PetAbility;
 import net.swofty.type.skyblockgeneric.item.handlers.pet.abstr.PetAbilityRegistration;
@@ -30,9 +29,7 @@ public final class HopAbility implements PetAbility {
     }
 
     @Override
-    public List<String> getDescription(SkyBlockItem pet) {
-        Rarity rarity = pet.getAttributeHandler().getRarity();
-        int level = pet.getAttributeHandler().getPetData().getAsLevel(rarity);
+    public List<String> getDescription(Rarity rarity, int level) {
         String value = commaify(1 + FORAGING_FORTUNE_PER_LEVEL.getForRarity(rarity) * level);
 
         return List.of(
@@ -42,18 +39,8 @@ public final class HopAbility implements PetAbility {
     }
 
     @Override
-    public ItemStatistics getStatistics(SkyBlockPlayer player, SkyBlockItem pet) {
+    public ItemStatistics getStatistics(SkyBlockPlayer player, Rarity rarity, int level) {
         if (buffUntil <= System.currentTimeMillis()) return ItemStatistics.empty();
-        return computeStatistics(player, pet);
-    }
-
-    private long buffDuration(SkyBlockItem pet) {
-        return BUFF_DURATION_MILLIS;
-    }
-
-    private ItemStatistics computeStatistics(SkyBlockPlayer player, SkyBlockItem pet) {
-        Rarity rarity = pet.getAttributeHandler().getRarity();
-        int level = pet.getAttributeHandler().getPetData().getAsLevel(rarity);
 
         return ItemStatistics.builder()
                 .withBase(ItemStatistic.FORAGING_FORTUNE, 1 + FORAGING_FORTUNE_PER_LEVEL.getForRarity(rarity) * level)
@@ -62,6 +49,6 @@ public final class HopAbility implements PetAbility {
 
     @PetEventHandler
     public void onJump(PetEvent.Jump event) {
-        buffUntil = System.currentTimeMillis() + buffDuration(event.pet());
+        buffUntil = System.currentTimeMillis() + BUFF_DURATION_MILLIS;
     }
 }

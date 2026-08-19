@@ -24,7 +24,7 @@ public final class JadeScaleAbility implements PetAbility {
     }
 
     @Override
-    public List<String> getDescription(SkyBlockItem pet) {
+    public List<String> getDescription(Rarity rarity, int level) {
         return List.of(
                 "<7>Grants <6>+" + FORAGING_FORTUNE_PER_DIGIT + " <stat:foraging_fortune>",
                 "<7>and <2>+" + SWEEP_PER_DIGIT + " <stat:sweep> <7>for every digit in your",
@@ -34,7 +34,7 @@ public final class JadeScaleAbility implements PetAbility {
     }
 
     @Override
-    public ItemStatistics getStatistics(SkyBlockPlayer player, SkyBlockItem pet) {
+    public ItemStatistics getStatistics(SkyBlockPlayer player, Rarity rarity, int level) {
         int mangrove = player.getCollection().get(ItemType.MANGROVE_LOG);
         if (mangrove <= 0) return ItemStatistics.empty();
 

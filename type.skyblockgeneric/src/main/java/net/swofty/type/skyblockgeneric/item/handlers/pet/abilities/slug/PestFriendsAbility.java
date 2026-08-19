@@ -25,9 +25,7 @@ public final class PestFriendsAbility implements PetAbility {
     }
 
     @Override
-    public List<String> getDescription(SkyBlockItem pet) {
-        Rarity rarity = pet.getAttributeHandler().getRarity();
-        int level = pet.getAttributeHandler().getPetData().getAsLevel(rarity);
+    public List<String> getDescription(Rarity rarity, int level) {
         String pestChance = decimalify(PEST_CHANCE_PER_LEVEL.getForRarity(rarity) * level, 1);
 
         return List.of(
@@ -36,9 +34,7 @@ public final class PestFriendsAbility implements PetAbility {
     }
 
     @Override
-    public ItemStatistics getStatistics(SkyBlockPlayer player, SkyBlockItem pet) {
-        Rarity rarity = pet.getAttributeHandler().getRarity();
-        int level = pet.getAttributeHandler().getPetData().getAsLevel(rarity);
+    public ItemStatistics getStatistics(SkyBlockPlayer player, Rarity rarity, int level) {
 
         return ItemStatistics.builder()
                 .withBase(ItemStatistic.BONUS_PEST_CHANCE, PEST_CHANCE_PER_LEVEL.getForRarity(rarity) * level)

@@ -34,9 +34,7 @@ public final class HiveAbility implements PetAbility {
     }
 
     @Override
-    public List<String> getDescription(SkyBlockItem instance) {
-        Rarity rarity = instance.getAttributeHandler().getRarity();
-        int level = instance.getAttributeHandler().getPetData().getAsLevel(rarity);
+    public List<String> getDescription(Rarity rarity, int level) {
         double perPlayerIntel = INTELLIGENCE + INTELLIGENCE_BONUSES.getForRarity(rarity) * level;
         double perPlayerStr = STRENGTH + STRENGTH_BONUSES.getForRarity(rarity) * level;
         double perPlayerDef = DEFENSE + DEFENSE_BONUSES.getForRarity(rarity) * level;
@@ -51,10 +49,7 @@ public final class HiveAbility implements PetAbility {
     }
 
     @Override
-    public ItemStatistics getStatistics(SkyBlockPlayer player, SkyBlockItem pet) {
-        Rarity rarity = pet.getAttributeHandler().getRarity();
-        int level = pet.getAttributeHandler().getPetData().getAsLevel(rarity);
-
+    public ItemStatistics getStatistics(SkyBlockPlayer player, Rarity rarity, int level) {
         Instance instance = player.getInstance();
         if (instance == null) return ItemStatistics.empty();
 

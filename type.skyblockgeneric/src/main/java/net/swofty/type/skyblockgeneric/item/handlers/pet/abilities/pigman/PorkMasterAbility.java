@@ -28,9 +28,7 @@ public final class PorkMasterAbility implements PetAbility {
     }
 
     @Override
-    public List<String> getDescription(SkyBlockItem pet) {
-        Rarity rarity = pet.getAttributeHandler().getRarity();
-        int level = pet.getAttributeHandler().getPetData().getAsLevel(rarity);
+    public List<String> getDescription(Rarity rarity, int level) {
         String damage = decimalify(DAMAGE_PER_LEVEL.getForRarity(rarity) * level, 1);
         String strength = decimalify(STRENGTH_PER_LEVEL.getForRarity(rarity) * level, 2);
 
@@ -41,13 +39,10 @@ public final class PorkMasterAbility implements PetAbility {
     }
 
     @Override
-    public ItemStatistics getStatistics(SkyBlockPlayer player, SkyBlockItem pet) {
-        if (player.getItemInMainHand().isAir()
-                || new SkyBlockItem(player.getItemInMainHand()).getItemType() != ItemType.PIGMAN_SWORD)
+    public ItemStatistics getStatistics(SkyBlockPlayer player, Rarity rarity, int level) {
+        if (player.getItemInMainHand().isAir() || new SkyBlockItem(player.getItemInMainHand()).getItemType() != ItemType.PIGMAN_SWORD)
             return ItemStatistics.empty();
 
-        Rarity rarity = pet.getAttributeHandler().getRarity();
-        int level = pet.getAttributeHandler().getPetData().getAsLevel(rarity);
         return ItemStatistics.builder()
                 .withBase(ItemStatistic.DAMAGE, DAMAGE_PER_LEVEL.getForRarity(rarity) * level)
                 .withBase(ItemStatistic.STRENGTH, STRENGTH_PER_LEVEL.getForRarity(rarity) * level)

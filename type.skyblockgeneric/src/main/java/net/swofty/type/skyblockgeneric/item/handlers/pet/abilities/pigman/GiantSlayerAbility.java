@@ -22,7 +22,7 @@ public final class GiantSlayerAbility implements PetAbility {
     }
 
     @Override
-    public List<String> getDescription(SkyBlockItem pet) {
+    public List<String> getDescription(Rarity rarity, int level) {
         return List.of(
                 "<7>Deal <c>+50% <7>damage to monsters",
                 "<7>Level <a>50+ <7>and <c>+75% <7>damage",

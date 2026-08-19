@@ -26,9 +26,7 @@ public final class HoneyHarvesterAbility implements PetAbility {
     }
 
     @Override
-    public List<String> getDescription(SkyBlockItem instance) {
-        Rarity rarity = instance.getAttributeHandler().getRarity();
-        int level = instance.getAttributeHandler().getPetData().getAsLevel(rarity);
+    public List<String> getDescription(Rarity rarity, int level) {
         double chance = CHANCE_PER_LEVEL * level;
 
         return List.of(

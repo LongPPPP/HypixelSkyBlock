@@ -25,9 +25,7 @@ public final class DexterityAbility implements PetAbility {
     }
 
     @Override
-    public List<String> getDescription(SkyBlockItem pet) {
-        Rarity rarity = pet.getAttributeHandler().getRarity();
-        int level = pet.getAttributeHandler().getPetData().getAsLevel(rarity);
+    public List<String> getDescription(Rarity rarity, int level) {
         String miningSpeed = decimalify(MINING_SPEED_PER_LEVEL * level, 1);
         String haste = StringUtility.getAsRomanNumeral(1 + (level >= 50 ? 1 : 0) + (level >= 100 ? 1 : 0));
 
@@ -38,10 +36,7 @@ public final class DexterityAbility implements PetAbility {
     }
 
     @Override
-    public ItemStatistics getStatistics(SkyBlockPlayer player, SkyBlockItem pet) {
-        Rarity rarity = pet.getAttributeHandler().getRarity();
-        int level = pet.getAttributeHandler().getPetData().getAsLevel(rarity);
-
+    public ItemStatistics getStatistics(SkyBlockPlayer player, Rarity rarity, int level) {
         return ItemStatistics.builder()
                 .withBase(ItemStatistic.MINING_SPEED, MINING_SPEED_PER_LEVEL * level)
                 .build();

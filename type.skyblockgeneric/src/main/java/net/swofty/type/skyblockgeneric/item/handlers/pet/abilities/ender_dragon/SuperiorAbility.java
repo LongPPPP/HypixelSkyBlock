@@ -25,9 +25,7 @@ public final class SuperiorAbility implements PetAbility {
     }
 
     @Override
-    public List<String> getDescription(SkyBlockItem pet) {
-        Rarity rarity = pet.getAttributeHandler().getRarity();
-        int level = pet.getAttributeHandler().getPetData().getAsLevel(rarity);
+    public List<String> getDescription(Rarity rarity, int level) {
         double value = PER_LEVEL * level;
 
         return Arrays.asList(
@@ -37,9 +35,7 @@ public final class SuperiorAbility implements PetAbility {
     }
 
     @Override
-    public ItemStatistics getStatistics(SkyBlockPlayer player, SkyBlockItem pet) {
-        Rarity rarity = pet.getAttributeHandler().getRarity();
-        int level = pet.getAttributeHandler().getPetData().getAsLevel(rarity);
+    public ItemStatistics getStatistics(SkyBlockPlayer player, Rarity rarity, int level) {
         double percent = PER_LEVEL * level;
 
         ItemStatistics.Builder builder = ItemStatistics.builder();

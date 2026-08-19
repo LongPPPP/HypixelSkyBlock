@@ -27,9 +27,7 @@ public final class DragonsGreedAbility implements PetAbility {
     }
 
     @Override
-    public List<String> getDescription(SkyBlockItem pet) {
-        Rarity rarity = pet.getAttributeHandler().getRarity();
-        int level = pet.getAttributeHandler().getPetData().getAsLevel(rarity);
+    public List<String> getDescription(Rarity rarity, int level) {
         String percent = decimalify(0.125 + PERCENT_PER_LEVEL.getForRarity(rarity) * level, 2);
         String max = decimalify(2.5 + MAX_PERCENT_PER_LEVEL.getForRarity(rarity) * level, 2);
 
@@ -40,12 +38,10 @@ public final class DragonsGreedAbility implements PetAbility {
     }
 
     @Override
-    public ItemStatistics getStatistics(SkyBlockPlayer player, SkyBlockItem pet) {
+    public ItemStatistics getStatistics(SkyBlockPlayer player, Rarity rarity, int level) {
         double magicFind = player.getStatistics().allNonPetStatistics(null, null).getOverall(ItemStatistic.MAGIC_FIND);
         if (magicFind < 5) return ItemStatistics.empty();
 
-        Rarity rarity = pet.getAttributeHandler().getRarity();
-        int level = pet.getAttributeHandler().getPetData().getAsLevel(rarity);
         double percent = (0.125 + PERCENT_PER_LEVEL.getForRarity(rarity) * level) * Math.floor(magicFind / 5);
         double max = 2.5 + MAX_PERCENT_PER_LEVEL.getForRarity(rarity) * level;
 

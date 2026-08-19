@@ -27,9 +27,7 @@ public final class SlowAndSteadyAbility implements PetAbility {
     }
 
     @Override
-    public List<String> getDescription(SkyBlockItem pet) {
-        Rarity rarity = pet.getAttributeHandler().getRarity();
-        int level = pet.getAttributeHandler().getPetData().getAsLevel(rarity);
+    public List<String> getDescription(Rarity rarity, int level) {
         double needed = SPEED_NEEDED_BASE.getForRarity(rarity) + SPEED_NEEDED_PER_LEVEL.getForRarity(rarity) * level;
 
         return List.of(
@@ -39,9 +37,7 @@ public final class SlowAndSteadyAbility implements PetAbility {
     }
 
     @Override
-    public ItemStatistics getStatistics(SkyBlockPlayer player, SkyBlockItem pet) {
-        Rarity rarity = pet.getAttributeHandler().getRarity();
-        int level = pet.getAttributeHandler().getPetData().getAsLevel(rarity);
+    public ItemStatistics getStatistics(SkyBlockPlayer player, Rarity rarity, int level) {
         double needed = SPEED_NEEDED_BASE.getForRarity(rarity) + SPEED_NEEDED_PER_LEVEL.getForRarity(rarity) * level;
         double speed = player.getStatistics().allNonPetStatistics(null, null).getOverall(ItemStatistic.SPEED);
         double granted = speed > 100 ? Math.floor((speed - 100) / needed) : 0;

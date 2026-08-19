@@ -30,9 +30,7 @@ public final class YetiFuryAbility implements PetAbility {
     }
 
     @Override
-    public List<String> getDescription(SkyBlockItem pet) {
-        Rarity rarity = pet.getAttributeHandler().getRarity();
-        int level = pet.getAttributeHandler().getPetData().getAsLevel(rarity);
+    public List<String> getDescription(Rarity rarity, int level) {
         double damage = DAMAGE_PER_LEVEL.getForRarity(rarity) * level;
         double cooldown = COOLDOWN_PER_LEVEL.getForRarity(rarity) * level;
 
@@ -44,11 +42,9 @@ public final class YetiFuryAbility implements PetAbility {
     }
 
     @Override
-    public ItemStatistics getStatistics(SkyBlockPlayer player, SkyBlockItem pet) {
+    public ItemStatistics getStatistics(SkyBlockPlayer player, Rarity rarity, int level) {
         if (!isHoldingYetiSword(player)) return ItemStatistics.empty();
 
-        Rarity rarity = pet.getAttributeHandler().getRarity();
-        int level = pet.getAttributeHandler().getPetData().getAsLevel(rarity);
         double buff = DAMAGE_PER_LEVEL.getForRarity(rarity) * level;
 
         return ItemStatistics.builder()

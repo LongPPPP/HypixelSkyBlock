@@ -34,9 +34,7 @@ public final class StampedeAbility implements PetAbility {
     }
 
     @Override
-    public List<String> getDescription(SkyBlockItem pet) {
-        Rarity rarity = pet.getAttributeHandler().getRarity();
-        int level = pet.getAttributeHandler().getPetData().getAsLevel(rarity);
+    public List<String> getDescription(Rarity rarity, int level) {
         String speed = decimalify(SPEED_BASE.getForRarity(rarity) + SPEED_PER_LEVEL.getForRarity(rarity) * level, 1);
         String strength = decimalify(STRENGTH_BASE.getForRarity(rarity) + STRENGTH_PER_LEVEL.getForRarity(rarity) * level, 2);
 
@@ -48,15 +46,13 @@ public final class StampedeAbility implements PetAbility {
     }
 
     @Override
-    public ItemStatistics getStatistics(SkyBlockPlayer player, SkyBlockItem pet) {
+    public ItemStatistics getStatistics(SkyBlockPlayer player, Rarity rarity, int level) {
         if (stacks <= 0) return ItemStatistics.empty();
         if (System.currentTimeMillis() - lastProc > DURATION_MILLIS) {
             stacks = 0;
             return ItemStatistics.empty();
         }
 
-        Rarity rarity = pet.getAttributeHandler().getRarity();
-        int level = pet.getAttributeHandler().getPetData().getAsLevel(rarity);
         double speed = (SPEED_BASE.getForRarity(rarity) + SPEED_PER_LEVEL.getForRarity(rarity) * level) * stacks;
         double strength = (STRENGTH_BASE.getForRarity(rarity) + STRENGTH_PER_LEVEL.getForRarity(rarity) * level) * stacks;
 

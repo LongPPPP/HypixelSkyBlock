@@ -27,9 +27,7 @@ public final class EvolvedAxesAbility implements PetAbility {
     }
 
     @Override
-    public List<String> getDescription(SkyBlockItem pet) {
-        Rarity rarity = pet.getAttributeHandler().getRarity();
-        int level = pet.getAttributeHandler().getPetData().getAsLevel(rarity);
+    public List<String> getDescription(Rarity rarity, int level) {
         String value = decimalify(SWEEP_PER_LEVEL.getForRarity(rarity) * level, 1);
 
         return List.of(
@@ -38,12 +36,10 @@ public final class EvolvedAxesAbility implements PetAbility {
     }
 
     @Override
-    public ItemStatistics getStatistics(SkyBlockPlayer player, SkyBlockItem pet) {
+    public ItemStatistics getStatistics(SkyBlockPlayer player, Rarity rarity, int level) {
         if (HypixelConst.getTypeLoader().getType() != ServerType.SKYBLOCK_THE_PARK)
             return ItemStatistics.empty();
 
-        Rarity rarity = pet.getAttributeHandler().getRarity();
-        int level = pet.getAttributeHandler().getPetData().getAsLevel(rarity);
         return ItemStatistics.builder()
                 .withBase(ItemStatistic.SWEEP, SWEEP_PER_LEVEL.getForRarity(rarity) * level)
                 .build();

@@ -30,9 +30,7 @@ public final class RollingMinerAbility implements PetAbility {
     }
 
     @Override
-    public List<String> getDescription(SkyBlockItem pet) {
-        Rarity rarity = pet.getAttributeHandler().getRarity();
-        int level = pet.getAttributeHandler().getPetData().getAsLevel(rarity);
+    public List<String> getDescription(Rarity rarity, int level) {
         double seconds = BASE_SECONDS + SECONDS_PER_LEVEL.getForRarity(rarity) * level;
 
         return List.of(

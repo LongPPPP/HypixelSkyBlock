@@ -33,7 +33,7 @@ public final class LastStandAbility implements PetAbility {
     }
 
     @Override
-    public List<String> getDescription(SkyBlockItem pet) {
+    public List<String> getDescription(Rarity rarity, int level) {
         return List.of(
                 "<7>While at less than <a>20% HP<7>, reduce incoming",
                 "<7>damage by <a>20%<7>. Additionally, gain a temporary",
@@ -63,7 +63,7 @@ public final class LastStandAbility implements PetAbility {
     }
 
     @Override
-    public ItemStatistics getStatistics(SkyBlockPlayer player, SkyBlockItem pet) {
+    public ItemStatistics getStatistics(SkyBlockPlayer player, Rarity rarity, int level) {
         if (System.currentTimeMillis() >= buffUntil) return ItemStatistics.empty();
         return ItemStatistics.builder()
                 .withMultiplicative(ItemStatistic.DAMAGE, 1 + DEALT_DAMAGE_BONUS)

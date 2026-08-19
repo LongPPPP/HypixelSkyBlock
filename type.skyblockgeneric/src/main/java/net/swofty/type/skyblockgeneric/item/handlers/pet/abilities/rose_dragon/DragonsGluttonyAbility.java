@@ -24,9 +24,7 @@ public final class DragonsGluttonyAbility implements PetAbility {
     }
 
     @Override
-    public List<String> getDescription(SkyBlockItem pet) {
-        Rarity rarity = pet.getAttributeHandler().getRarity();
-        int level = pet.getAttributeHandler().getPetData().getAsLevel(rarity);
+    public List<String> getDescription(Rarity rarity, int level) {
         String overbloom = decimalify(OVERBLOOM_BASE + OVERBLOOM_PER_LEVEL * level, 2);
 
         return List.of(
@@ -35,10 +33,7 @@ public final class DragonsGluttonyAbility implements PetAbility {
     }
 
     @Override
-    public ItemStatistics getStatistics(SkyBlockPlayer player, SkyBlockItem pet) {
-        Rarity rarity = pet.getAttributeHandler().getRarity();
-        int level = pet.getAttributeHandler().getPetData().getAsLevel(rarity);
-
+    public ItemStatistics getStatistics(SkyBlockPlayer player, Rarity rarity, int level) {
         return ItemStatistics.builder()
                 .withBase(ItemStatistic.OVERBLOOM, OVERBLOOM_BASE + OVERBLOOM_PER_LEVEL * level)
                 .build();

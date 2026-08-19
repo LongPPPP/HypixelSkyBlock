@@ -30,9 +30,7 @@ public final class CrabRaveAbility implements PetAbility {
     }
 
     @Override
-    public List<String> getDescription(SkyBlockItem pet) {
-        Rarity rarity = pet.getAttributeHandler().getRarity();
-        int level = pet.getAttributeHandler().getPetData().getAsLevel(rarity);
+    public List<String> getDescription(Rarity rarity, int level) {
         String treasureChance = decimalify(TREASURE_CHANCE_PER_LEVEL.getForRarity(rarity) * level, 3);
 
         return List.of(
@@ -43,12 +41,10 @@ public final class CrabRaveAbility implements PetAbility {
     }
 
     @Override
-    public ItemStatistics getStatistics(SkyBlockPlayer player, SkyBlockItem pet) {
+    public ItemStatistics getStatistics(SkyBlockPlayer player, Rarity rarity, int level) {
         int crabCount = countNearbyCrabPets(player);
         if (crabCount == 0) return ItemStatistics.empty();
 
-        Rarity rarity = pet.getAttributeHandler().getRarity();
-        int level = pet.getAttributeHandler().getPetData().getAsLevel(rarity);
         double treasureChance = TREASURE_CHANCE_PER_LEVEL.getForRarity(rarity) * level * crabCount;
 
         return ItemStatistics.builder()

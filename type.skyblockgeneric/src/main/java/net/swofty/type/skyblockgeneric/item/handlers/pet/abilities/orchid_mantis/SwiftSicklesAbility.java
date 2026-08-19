@@ -27,9 +27,7 @@ public final class SwiftSicklesAbility implements PetAbility {
     }
 
     @Override
-    public List<String> getDescription(SkyBlockItem pet) {
-        Rarity rarity = pet.getAttributeHandler().getRarity();
-        int level = pet.getAttributeHandler().getPetData().getAsLevel(rarity);
+    public List<String> getDescription(Rarity rarity, int level) {
         String value = decimalify(FORTUNE_PER_LEVEL.getForRarity(rarity) * level, 3);
 
         return List.of(
@@ -39,11 +37,8 @@ public final class SwiftSicklesAbility implements PetAbility {
     }
 
     @Override
-    public ItemStatistics getStatistics(SkyBlockPlayer player, SkyBlockItem pet) {
-        Rarity rarity = pet.getAttributeHandler().getRarity();
-        int level = pet.getAttributeHandler().getPetData().getAsLevel(rarity);
-        double speed = player.getStatistics().allNonPetStatistics(null, null)
-                .getOverall(ItemStatistic.SPEED);
+    public ItemStatistics getStatistics(SkyBlockPlayer player, Rarity rarity, int level) {
+        double speed = player.getStatistics().allNonPetStatistics(null, null).getOverall(ItemStatistic.SPEED);
         double brackets = Math.floor((speed - SPEED_BASELINE) / SPEED_PER_BRACKET);
         if (brackets <= 0) return ItemStatistics.empty();
 

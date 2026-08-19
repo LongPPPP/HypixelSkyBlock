@@ -24,10 +24,7 @@ public final class BusyBuzzBuzzAbility implements PetAbility {
     }
 
     @Override
-    public List<String> getDescription(SkyBlockItem instance) {
-        ItemAttributePetData.PetData petData = instance.getAttributeHandler().getPetData();
-        var rarity = instance.getAttributeHandler().getRarity();
-        int level = petData.getAsLevel(rarity);
+    public List<String> getDescription(Rarity rarity, int level) {
         double bonus = rarity.isAtLeast(Rarity.EPIC) ? level * 0.3 : level * 0.2;
 
         return Arrays.asList(
@@ -39,10 +36,7 @@ public final class BusyBuzzBuzzAbility implements PetAbility {
     }
 
     @Override
-    public ItemStatistics getStatistics(SkyBlockPlayer player, SkyBlockItem pet) {
-        ItemAttributePetData.PetData petData = pet.getAttributeHandler().getPetData();
-        var rarity = pet.getAttributeHandler().getRarity();
-        int level = petData.getAsLevel(rarity);
+    public ItemStatistics getStatistics(SkyBlockPlayer player, Rarity rarity, int level) {
         double bonus = rarity.isAtLeast(Rarity.EPIC) ? level * 0.3 : level * 0.2;
 
         return ItemStatistics.builder()

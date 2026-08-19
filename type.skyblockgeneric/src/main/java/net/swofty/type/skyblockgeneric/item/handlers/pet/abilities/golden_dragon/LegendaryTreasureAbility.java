@@ -28,9 +28,7 @@ public final class LegendaryTreasureAbility implements PetAbility {
     }
 
     @Override
-    public List<String> getDescription(SkyBlockItem pet) {
-        Rarity rarity = pet.getAttributeHandler().getRarity();
-        int level = pet.getAttributeHandler().getPetData().getAsLevel(rarity);
+    public List<String> getDescription(Rarity rarity, int level) {
         String percent = decimalify(0.125 + PERCENT_PER_LEVEL.getForRarity(rarity) * level, 2);
         String max = decimalify(125 + MAX_PERCENT_PER_LEVEL.getForRarity(rarity) * level, 2);
 
@@ -41,12 +39,10 @@ public final class LegendaryTreasureAbility implements PetAbility {
     }
 
     @Override
-    public ItemStatistics getStatistics(SkyBlockPlayer player, SkyBlockItem pet) {
+    public ItemStatistics getStatistics(SkyBlockPlayer player, Rarity rarity, int level) {
         double bank = PersonalBankService.data(player).getAmount();
         if (bank < 1_000_000) return ItemStatistics.empty();
 
-        Rarity rarity = pet.getAttributeHandler().getRarity();
-        int level = pet.getAttributeHandler().getPetData().getAsLevel(rarity);
         double percent = (0.125 + PERCENT_PER_LEVEL.getForRarity(rarity) * level) * Math.floor(bank / 1_000_000);
         double max = 125 + MAX_PERCENT_PER_LEVEL.getForRarity(rarity) * level;
 

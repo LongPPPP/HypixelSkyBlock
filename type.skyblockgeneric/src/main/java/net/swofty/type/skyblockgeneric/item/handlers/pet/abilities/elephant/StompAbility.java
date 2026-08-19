@@ -25,9 +25,7 @@ public final class StompAbility implements PetAbility {
     }
 
     @Override
-    public List<String> getDescription(SkyBlockItem pet) {
-        Rarity rarity = pet.getAttributeHandler().getRarity();
-        int level = pet.getAttributeHandler().getPetData().getAsLevel(rarity);
+    public List<String> getDescription(Rarity rarity, int level) {
         double value = DEFENSE_PER_LEVEL.getForRarity(rarity) * level;
 
         return Arrays.asList(
@@ -37,9 +35,7 @@ public final class StompAbility implements PetAbility {
     }
 
     @Override
-    public ItemStatistics getStatistics(SkyBlockPlayer player, SkyBlockItem pet) {
-        Rarity rarity = pet.getAttributeHandler().getRarity();
-        int level = pet.getAttributeHandler().getPetData().getAsLevel(rarity);
+    public ItemStatistics getStatistics(SkyBlockPlayer player, Rarity rarity, int level) {
         double defensePerSpeed = DEFENSE_PER_LEVEL.getForRarity(rarity) * level;
         double speed = player.getStatistics().allNonPetStatistics(null, null).getOverall(ItemStatistic.SPEED);
         double granted = defensePerSpeed * Math.floor(speed / 100.0);

@@ -24,7 +24,7 @@ public final class ShiningScalesAbility implements PetAbility {
     }
 
     @Override
-    public List<String> getDescription(SkyBlockItem pet) {
+    public List<String> getDescription(Rarity rarity, int level) {
         return List.of(
                 "<7>Grants <c>+11.1 <stat:strength> <7>and <b>+2.2 <stat:magic_find>",
                 "<7>to your pet for each digit in your <6>Gold Collection<7>.",
@@ -33,7 +33,7 @@ public final class ShiningScalesAbility implements PetAbility {
     }
 
     @Override
-    public ItemStatistics getStatistics(SkyBlockPlayer player, SkyBlockItem pet) {
+    public ItemStatistics getStatistics(SkyBlockPlayer player, Rarity rarity, int level) {
         int gold = player.getCollection().get(ItemType.GOLD_INGOT);
         if (gold <= 0) return ItemStatistics.empty();
 

@@ -31,9 +31,7 @@ public final class HappyTreeFriendsAbility implements PetAbility {
     }
 
     @Override
-    public List<String> getDescription(SkyBlockItem pet) {
-        Rarity rarity = pet.getAttributeHandler().getRarity();
-        int level = pet.getAttributeHandler().getPetData().getAsLevel(rarity);
+    public List<String> getDescription(Rarity rarity, int level) {
         double foragePerFrog = FORAGING_FORTUNE_BASE.getForRarity(rarity) + FORAGING_FORTUNE_PER_LEVEL.getForRarity(rarity) * level;
         String forage = decimalify(foragePerFrog, 2);
 
@@ -54,12 +52,10 @@ public final class HappyTreeFriendsAbility implements PetAbility {
     }
 
     @Override
-    public ItemStatistics getStatistics(SkyBlockPlayer player, SkyBlockItem pet) {
+    public ItemStatistics getStatistics(SkyBlockPlayer player, Rarity rarity, int level) {
         int frogCount = countOtherFrogPets(player);
         if (frogCount == 0) return ItemStatistics.empty();
 
-        Rarity rarity = pet.getAttributeHandler().getRarity();
-        int level = pet.getAttributeHandler().getPetData().getAsLevel(rarity);
         double forage = (FORAGING_FORTUNE_BASE.getForRarity(rarity) + FORAGING_FORTUNE_PER_LEVEL.getForRarity(rarity) * level) * frogCount;
         double fishing = (FISHING_SPEED_BASE.getForRarity(rarity) + FISHING_SPEED_PER_LEVEL.getForRarity(rarity) * level) * frogCount;
 
