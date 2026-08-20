@@ -79,7 +79,7 @@ public class PetComponent extends SkyBlockItemComponent {
 
         petData.addPet(item);
         player.setItemInHand(null);
-        player.sendMessage("<a>Successfully added {} <a>to your pet menu!", item.getDisplayName());
+        player.sendMessage("<a>Successfully added {} <a>to your pet menu!", item.getDisplayNameText());
         player.playSound(Sound.sound()
                 .type(Key.key("minecraft", "entity.experience_orb.pickup"))
                 .volume(1f)
