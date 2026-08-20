@@ -44,7 +44,6 @@ public sealed interface PetEvent {
 
     /**
      * when the player jumps
-     *
      */
     @Getter
     @Accessors(fluent = true)
@@ -74,7 +73,6 @@ public sealed interface PetEvent {
 
     /**
      * after the ability is cast
-     *
      */
     @Getter
     @Accessors(fluent = true)
@@ -107,7 +105,6 @@ public sealed interface PetEvent {
 
     /**
      * before the mana is consumed
-     *
      */
     @Getter
     @Accessors(fluent = true)
@@ -131,7 +128,6 @@ public sealed interface PetEvent {
 
     /**
      * when the player regenerates mana
-     *
      */
     @Getter
     @Accessors(fluent = true)
@@ -151,7 +147,6 @@ public sealed interface PetEvent {
 
     /**
      * when the ability is on cooldown
-     *
      */
     @Getter
     @Accessors(fluent = true)
@@ -173,7 +168,6 @@ public sealed interface PetEvent {
 
     /**
      * when the player is taking damage (any source)
-     *
      */
     @Getter
     @Accessors(fluent = true)
@@ -194,10 +188,6 @@ public sealed interface PetEvent {
         }
     }
 
-    /**
-     * when the player is taking damage from mobs
-     *
-     */
     @Getter
     @Accessors(fluent = true)
     final class DamagedByMob extends Damaged {
@@ -211,7 +201,6 @@ public sealed interface PetEvent {
 
     /**
      * when the player is taking falling damage
-     *
      */
     @Getter
     @Accessors(fluent = true)
@@ -226,7 +215,6 @@ public sealed interface PetEvent {
 
     /**
      * when the player deals damage (any source: melee, ranged, magic)
-     *
      */
     @Getter
     @Accessors(fluent = true)
@@ -249,7 +237,6 @@ public sealed interface PetEvent {
 
     /**
      * when the player deals melee damage
-     *
      */
     @Getter
     @Accessors(fluent = true)
@@ -262,7 +249,6 @@ public sealed interface PetEvent {
 
     /**
      * when the player deals ranged (arrow) damage
-     *
      */
     @Getter
     @Accessors(fluent = true)
@@ -312,7 +298,6 @@ public sealed interface PetEvent {
 
     /**
      * after the block is mined
-     *
      */
     @Getter
     @Accessors(fluent = true)

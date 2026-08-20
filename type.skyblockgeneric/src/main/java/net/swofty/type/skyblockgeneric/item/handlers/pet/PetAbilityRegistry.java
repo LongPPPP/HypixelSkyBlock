@@ -24,15 +24,10 @@ public final class PetAbilityRegistry {
 
     public static List<PetAbility> getAbilities(SkyBlockItem item) {
         PetComponent component = item.getComponent(PetComponent.class);
-        return getAbilitiesFor(PetHandler.valueOf(component.getHandlerId().toUpperCase()),
-                item.getAttributeHandler().getRarity());
-    }
+        PetHandler petHandler = PetHandler.valueOf(component.getHandlerId());
+        Rarity rarity = item.getAttributeHandler().getRarity();
 
-    /**
-     * Returns new instance of every ability.
-     */
-    public static List<PetAbility> getAbilitiesFor(PetHandler pet, Rarity rarity) {
-        return ABILITIES.getOrDefault(pet, List.of())
+        return ABILITIES.getOrDefault(petHandler, List.of())
                 .stream()
                 .filter(descriptor -> rarity.isAtLeast(descriptor.minimumRarity))
                 .filter(descriptor -> rarity.isAtMost(descriptor.maximumRarity))
