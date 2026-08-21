@@ -141,6 +141,7 @@ items:
       - id: TRACKED_UNIQUE
   - id: CROW_PET
     material: player_head
+    name: "Crow Pet"
     rarity: LEGENDARY
     components:
       - id: PET
@@ -164,11 +165,12 @@ items:
             ability_damage: 0.2
         particle: 3
         skill_category: COMBAT
-        skull_texture: ""
+        skull_texture: c31e7e1c614639bbc95a0d81ff7e5f7f606d9b33115cf2bf2a40cdcbbb531324
         handler_id: CROW
       - id: TRACKED_UNIQUE
   - id: BLUE_WHALE_PET
     material: player_head
+    name: "Blue Whale Pet"
     rarity: LEGENDARY
     components:
       - id: PET
@@ -194,11 +196,12 @@ items:
             health: 2
         particle: 3
         skill_category: FISHING
-        skull_texture: ""
+        skull_texture: dab779bbccc849f88273d844e8ca2f3a67a1699cb216c0a11b44326ce2cc20
         handler_id: BLUE_WHALE
       - id: TRACKED_UNIQUE
   - id: DOLPHIN_PET
     material: player_head
+    name: "Dolphin Pet"
     rarity: LEGENDARY
     components:
       - id: PET
@@ -229,11 +232,12 @@ items:
             sea_creature_chance: 0.05
         particle: 3
         skill_category: FISHING
-        skull_texture: ""
+        skull_texture: 1415d2c543e34bb88ede94d79b9427691fc9be72daad8831a9ef297180546e18
         handler_id: DOLPHIN
       - id: TRACKED_UNIQUE
   - id: EERIE_PET
     material: player_head
+    name: "Eerie Pet"
     rarity: LEGENDARY
     components:
       - id: PET
@@ -251,11 +255,12 @@ items:
             intelligence: 0.5
         particle: 3
         skill_category: COMBAT
-        skull_texture: ""
+        skull_texture: c3af70c6ff76ba48f24ee8a2063a5b50bbfabf409f4795248a292f8289f47c98
         handler_id: EERIE
       - id: TRACKED_UNIQUE
   - id: ELEPHANT_PET
     material: player_head
+    name: "Elephant Pet"
     rarity: MYTHIC
     components:
       - id: PET
@@ -291,11 +296,12 @@ items:
             farming_fortune: 0.5
         particle: 3
         skill_category: FARMING
-        skull_texture: ""
+        skull_texture: 7071a76f669db5ed6d32b48bb2dba55d5317d7f45225cb3267ec435cfa514
         handler_id: ELEPHANT
       - id: TRACKED_UNIQUE
   - id: ENDER_DRAGON_PET
     material: player_head
+    name: "Ender Dragon Pet"
     rarity: LEGENDARY
     components:
       - id: PET
@@ -316,11 +322,12 @@ items:
             critical_damage: 0.5
         particle: 3
         skill_category: COMBAT
-        skull_texture: ""
+        skull_texture: aec3ff563290b13ff3bcc36898af7eaa988b6cc18dc254147f58374afe9b21b9
         handler_id: ENDER_DRAGON
       - id: TRACKED_UNIQUE
   - id: ENDERMAN_PET
     material: player_head
+    name: "Enderman Pet"
     rarity: MYTHIC
     components:
       - id: PET
@@ -349,7 +356,7 @@ items:
             critical_damage: 0.75
         particle: 3
         skill_category: COMBAT
-        skull_texture: ""
+        skull_texture: 6eab75eaa5c9f2c43a0d23cfdce35f4df632e9815001850377385f7b2f039ce1
         handler_id: ENDERMAN
       - id: TRACKED_UNIQUE
   - id: AMMONITE_PET
@@ -373,7 +380,7 @@ items:
             sea_creature_chance: 0.05
         particle: 3
         skill_category: FISHING
-        skull_texture: ""
+        skull_texture: a074a7bd976fe6aba1624161793be547d54c835cf422243a851ba09d1e650553
         handler_id: AMMONITE
       - id: TRACKED_UNIQUE
   - id: ANKYLOSAURUS_PET
@@ -399,7 +406,7 @@ items:
             true_defense: 0.15
         particle: 3
         skill_category: COMBAT
-        skull_texture: ""
+        skull_texture: c1aa836b9096c417903299a6c5ab41738c19648ac439fed4bcbe6c32605338dc
         handler_id: ANKYLOSAURUS
       - id: TRACKED_UNIQUE
   - id: ARMADILLO_PET
@@ -433,7 +440,7 @@ items:
             defense: 2
         particle: 3
         skill_category: MINING
-        skull_texture: ""
+        skull_texture: c1eb6df4736ae24dd12a3d00f91e6e3aa7ade6bbefb0978afef2f0f92461018f
         handler_id: ARMADILLO
       - id: TRACKED_UNIQUE
   - id: BABY_YETI_PET
@@ -480,7 +487,7 @@ items:
             cold_resistance: 0.1
         particle: 3
         skill_category: FISHING
-        skull_texture: ""
+        skull_texture: ab126814fc3fa846dad934c349628a7a1de5b415021a03ef4211d62514d5
         handler_id: BABY_YETI
       - id: TRACKED_UNIQUE
   - id: BAL_PET
@@ -508,7 +515,7 @@ items:
             mining_fortune: 1
         particle: 3
         skill_category: MINING
-        skull_texture: ""
+        skull_texture: c469ba2047122e0a2de3c7437ad3dd5d31f1ac2d27abde9f8841e1d92a8c5b75
         handler_id: BAL
       - id: TRACKED_UNIQUE
   - id: BAT_PET
@@ -550,7 +557,7 @@ items:
             sea_creature_chance: 0.05
         particle: 3
         skill_category: MINING
-        skull_texture: ""
+        skull_texture: c469ba2047122e0a2de3c7437ad3dd5d31f1ac2d27abde9f8841e1d92a8c5b75
         handler_id: BAT
       - id: TRACKED_UNIQUE
   - id: BLACK_CAT_PET
@@ -582,7 +589,7 @@ items:
             pet_luck: 0.15
         particle: 3
         skill_category: COMBAT
-        skull_texture: ""
+        skull_texture: e4b45cbaa19fe3d68c856cd3846c03b5f59de81a480eec921ab4fa3cd81317
         handler_id: BLACK_CAT
       - id: TRACKED_UNIQUE
   - id: BLAZE_PET
@@ -619,7 +626,7 @@ items:
             intelligence: 1
         particle: 3
         skill_category: COMBAT
-        skull_texture: ""
+        skull_texture: b78ef2e4cf2c41a2d14bfde9caff10219f5b1bf5b35a49eb51c6467882cb5f0
         handler_id: BLAZE
       - id: TRACKED_UNIQUE
   - id: ENDERMITE_PET
@@ -659,7 +666,7 @@ items:
             pet_luck: 0.1
         particle: 3
         skill_category: MINING
-        skull_texture: ""
+        skull_texture: 5a1a0831aa03afb4212adcbb24e5dfaa7f476a1173fce259ef75a85855
         handler_id: ENDERMITE
       - id: TRACKED_UNIQUE
   - id: FLYING_FISH_PET
@@ -693,7 +700,7 @@ items:
             strength: 0.5
         particle: 3
         skill_category: FISHING
-        skull_texture: ""
+        skull_texture: 40cd71fbbbbb66c7baf7881f415c64fa84f6504958a57ccdb8589252647ea
         handler_id: FLYING_FISH
       - id: TRACKED_UNIQUE
   - id: FROG_PET
@@ -741,7 +748,7 @@ items:
             trophy_fish_chance: 0.05
         particle: 3
         skill_category: FORAGING
-        skull_texture: ""
+        skull_texture: 45852a95928897746012988fbd5dbaa1b70b7a5fb65157016f4ff3f245374c08
         handler_id: FROG
       - id: TRACKED_UNIQUE
   - id: GHOUL_PET
@@ -775,7 +782,7 @@ items:
             mending: 0.25
         particle: 3
         skill_category: COMBAT
-        skull_texture: ""
+        skull_texture: 87934565bf522f6f4726cdfe127137be11d37c310db34d8c70253392b5ff5b
         handler_id: GHOUL
       - id: TRACKED_UNIQUE
   - id: GIRAFFE_PET
@@ -817,7 +824,7 @@ items:
             swing_range: 0.01
         particle: 3
         skill_category: FORAGING
-        skull_texture: ""
+        skull_texture: fa5ef8694ecca227378d37a08b51d886b947e7d4b3a134256a9c674d79dbdf7
         handler_id: GIRAFFE
       - id: TRACKED_UNIQUE
   - id: GLACITE_GOLEM_PET
@@ -854,7 +861,7 @@ items:
             mining_speed: 1.25
         particle: 3
         skill_category: MINING
-        skull_texture: ""
+        skull_texture: af132a6593876d3c377d503fd66eca3fb938743251f7b16a9870c60b7388c8a3
         handler_id: GLACITE_GOLEM
       - id: TRACKED_UNIQUE
   - id: GOBLIN_PET
@@ -879,7 +886,7 @@ items:
             ore_fortune: 1
         particle: 3
         skill_category: MINING
-        skull_texture: ""
+        skull_texture: 7309d8dc35a638a04b915a3b15a1452ceeae0d7ea42bcdadb21b03046987515c
         handler_id: GOBLIN
       - id: TRACKED_UNIQUE
   - id: GOLDEN_DRAGON_PET
@@ -908,7 +915,7 @@ items:
             magic_find: 0.05
         particle: 3
         skill_category: COMBAT
-        skull_texture: ""
+        skull_texture: 2e9f9b1fc014166cb46a093e5349b2bf6edd201b680d62e48dbf3af9b0459116
         handler_id: GOLDEN_DRAGON
       - id: TRACKED_UNIQUE
   - id: GOLEM_PET
@@ -938,7 +945,7 @@ items:
             swing_range: 0.01
         particle: 3
         skill_category: COMBAT
-        skull_texture: ""
+        skull_texture: 89091d79ea0f59ef7ef94d7bba6e5f17f2f7d4572c44f90f76c4819a714
         handler_id: GOLEM
       - id: TRACKED_UNIQUE
   - id: GRIFFIN_PET
@@ -990,7 +997,7 @@ items:
             bonus_attack_speed: 0.25
         particle: 3
         skill_category: COMBAT
-        skull_texture: ""
+        skull_texture: 4c27e3cb52a64968e60c861ef1ab84e0a0cb5f07be103ac78da67761731f00c8
         handler_id: GRIFFIN
       - id: TRACKED_UNIQUE
   - id: GUARDIAN_PET
@@ -1030,7 +1037,7 @@ items:
             intelligence: 1
         particle: 3
         skill_category: ENCHANTING
-        skull_texture: ""
+        skull_texture: 221025434045bda7025b3e514b316a4b770c6faa4ba9adb4be3809526db77f9d
         handler_id: GUARDIAN
       - id: TRACKED_UNIQUE
   - id: HEDGEHOG_PET
@@ -1054,7 +1061,7 @@ items:
             speed: 0.15
         particle: 3
         skill_category: FARMING
-        skull_texture: ""
+        skull_texture: 5f5e835c116e8e200e2e06aa593cab8f1a9f8c40e7f005a9c76f12e24f4c6370
         handler_id: HEDGEHOG
       - id: TRACKED_UNIQUE
   - id: HERMIT_CRAB_PET
@@ -1100,7 +1107,7 @@ items:
             sea_creature_chance: 0.02
         particle: 3
         skill_category: FISHING
-        skull_texture: ""
+        skull_texture: 26629dfa3fdfef04054024e0156d5e19da5401b1911f59b4bd3982685fe54c2c
         handler_id: HERMIT_CRAB
       - id: TRACKED_UNIQUE
   - id: HORSE_PET
@@ -1137,7 +1144,7 @@ items:
             speed: 1
         particle: 3
         skill_category: COMBAT
-        skull_texture: ""
+        skull_texture: 36fcd3ec3bc84bafb4123ea479471f9d2f42d8fb9c5f11cf5f4e0d93226
         handler_id: HORSE
       - id: TRACKED_UNIQUE
   - id: HOUND_PET
@@ -1169,7 +1176,7 @@ items:
             speed: 0.1
         particle: 3
         skill_category: COMBAT
-        skull_texture: ""
+        skull_texture: b7c8bef6beb77e29af8627ecdc38d86aa2fea7ccd163dc73c00f9f258f9a1457
         handler_id: HOUND
       - id: TRACKED_UNIQUE
   - id: JADE_DRAGON_PET
@@ -1198,7 +1205,7 @@ items:
             foraging_fortune: 0.25
         particle: 3
         skill_category: FORAGING
-        skull_texture: ""
+        skull_texture: 4099589796de185787ab92c3066d0d0af832ffad7153a42bb2e2d23598e7ea60
         handler_id: JADE_DRAGON
       - id: TRACKED_UNIQUE
   - id: JELLYFISH_PET
@@ -1226,7 +1233,7 @@ items:
             health_regeneration: 1
         particle: 3
         skill_category: ALCHEMY
-        skull_texture: ""
+        skull_texture: 913f086ccb56323f238ba3489ff2a1a34c0fdceeafc483acff0e5488cfd6c2f1
         handler_id: JELLYFISH
       - id: TRACKED_UNIQUE
   - id: JERRY_PET
@@ -1260,7 +1267,7 @@ items:
             intelligence: -1
         particle: 3
         skill_category: COMBAT
-        skull_texture: ""
+        skull_texture: 822d8e751c8f2fd4c8942c44bdb2f5ca4d8ae8e575ed3eb34c18a86e93b
         handler_id: JERRY
       - id: TRACKED_UNIQUE
   - id: KUUDRA_PET
@@ -1297,7 +1304,7 @@ items:
             health: 4
         particle: 3
         skill_category: COMBAT
-        skull_texture: ""
+        skull_texture: 1f0239fb498e5907ede12ab32629ee95f0064574a9ffdff9fc3a1c8e2ec17587
         handler_id: KUUDRA
         passive: true
       - id: TRACKED_UNIQUE
@@ -1340,7 +1347,7 @@ items:
             speed: 0.25
         particle: 3
         skill_category: FORAGING
-        skull_texture: ""
+        skull_texture: 38ff473bd52b4db2c06f1ac87fe1367bce7574fac330ffac7956229f82efba1
         handler_id: LION
       - id: TRACKED_UNIQUE
   - id: MAGMA_CUBE_PET
@@ -1382,7 +1389,7 @@ items:
             strength: 0.2
         particle: 3
         skill_category: COMBAT
-        skull_texture: ""
+        skull_texture: 38957d5023c937c4c41aa2412d43410bda23cf79a9f6ab36b76fef2d7c429
         handler_id: MAGMA_CUBE
       - id: TRACKED_UNIQUE
   - id: MAMMOTH_PET
@@ -1407,7 +1414,7 @@ items:
             cold_resistance: 0.1
         particle: 3
         skill_category: COMBAT
-        skull_texture: ""
+        skull_texture: 6b10715732cd1fd49fa1b6187947c307dd4687105cf033840607f9d6234743ad
         handler_id: MAMMOTH
       - id: TRACKED_UNIQUE
   - id: MEGALODON_PET
@@ -1444,7 +1451,7 @@ items:
             sea_creature_chance: 0.05
         particle: 3
         skill_category: FISHING
-        skull_texture: ""
+        skull_texture: a94ae433b301c7fb7c68cba625b0bd36b0b14190f20e34a7c8ee0d9de06d53b9
         handler_id: MEGALODON
       - id: TRACKED_UNIQUE
   - id: MITHRIL_GOLEM_PET
@@ -1484,7 +1491,7 @@ items:
             mining_fortune: 0.25
         particle: 3
         skill_category: MINING
-        skull_texture: ""
+        skull_texture: c1b2dfe8ed5dffc5b1687bc1c249c39de2d8a6c3d90305c95f6d1a1a330a0b1
         handler_id: MITHRIL_GOLEM
       - id: TRACKED_UNIQUE
   - id: MOLE_PET
@@ -1510,7 +1517,7 @@ items:
             mining_speed: 1.5
         particle: 3
         skill_category: MINING
-        skull_texture: ""
+        skull_texture: 727baaafc09978d4bda73e16afdde85ec13b0f95ad989524c5fcaa717cf06b4a
         handler_id: MOLE
       - id: TRACKED_UNIQUE
   - id: MONKEY_PET
@@ -1547,7 +1554,7 @@ items:
             speed: 0.2
         particle: 3
         skill_category: FORAGING
-        skull_texture: ""
+        skull_texture: 13cf8db84807c471d7c6922302261ac1b5a179f96d1191156ecf3e1b1d3ca
         handler_id: MONKEY
       - id: TRACKED_UNIQUE
   - id: MOOSHROOM_COW_PET
@@ -1584,7 +1591,7 @@ items:
             farming_fortune: 1
         particle: 3
         skill_category: FARMING
-        skull_texture: ""
+        skull_texture: 2b52841f2fd589e0bc84cbabf9e1c27cb70cac98f8d6b3dd065e55a4dcb70d77
         handler_id: MOOSHROOM_COW
       - id: TRACKED_UNIQUE
   - id: MOSQUITO_PET
@@ -1621,7 +1628,7 @@ items:
             bonus_pest_chance: 0.5
         particle: 3
         skill_category: FARMING
-        skull_texture: ""
+        skull_texture: 52a9fe05bc663efcd12e56a3ccc5ec035bf577b78708548b6f4ffcf1d30eccfe
         handler_id: MOSQUITO
       - id: TRACKED_UNIQUE
   - id: OCELOT_PET
@@ -1658,7 +1665,7 @@ items:
             speed: 0.5
         particle: 3
         skill_category: FORAGING
-        skull_texture: ""
+        skull_texture: 5657cd5c2989ff97570fec4ddcdc6926a68a3393250c1be1f0b114a1db1
         handler_id: OCELOT
       - id: TRACKED_UNIQUE
   - id: ORCHID_MANTIS_PET
@@ -1695,7 +1702,7 @@ items:
             overbloom: 0.15
         particle: 3
         skill_category: FARMING
-        skull_texture: ""
+        skull_texture: 36903a9520564c22bc66b05d2161b23e54ff961284e63e684065ae0781c9cd97
         handler_id: ORCHID_MANTIS
       - id: TRACKED_UNIQUE
   - id: OWL_PET
@@ -1718,7 +1725,7 @@ items:
           legendary: {}
         particle: 3
         skill_category: TAMING
-        skull_texture: ""
+        skull_texture: da3216da54e7368fb40b721239ad95e07ef4f97d93f1c42ff319bab9a53882af
         handler_id: OWL
         passive: true
       - id: TRACKED_UNIQUE
@@ -1747,7 +1754,7 @@ items:
             intelligence: 1
         particle: 3
         skill_category: ALCHEMY
-        skull_texture: ""
+        skull_texture: 5df4b3401a4d06ad66ac8b5c4d189618ae617f9c143071c8ac39a563cf4e4208
         handler_id: PARROT
       - id: TRACKED_UNIQUE
   - id: PENGUIN_PET
@@ -1772,7 +1779,7 @@ items:
             cold_resistance: 0.15
         particle: 3
         skill_category: FISHING
-        skull_texture: ""
+        skull_texture: 37534e97f36e5a8335928e171ec99608bee7fb16e260afb301025b3b17eeefc4
         handler_id: PENGUIN
       - id: TRACKED_UNIQUE
   - id: PHOENIX_PET
@@ -1802,7 +1809,7 @@ items:
             intelligence: 1
         particle: 3
         skill_category: COMBAT
-        skull_texture: ""
+        skull_texture: 23aaf7b1a778949696cb99d4f04ad1aa518ceee256c72e5ed65bfa5c2d88d9e
         handler_id: PHOENIX
       - id: TRACKED_UNIQUE
   - id: PIG_PET
@@ -1839,7 +1846,7 @@ items:
             potato_fortune: 0.2
         particle: 3
         skill_category: FARMING
-        skull_texture: ""
+        skull_texture: 621668ef7cb79dd9c22ce3d1f3f4cb6e2559893b6df4a469514e667c16aa4
         handler_id: PIG
       - id: TRACKED_UNIQUE
   - id: PIGMAN_PET
@@ -1881,7 +1888,7 @@ items:
             ferocity: 0.05
         particle: 3
         skill_category: COMBAT
-        skull_texture: ""
+        skull_texture: 63d9cb6513f2072e5d4e426d70a5557bc398554c880d4e7b7ec8ef4945eb02f2
         handler_id: PIGMAN
       - id: TRACKED_UNIQUE
   - id: PRECURSOR_DRONE_PET
@@ -1907,7 +1914,7 @@ items:
             foraging_fortune: 0.3
         particle: 3
         skill_category: COMBAT
-        skull_texture: ""
+        skull_texture: 51aae288ab9d5354fda4e395a36421bd261a9b6213dbb786d7ab39465e479ce9
         handler_id: PRECURSOR_DRONE
       - id: TRACKED_UNIQUE
   - id: RABBIT_PET
@@ -1947,7 +1954,7 @@ items:
             speed: 0.2
         particle: 3
         skill_category: FARMING
-        skull_texture: ""
+        skull_texture: 117bffc1972acd7f3b4a8f43b5b6c7534695b8fd62677e0306b2831574b
         handler_id: RABBIT
       - id: TRACKED_UNIQUE
   - id: RAT_PET
@@ -1977,7 +1984,7 @@ items:
             critical_damage: 0.25
         particle: 3
         skill_category: COMBAT
-        skull_texture: ""
+        skull_texture: a8abb471db0ab78703011979dc8b40798a941f3a4dec3ec61cbeec2af8cffe8
         handler_id: RAT
       - id: TRACKED_UNIQUE
   - id: REINDEER_PET
@@ -2003,7 +2010,7 @@ items:
             sea_creature_chance: 0.05
         particle: 3
         skill_category: FISHING
-        skull_texture: ""
+        skull_texture: 2edd5b00a5fbc2daab58f33d86bbc4ff8d258c9bda65755c0305890bba09601f
         handler_id: REINDEER
       - id: TRACKED_UNIQUE
   - id: ROCK_PET
@@ -2040,7 +2047,7 @@ items:
             true_defense: 0.1
         particle: 3
         skill_category: MINING
-        skull_texture: ""
+        skull_texture: cb2b5d48e57577563aca31735519cb622219bc058b1f34648b67b8e71bc0fa
         handler_id: ROCK
       - id: TRACKED_UNIQUE
   - id: ROSE_DRAGON_PET
@@ -2067,7 +2074,7 @@ items:
             farming_fortune: 0.2
         particle: 3
         skill_category: FARMING
-        skull_texture: ""
+        skull_texture: 9b7c3de075a2bb238ef51431206b10d586cb2a5b1cc41fe851cc5f0b02d357c7
         handler_id: ROSE_DRAGON
       - id: TRACKED_UNIQUE
   - id: SCATHA_PET
@@ -2098,7 +2105,7 @@ items:
             mining_fortune: 1.25
         particle: 3
         skill_category: MINING
-        skull_texture: ""
+        skull_texture: df03ad96092f3f789902436709cdf69de6b727c121b3c2daef9ffa1ccaed186c
         handler_id: SCATHA
       - id: TRACKED_UNIQUE
   - id: SEAL_PET
@@ -2140,7 +2147,7 @@ items:
             treasure_chance: 0.01
         particle: 3
         skill_category: FISHING
-        skull_texture: ""
+        skull_texture: 3a7728bbf6f53f6c1e3b121778e2c2175f6c27032dbd9a5fb3a0d8747e104f67
         handler_id: SEAL
       - id: TRACKED_UNIQUE
   - id: SHEEP_PET
@@ -2177,7 +2184,7 @@ items:
             ability_damage: 0.2
         particle: 3
         skill_category: ALCHEMY
-        skull_texture: ""
+        skull_texture: 64e22a46047d272e89a1cfa13e9734b7e12827e235c2012c1a95962874da0
         handler_id: SHEEP
       - id: TRACKED_UNIQUE
   - id: SILVERFISH_PET
@@ -2214,7 +2221,7 @@ items:
             mining_fortune: 0.2
         particle: 3
         skill_category: MINING
-        skull_texture: ""
+        skull_texture: da91dab8391af5fda54acd2c0b18fbd819b865e1a8f1d623813fa761e924540
         handler_id: SILVERFISH
       - id: TRACKED_UNIQUE
   - id: SKELETON_PET
@@ -2251,7 +2258,7 @@ items:
             critical_damage: 0.3
         particle: 3
         skill_category: COMBAT
-        skull_texture: ""
+        skull_texture: fca445749251bdd898fb83f667844e38a1dff79a1529f79a42447a0599310ea4
         handler_id: SKELETON
       - id: TRACKED_UNIQUE
   - id: SKELETON_HORSE_PET
@@ -2276,7 +2283,7 @@ items:
             speed: 1.5
         particle: 3
         skill_category: COMBAT
-        skull_texture: ""
+        skull_texture: abc63ba27357898cf2e64da94802c74efc17ffd24064b5327fbc59694bc5e3dc
         handler_id: SKELETON_HORSE
       - id: TRACKED_UNIQUE
   - id: SLOTH_PET
@@ -2313,7 +2320,7 @@ items:
             foraging_fortune: 0.25
         particle: 3
         skill_category: FORAGING
-        skull_texture: ""
+        skull_texture: 5468537e1e99040b760c83e53096c86870cdcd9285d53300761d0e36ff9e192f
         handler_id: SLOTH
       - id: TRACKED_UNIQUE
   - id: SLUG_PET
@@ -2341,7 +2348,7 @@ items:
             intelligence: 0.25
         particle: 3
         skill_category: FARMING
-        skull_texture: ""
+        skull_texture: 7a79d0fd677b54530961117ef84adc206e2cc5045c1344d61d776bf8ac2fe1ba
         handler_id: SLUG
       - id: TRACKED_UNIQUE
   - id: SNAIL_PET
@@ -2378,7 +2385,7 @@ items:
             intelligence: 1
         particle: 3
         skill_category: MINING
-        skull_texture: ""
+        skull_texture: 50a9933a3b10489d38f6950c4e628bfcf9f7a27f8d84666f04f14d5374252972
         handler_id: SNAIL
       - id: TRACKED_UNIQUE
   - id: SNOWMAN_PET
@@ -2408,7 +2415,7 @@ items:
             critical_damage: 0.25
         particle: 3
         skill_category: COMBAT
-        skull_texture: ""
+        skull_texture: 11136616d8c4a87a54ce78a97b551610c2b2c8f6d410bc38b858f974b113b208
         handler_id: SNOWMAN
       - id: TRACKED_UNIQUE
   - id: SPIDER_PET
@@ -2448,7 +2455,7 @@ items:
             critical_chance: 0.1
         particle: 3
         skill_category: COMBAT
-        skull_texture: ""
+        skull_texture: cd541541daaff50896cd258bdbdd4cf80c3ba816735726078bfe393927e57f1
         handler_id: SPIDER
       - id: TRACKED_UNIQUE
   - id: SPINOSAURUS_PET
@@ -2474,7 +2481,7 @@ items:
             trophy_fish_chance: 0.05
         particle: 3
         skill_category: FISHING
-        skull_texture: ""
+        skull_texture: d3c9d479471a2f13f22548315159591720992e70c920fef83a901b7186720e3c
         handler_id: SPINOSAURUS
       - id: TRACKED_UNIQUE
   - id: SPIRIT_PET
@@ -2502,7 +2509,7 @@ items:
             speed: 0.3
         particle: 3
         skill_category: COMBAT
-        skull_texture: ""
+        skull_texture: 8d9ccc670677d0cebaad4058d6aaf9acfab09abea5d86379a059902f2fe22655
         handler_id: SPIRIT
         passive: true
       - id: TRACKED_UNIQUE
@@ -2540,7 +2547,7 @@ items:
             intelligence: 0.5
         particle: 3
         skill_category: FISHING
-        skull_texture: ""
+        skull_texture: 01433be242366af126da434b8735df1eb5b3cb2cede39145974e9c483607bac
         handler_id: SQUID
       - id: TRACKED_UNIQUE
   - id: TARANTULA_PET
@@ -2574,7 +2581,7 @@ items:
             critical_damage: 0.3
         particle: 3
         skill_category: COMBAT
-        skull_texture: ""
+        skull_texture: 8300986ed0a04ea79904f6ae53f49ed3a0ff5b1df62bba622ecbd3777f156df8
         handler_id: TARANTULA
       - id: TRACKED_UNIQUE
   - id: TIGER_PET
@@ -2622,7 +2629,7 @@ items:
             ferocity: 0.25
         particle: 3
         skill_category: COMBAT
-        skull_texture: ""
+        skull_texture: fc42638744922b5fcf62cd9bf27eeab91b2e72d6c70e86cc5aa3883993e9d84
         handler_id: TIGER
       - id: TRACKED_UNIQUE
   - id: TURTLE_PET
@@ -2654,7 +2661,7 @@ items:
             true_defense: 0.15
         particle: 3
         skill_category: COMBAT
-        skull_texture: ""
+        skull_texture: 212b58c841b394863dbcc54de1c2ad2648af8f03e648988c1f9cef0bc20ee23c
         handler_id: TURTLE
       - id: TRACKED_UNIQUE
   - id: TYRANNOSAURUS_PET
@@ -2680,7 +2687,7 @@ items:
             ferocity: 0.25
         particle: 3
         skill_category: COMBAT
-        skull_texture: ""
+        skull_texture: 93f28ec96df59c67e9d2fc2e7e3d055fa31646e4111add9fe26a692801964126
         handler_id: TYRANNOSAURUS
       - id: TRACKED_UNIQUE
   - id: WITCH_PET
@@ -2717,7 +2724,7 @@ items:
             alchemy_wisdom: 0.05
         particle: 3
         skill_category: ALCHEMY
-        skull_texture: ""
+        skull_texture: baf818b04d6ae98a69ad8d9463d8d0379921d3eb79222e1c6272f65372d80775
         handler_id: WITCH
       - id: TRACKED_UNIQUE
   - id: WITHER_SKELETON_PET
@@ -2769,7 +2776,7 @@ items:
             intelligence: 0.25
         particle: 3
         skill_category: MINING
-        skull_texture: ""
+        skull_texture: f5ec964645a8efac76be2f160d7c9956362f32b6517390c59c3085034f050cff
         handler_id: WITHER_SKELETON
       - id: TRACKED_UNIQUE
   - id: WOLF_PET
@@ -2816,7 +2823,7 @@ items:
             speed: 0.2
         particle: 3
         skill_category: COMBAT
-        skull_texture: ""
+        skull_texture: dc3dd984bb659849bd52994046964c22725f717e986b12d548fd169367d494
         handler_id: WOLF
       - id: TRACKED_UNIQUE
   - id: ZOMBIE_PET
@@ -2853,6 +2860,6 @@ items:
             critical_damage: 0.3
         particle: 3
         skill_category: COMBAT
-        skull_texture: ""
+        skull_texture: 56fc854bb84cf4b7697297973e02b79bc10698460b51a639c60e5e417734e11
         handler_id: ZOMBIE
       - id: TRACKED_UNIQUE
