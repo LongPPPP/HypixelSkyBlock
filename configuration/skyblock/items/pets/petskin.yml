@@ -1,0 +1,12 @@
+items:
+  - id: RED_ELF_JERRY_SKIN
+    material: player_head
+    name: "Red Elf Jerry Skin"
+    rarity: UNCOMMON
+    components:
+      - id: PET_SKIN
+        skin_name: "Red Elf Jerry"
+        apply_to: JERRY_PET
+        skull_texture: 1d82f9c36e824c1e37963a849bf5abd76d3b349125023504af58369086089ee9
+        gem_price: 0
+      - id: TRACKED_UNIQUE

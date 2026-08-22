@@ -3222,6 +3222,8 @@ public enum ItemType {
 
   RED_DYE(Material.RED_DYE, Rarity.COMMON),
 
+  RED_ELF_JERRY_SKIN(Material.PLAYER_HEAD, Rarity.UNCOMMON),
+
   RED_GIFT(Material.PLAYER_HEAD, Rarity.RARE),
 
   RED_GLAZED_TERRACOTTA(Material.RED_GLAZED_TERRACOTTA, Rarity.COMMON),

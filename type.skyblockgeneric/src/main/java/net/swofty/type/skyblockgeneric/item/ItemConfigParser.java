@@ -671,6 +671,14 @@ public class ItemConfigParser {
 							passive
 					);
 				}
+                case "PET_SKIN" -> {
+                    String skinName = safeConfig.getString("skin_name");
+                    ItemType pet = ItemType.valueOf(safeConfig.getString("apply_to"));
+                    String skullTexture = safeConfig.getString("skull_texture");
+                    int gemPrice = safeConfig.getInt("gem_price", 0);
+
+                    yield new PetSkinComponent(skinName, pet, gemPrice, skullTexture);
+                }
 				case "UPGRADES" -> {
 					List<Map<String, Object>> levelsConfig = safeConfig.getMapList("levels");
 					List<UpgradesComponent.UpgradeLevel> levels = new ArrayList<>();

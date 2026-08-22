@@ -21,8 +21,11 @@ import net.swofty.type.skyblockgeneric.user.SkyBlockPlayer;
 import org.jetbrains.annotations.NotNull;
 
 public class PetEntityImpl extends LivingEntity {
-    private final String url;
+    private String url;
+    @Getter
     private final SkyBlockPlayer player;
+    @Getter
+    private final SkyBlockItem pet;
     private final Particle particle;
     private Task upAndDownTask;
     private Task moveTowardsPlayer;
@@ -39,18 +42,25 @@ public class PetEntityImpl extends LivingEntity {
 
         this.player = player;
         this.url = url;
+        this.pet = pet;
         this.particle = pet.getComponent(PetComponent.class).getParticleId();
 
         var attributeHandler = pet.getAttributeHandler();
         var rarity = attributeHandler.getRarity();
         var level = attributeHandler.getPetData().getAsLevel(rarity);
         var petName = pet.getComponent(PetComponent.class).getPetName();
+        var suffix = pet.getAttributeHandler().getPetData().getSkinId() == null ? "" : " ✦";
 
         editEntityMeta(ArmorStandMeta.class, meta -> {
-            meta.set(MetadataDef.CUSTOM_NAME, Text.of("<8>[<7>Lvl{}<8>] <color:{}>{}'s {}",
-                    level, rarity.getColor(), player.getUsername(), petName
+            meta.set(MetadataDef.CUSTOM_NAME, Text.of("<8>[<7>Lvl{}<8>] <color:{}>{}'s {}{}",
+                    level, rarity.getColor(), player.getUsername(), petName, suffix
             ).asComponent());
         });
+    }
+
+    public void refreshTexture() {
+        this.url = player.getPetData().getTexture(pet);
+        setHelmet(ItemStacks.head(url, "").build());
     }
 
     @Override

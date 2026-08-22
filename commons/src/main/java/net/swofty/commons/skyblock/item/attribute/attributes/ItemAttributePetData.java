@@ -1,7 +1,8 @@
 package net.swofty.commons.skyblock.item.attribute.attributes;
 
-import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.Setter;
+import net.swofty.commons.skyblock.item.ItemType;
 import net.swofty.commons.skyblock.item.Rarity;
 import net.swofty.commons.skyblock.item.attribute.ItemAttribute;
 import net.swofty.commons.skyblock.statistics.ItemStatistics;
@@ -18,27 +19,49 @@ public class ItemAttributePetData extends ItemAttribute<ItemAttributePetData.Pet
 
     @Override
     public PetData getDefaultValue(@Nullable ItemStatistics defaultStatistics) {
-        return new PetData(0);
+        return new PetData(0, null);
     }
 
     @Override
     public PetData loadFromString(String string) {
-        if (string.isEmpty()) {
-            return new PetData(0);
+        if (string == null || string.isEmpty()) {
+            return new PetData(0, null);
         }
 
-        return new PetData(Double.parseDouble(string));
+        String[] parts = string.split(":", -1);
+        double experience = Double.parseDouble(parts[0]);
+        if (parts.length == 1 || parts[1].isBlank() || parts[1].equalsIgnoreCase("none")) {
+            return new PetData(experience, null);
+        }
+
+        ItemType skinId;
+        try {
+            skinId = ItemType.valueOf(parts[1]);
+        } catch (IllegalArgumentException ignored) {
+            skinId = null;
+        }
+        return new PetData(experience, skinId);
     }
 
     @Override
     public String saveIntoString() {
-        return String.valueOf(this.value.experience);
+        if (getValue() == null) return "null";
+        PetData data = getValue();
+        String skinId = data.getSkinId() == null ? "none" : data.getSkinId().name();
+        return data.getExperience() + ":"
+                + skinId;
     }
 
-    @AllArgsConstructor
     @Getter
+    @Setter
     public static class PetData {
         private double experience;
+        private ItemType skinId;
+
+        public PetData(double experience, ItemType skinId) {
+            this.experience = experience;
+            this.skinId = skinId;
+        }
 
         // Returns true if the level was increased
         public boolean addExperience(double experience, Rarity rarity) {

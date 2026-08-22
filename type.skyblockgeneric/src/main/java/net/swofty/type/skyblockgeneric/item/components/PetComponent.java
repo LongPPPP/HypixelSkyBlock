@@ -55,7 +55,7 @@ public class PetComponent extends SkyBlockItemComponent {
         this.handlerId = handlerId;
         this.passive = passive;
 
-        addInheritedComponent(new SkullHeadComponent((item) -> skullTexture));
+        addInheritedComponent(new SkullHeadComponent(this::getTexture));
         addInheritedComponent(new TrackedUniqueComponent());
         addInheritedComponent(new InteractableComponent(this::interact, this::interact, null));
         addInheritedComponent(new LoreUpdateComponent(
@@ -87,7 +87,7 @@ public class PetComponent extends SkyBlockItemComponent {
                 .build());
     }
 
-    public List<String> getAbsoluteLore(@Nullable SkyBlockPlayer player, SkyBlockItem item) {
+    private List<String> getAbsoluteLore(@Nullable SkyBlockPlayer player, SkyBlockItem item) {
         List<String> lore = new ArrayList<>();
         ItemAttributePetData.PetData petData = item.getAttributeHandler().getPetData();
         Rarity rarity = item.getAttributeHandler().getRarity();
@@ -145,6 +145,20 @@ public class PetComponent extends SkyBlockItemComponent {
 
     public ItemStatistics getPerLevelStatistics(Rarity rarity) {
         return perLevelStatistics.getForRarity(rarity);
+    }
+
+    public String getTexture(SkyBlockItem pet) {
+        ItemType skinId = pet.getAttributeHandler().getPetData().getSkinId();
+        if (skinId == null) return skullTexture;
+
+        SkyBlockItem skin = new SkyBlockItem(skinId);
+        if (!skin.hasComponent(PetSkinComponent.class)) return skullTexture;
+
+        PetSkinComponent skinComponent = skin.getComponent(PetSkinComponent.class);
+        if (skinComponent.getApplicablePet() != pet.getAttributeHandler().getPotentialType()) {
+            return skullTexture;
+        }
+        return skinComponent.getSkullTexture();
     }
 
     private static String progressText(String label, double current, double max) {

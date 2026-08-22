@@ -12,7 +12,6 @@ import net.swofty.type.skyblockgeneric.data.SkyBlockDatapoint;
 import net.swofty.type.skyblockgeneric.entity.PetEntityImpl;
 import net.swofty.type.skyblockgeneric.item.SkyBlockItem;
 import net.swofty.type.skyblockgeneric.item.components.PetComponent;
-import net.swofty.type.skyblockgeneric.item.components.SkullHeadComponent;
 import net.swofty.type.skyblockgeneric.item.handlers.pet.PetAbilityRegistry;
 import net.swofty.type.skyblockgeneric.item.handlers.pet.abstr.PetAbility;
 import net.swofty.type.skyblockgeneric.item.handlers.pet.abstr.PetEvent;
@@ -108,9 +107,13 @@ public class DatapointPetData extends SkyBlockDatapoint<DatapointPetData.UserPet
 
             SkyBlockItem enabledPet = getEnabledPet();
             if (enabledPet != null) {
-                enabledPetEntityImpl = new PetEntityImpl(player, enabledPet.getComponent(SkullHeadComponent.class).getSkullTexture(enabledPet), enabledPet);
+                enabledPetEntityImpl = new PetEntityImpl(player, getTexture(enabledPet), enabledPet);
                 enabledPetEntityImpl.setInstance(player.getInstance(), player.getPosition());
             }
+        }
+
+        public String getTexture(SkyBlockItem pet) {
+            return pet.getComponent(PetComponent.class).getTexture(pet);
         }
 
         public void isEnabled(ItemType type) {
