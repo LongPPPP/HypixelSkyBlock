@@ -13,7 +13,7 @@ import java.util.List;
 import static net.swofty.commons.StringUtility.decimalify;
 
 @PetAbilityRegistration(pet = PetHandler.SKELETON, minimumRarity = Rarity.COMMON,
-        implemented = false, notImplementedReason = "awaits dispatch(PetEvent.RangedDamageDealt) + a Dungeons system")
+        implemented = false, notImplementedReason = "awaits a Dungeons system")
 public final class BoneArrowsAbility implements PetAbility {
     private static final RarityValue<Double> PER_LEVEL =
             new RarityValue<>(0.1, 0.2, 0.35, 0.5, 0.75, 0.0, 0.0);

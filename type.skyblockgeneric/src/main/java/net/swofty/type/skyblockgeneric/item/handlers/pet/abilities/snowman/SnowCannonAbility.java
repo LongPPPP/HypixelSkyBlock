@@ -12,7 +12,7 @@ import java.util.List;
 import static net.swofty.commons.StringUtility.decimalify;
 
 @PetAbilityRegistration(pet = PetHandler.SNOWMAN, minimumRarity = Rarity.LEGENDARY, order = 2,
-        implemented = false, notImplementedReason = "awaits dispatch(PetEvent.MeleeDamageDealt) + a snowball projectile system")
+        implemented = false, notImplementedReason = "awaits a snowball projectile system")
 public final class SnowCannonAbility implements PetAbility {
     private static final double DAMAGE_BASE = 10;
     private static final double DAMAGE_PER_LEVEL = 0.1;

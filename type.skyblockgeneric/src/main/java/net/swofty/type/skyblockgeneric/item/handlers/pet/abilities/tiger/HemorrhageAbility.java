@@ -13,7 +13,7 @@ import java.util.List;
 import static net.swofty.commons.StringUtility.decimalify;
 
 @PetAbilityRegistration(pet = PetHandler.TIGER, minimumRarity = Rarity.RARE,
-        implemented = false, notImplementedReason = "awaits MeleeDamageDealt dispatch in PlayerActionDamageMob + a mob healing-reduction effect")
+        implemented = false, notImplementedReason = "awaits a mob healing-reduction effect")
 public final class HemorrhageAbility implements PetAbility {
     private static final RarityValue<Double> PER_LEVEL =
             new RarityValue<>(0.0, 0.0, 0.3, 0.55, 0.55, 0.0, 0.0);

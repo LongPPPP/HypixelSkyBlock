@@ -14,7 +14,7 @@ import static net.swofty.commons.StringUtility.commaify;
 import static net.swofty.commons.StringUtility.decimalify;
 
 @PetAbilityRegistration(pet = PetHandler.PHOENIX, minimumRarity = Rarity.EPIC, order = 1,
-        implemented = false, notImplementedReason = "awaits DamageDealt dispatch in PlayerActionDamageMob + a 4th-strike ignite system")
+        implemented = false, notImplementedReason = "awaits a 4th-strike ignite system")
 public final class FourthFlareAbility implements PetAbility {
     private static final RarityValue<Double> MULTIPLIER_BASE =
             new RarityValue<>(0.0, 0.0, 0.0, 1.0, 1.0, 0.0, 0.0);

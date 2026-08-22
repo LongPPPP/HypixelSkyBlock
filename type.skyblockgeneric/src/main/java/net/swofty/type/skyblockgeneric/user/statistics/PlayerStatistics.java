@@ -43,6 +43,7 @@ import net.swofty.type.skyblockgeneric.item.components.ConstantStatisticsCompone
 import net.swofty.type.skyblockgeneric.item.components.PetComponent;
 import net.swofty.type.skyblockgeneric.item.components.SkullHeadComponent;
 import net.swofty.type.skyblockgeneric.item.handlers.pet.abstr.PetAbility;
+import net.swofty.type.skyblockgeneric.item.handlers.pet.abstr.PetEvent;
 import net.swofty.type.skyblockgeneric.item.components.StandardItemComponent;
 import net.swofty.type.skyblockgeneric.item.set.ArmorSetRegistry;
 import net.swofty.type.skyblockgeneric.item.set.impl.ArmorSet;
@@ -852,8 +853,12 @@ public class PlayerStatistics {
                     player.setMana(player.getMaxMana());
                 if (player.getMana() <= player.getMaxMana()) {
                     float manaPool = player.getMaxMana();
-                    player.setMana(Math.min(manaPool, Math.min(manaPool, player.getMana() + (manaPool / 50) +
-                            (int) ((manaPool / 50) * player.getStatistics().getManaRegenerationPercentBonus()))));
+                    float manaRegeneration = manaPool / 50
+                            + (int) ((manaPool / 50) * player.getStatistics().getManaRegenerationPercentBonus());
+                    SkyBlockItem pet = player.getPetData().getEnabledPet();
+                    PetEvent.ManaRegen manaRegenEvent = player.getPetData()
+                            .dispatch(new PetEvent.ManaRegen(player, pet, manaRegeneration));
+                    player.setMana((float) Math.min(manaPool, player.getMana() + manaRegenEvent.amount()));
                 }
             });
             return TaskSchedule.seconds(1);

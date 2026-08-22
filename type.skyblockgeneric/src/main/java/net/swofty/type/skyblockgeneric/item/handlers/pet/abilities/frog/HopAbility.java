@@ -15,8 +15,7 @@ import java.util.List;
 
 import static net.swofty.commons.StringUtility.commaify;
 
-@PetAbilityRegistration(pet = PetHandler.FROG, minimumRarity = Rarity.EPIC,
-        implemented = false, notImplementedReason = "logic complete; awaits dispatch(PetEvent.Jump) in the Y-rise branch of ActionPlayerFall")
+@PetAbilityRegistration(pet = PetHandler.FROG, minimumRarity = Rarity.EPIC)
 public final class HopAbility implements PetAbility {
     private static final long BUFF_DURATION_MILLIS = 20_000;
     private long buffUntil;

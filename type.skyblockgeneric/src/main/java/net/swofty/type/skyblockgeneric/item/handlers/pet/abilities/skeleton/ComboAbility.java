@@ -1,22 +1,28 @@
 package net.swofty.type.skyblockgeneric.item.handlers.pet.abilities.skeleton;
 
 import net.swofty.commons.skyblock.item.Rarity;
+import net.swofty.commons.skyblock.statistics.ItemStatistic;
+import net.swofty.commons.skyblock.statistics.ItemStatistics;
 import net.swofty.type.skyblockgeneric.item.handlers.pet.PetHandler;
 import net.swofty.type.skyblockgeneric.item.handlers.pet.abstr.PetAbility;
 import net.swofty.type.skyblockgeneric.item.handlers.pet.abstr.PetAbilityRegistration;
 import net.swofty.type.skyblockgeneric.item.handlers.pet.abstr.PetEvent;
 import net.swofty.type.skyblockgeneric.item.handlers.pet.abstr.PetEventHandler;
+import net.swofty.type.skyblockgeneric.user.SkyBlockPlayer;
 import net.swofty.type.skyblockgeneric.utility.RarityValue;
 
 import java.util.List;
 
 import static net.swofty.commons.StringUtility.decimalify;
 
-@PetAbilityRegistration(pet = PetHandler.SKELETON, minimumRarity = Rarity.RARE,
-        implemented = false, notImplementedReason = "awaits dispatch(PetEvent.RangedDamageDealt)")
+@PetAbilityRegistration(pet = PetHandler.SKELETON, minimumRarity = Rarity.RARE)
 public final class ComboAbility implements PetAbility {
     private static final RarityValue<Double> STACKS_PER_LEVEL =
             new RarityValue<>(0.0, 0.0, 0.15, 0.17, 0.2, 0.0, 0.0);
+    private static final long STACK_DURATION_MS = 8_000L;
+
+    private int stacks;
+    private long lastProc;
 
     @Override
     public String getName() {
@@ -34,8 +40,42 @@ public final class ComboAbility implements PetAbility {
         );
     }
 
+    @Override
+    public ItemStatistics getStatistics(SkyBlockPlayer player, Rarity rarity, int level) {
+        if (stacks <= 0) return ItemStatistics.empty();
+        if (System.currentTimeMillis() - lastProc > STACK_DURATION_MS) {
+            stacks = 0;
+            return ItemStatistics.empty();
+        }
+
+        int maxStacks = maxStacks(rarity, level);
+        if (maxStacks <= 0) {
+            stacks = 0;
+            return ItemStatistics.empty();
+        }
+        stacks = Math.min(stacks, maxStacks);
+        return ItemStatistics.builder()
+                .withBase(ItemStatistic.STRENGTH, stacks * 3D)
+                .build();
+    }
+
     @PetEventHandler
     public void onRangedDamageDealt(PetEvent.RangedDamageDealt event) {
+        Rarity rarity = event.pet().getAttributeHandler().getRarity();
+        int level = event.pet().getAttributeHandler().getPetData().getAsLevel(rarity);
+        int maxStacks = maxStacks(rarity, level);
+        if (maxStacks <= 0) {
+            stacks = 0;
+            return;
+        }
 
+        long now = System.currentTimeMillis();
+        if (stacks > 0 && now - lastProc > STACK_DURATION_MS) stacks = 0;
+        stacks = Math.min(stacks + 1, maxStacks);
+        lastProc = now;
+    }
+
+    private static int maxStacks(Rarity rarity, int level) {
+        return Math.max(0, (int) (STACKS_PER_LEVEL.getForRarity(rarity) * level));
     }
 }

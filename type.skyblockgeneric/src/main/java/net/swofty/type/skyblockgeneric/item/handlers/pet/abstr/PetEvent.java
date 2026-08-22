@@ -58,19 +58,6 @@ public sealed interface PetEvent {
         }
     }
 
-    @Getter
-    @Accessors(fluent = true)
-    final class PetInteract implements PetEvent {
-        private final SkyBlockPlayer player;
-        @Setter
-        private SkyBlockItem pet;
-
-        public PetInteract(SkyBlockPlayer player, SkyBlockItem pet) {
-            this.player = player;
-            this.pet = pet;
-        }
-    }
-
     /**
      * after the ability is cast
      */
@@ -167,7 +154,7 @@ public sealed interface PetEvent {
     }
 
     /**
-     * when the player is taking damage (any source)
+     * when the player is taking damage (any source: mob, fall)
      */
     @Getter
     @Accessors(fluent = true)
@@ -225,13 +212,15 @@ public sealed interface PetEvent {
         private final SkyBlockMob mob;
         @Nullable
         private final SkyBlockItem weapon;
+        private final double damage;
 
         public DamageDealt(SkyBlockPlayer player, SkyBlockItem pet, SkyBlockMob mob,
-                           @Nullable SkyBlockItem weapon) {
+                           @Nullable SkyBlockItem weapon, double damage) {
             this.player = player;
             this.pet = pet;
             this.mob = mob;
             this.weapon = weapon;
+            this.damage = damage;
         }
     }
 
@@ -242,8 +231,8 @@ public sealed interface PetEvent {
     @Accessors(fluent = true)
     final class MeleeDamageDealt extends DamageDealt {
         public MeleeDamageDealt(SkyBlockPlayer player, SkyBlockItem pet, SkyBlockMob mob,
-                                @Nullable SkyBlockItem weapon) {
-            super(player, pet, mob, weapon);
+                                @Nullable SkyBlockItem weapon, double damage) {
+            super(player, pet, mob, weapon, damage);
         }
     }
 
@@ -254,8 +243,8 @@ public sealed interface PetEvent {
     @Accessors(fluent = true)
     final class RangedDamageDealt extends DamageDealt {
         public RangedDamageDealt(SkyBlockPlayer player, SkyBlockItem pet, SkyBlockMob mob,
-                                 @Nullable SkyBlockItem weapon) {
-            super(player, pet, mob, weapon);
+                                 @Nullable SkyBlockItem weapon, double damage) {
+            super(player, pet, mob, weapon, damage);
         }
     }
 

@@ -33,11 +33,6 @@ public class ActionPlayerFall implements HypixelEventClass {
             currentHeight = currentPosition.blockY();
         }
 
-        if (newPosition.y() > currentPosition.y() && currentHeight < newPosition.blockY()) {
-            player.setFallHeight(newPosition.blockY());
-            return;
-        }
-
         if (player.isOnGround()) {
             int fallDistance = currentHeight - newPosition.blockY();
             if (fallDistance > 4) {

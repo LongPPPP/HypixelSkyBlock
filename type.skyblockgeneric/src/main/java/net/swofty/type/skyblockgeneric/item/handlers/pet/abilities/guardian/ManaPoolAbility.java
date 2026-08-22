@@ -16,8 +16,7 @@ import java.util.List;
 
 import static net.swofty.commons.StringUtility.decimalify;
 
-@PetAbilityRegistration(pet = PetHandler.GUARDIAN, minimumRarity = Rarity.LEGENDARY,
-        implemented = false, notImplementedReason = "logic complete; awaits dispatch(PetEvent.ManaRegen) in PlayerStatistics.manaLoop")
+@PetAbilityRegistration(pet = PetHandler.GUARDIAN, minimumRarity = Rarity.LEGENDARY)
 public final class ManaPoolAbility implements PetAbility {
     private static final int MAX_RADIUS = 3;
     private static final RarityValue<Double> REGEN_PER_LEVEL =

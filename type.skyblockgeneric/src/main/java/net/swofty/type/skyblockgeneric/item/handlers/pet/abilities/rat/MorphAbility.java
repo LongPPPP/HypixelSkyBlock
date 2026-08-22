@@ -10,7 +10,7 @@ import net.swofty.type.skyblockgeneric.item.handlers.pet.abstr.PetEventHandler;
 import java.util.List;
 
 @PetAbilityRegistration(pet = PetHandler.RAT, minimumRarity = Rarity.LEGENDARY, order = 0,
-        implemented = false, notImplementedReason = "awaits a pet morph system; PetInteract event not yet dispatched")
+        implemented = false, notImplementedReason = "awaits a pet morph system")
 public final class MorphAbility implements PetAbility {
     @Override
     public String getName() {
@@ -25,7 +25,4 @@ public final class MorphAbility implements PetAbility {
         );
     }
 
-    @PetEventHandler
-    public void onPetInteract(PetEvent.PetInteract event) {
-    }
 }
