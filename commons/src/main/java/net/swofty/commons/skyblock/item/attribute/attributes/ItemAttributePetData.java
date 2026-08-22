@@ -28,19 +28,21 @@ public class ItemAttributePetData extends ItemAttribute<ItemAttributePetData.Pet
             return new PetData(0, null);
         }
 
-        String[] parts = string.split(":", -1);
+        String[] parts = string.split(":", 3);
         double experience = Double.parseDouble(parts[0]);
         if (parts.length == 1 || parts[1].isBlank() || parts[1].equalsIgnoreCase("none")) {
             return new PetData(experience, null);
         }
 
-        ItemType skinId;
-        try {
-            skinId = ItemType.valueOf(parts[1]);
-        } catch (IllegalArgumentException ignored) {
-            skinId = null;
+        ItemType skinId = ItemType.get(parts[1]);
+        if (skinId == null) {
+            return new PetData(experience, null);
         }
-        return new PetData(experience, skinId);
+
+        String skinVariant = parts.length == 3 && !parts[2].isBlank() && !parts[2].equalsIgnoreCase("none")
+                ? parts[2]
+                : null;
+        return new PetData(experience, skinId, skinVariant);
     }
 
     @Override
@@ -48,8 +50,8 @@ public class ItemAttributePetData extends ItemAttribute<ItemAttributePetData.Pet
         if (getValue() == null) return "null";
         PetData data = getValue();
         String skinId = data.getSkinId() == null ? "none" : data.getSkinId().name();
-        return data.getExperience() + ":"
-                + skinId;
+        String serialized = data.getExperience() + ":" + skinId;
+        return data.getSkinVariant() == null ? serialized : serialized + ":" + data.getSkinVariant();
     }
 
     @Getter
@@ -57,10 +59,16 @@ public class ItemAttributePetData extends ItemAttribute<ItemAttributePetData.Pet
     public static class PetData {
         private double experience;
         private ItemType skinId;
+        private String skinVariant;
 
         public PetData(double experience, ItemType skinId) {
+            this(experience, skinId, null);
+        }
+
+        public PetData(double experience, ItemType skinId, String skinVariant) {
             this.experience = experience;
             this.skinId = skinId;
+            this.skinVariant = skinVariant;
         }
 
         // Returns true if the level was increased

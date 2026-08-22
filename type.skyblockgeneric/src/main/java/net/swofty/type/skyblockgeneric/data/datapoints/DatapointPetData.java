@@ -107,13 +107,9 @@ public class DatapointPetData extends SkyBlockDatapoint<DatapointPetData.UserPet
 
             SkyBlockItem enabledPet = getEnabledPet();
             if (enabledPet != null) {
-                enabledPetEntityImpl = new PetEntityImpl(player, getTexture(enabledPet), enabledPet);
+                enabledPetEntityImpl = new PetEntityImpl(player, enabledPet);
                 enabledPetEntityImpl.setInstance(player.getInstance(), player.getPosition());
             }
-        }
-
-        public String getTexture(SkyBlockItem pet) {
-            return pet.getComponent(PetComponent.class).getTexture(pet);
         }
 
         public void isEnabled(ItemType type) {

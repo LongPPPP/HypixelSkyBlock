@@ -94,6 +94,8 @@ public enum ItemType {
 
   ANCIENT_ROSE(Material.POPPY, Rarity.COMMON),
 
+  ANCIENT_TURTLE_SKIN(Material.PLAYER_HEAD, Rarity.MYTHIC),
+
   ANDESITE(Material.ANDESITE, Rarity.COMMON),
 
   ANDESITE_SLAB(Material.ANDESITE_SLAB, Rarity.COMMON),
@@ -299,6 +301,8 @@ public enum ItemType {
   BIOANALYSIS_TALISMAN(Material.PLAYER_HEAD, Rarity.COMMON),
 
   BIOFUEL(Material.GREEN_DYE, Rarity.RARE),
+
+  BIOME_FROG_SKIN(Material.PLAYER_HEAD, Rarity.MYTHIC),
 
   BIRCH_BOAT(Material.BIRCH_BOAT, Rarity.COMMON),
 
@@ -4097,6 +4101,8 @@ public enum ItemType {
   SPIRIT_PET(Material.PLAYER_HEAD, Rarity.LEGENDARY),
 
   SPIRIT_SWORD(Material.IRON_SWORD, Rarity.EPIC),
+
+  SPIRIT_WOLF_SKIN(Material.PLAYER_HEAD, Rarity.LEGENDARY),
 
   SPONGE(Material.SPONGE, Rarity.COMMON),
 

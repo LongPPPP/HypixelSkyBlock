@@ -9,6 +9,7 @@ import net.minestom.server.entity.MetadataDef;
 import net.minestom.server.entity.metadata.other.ArmorStandMeta;
 import net.minestom.server.network.packet.server.play.ParticlePacket;
 import net.minestom.server.particle.Particle;
+import net.minestom.server.timer.Scheduler;
 import net.minestom.server.timer.Task;
 import net.minestom.server.timer.TaskSchedule;
 import net.swofty.commons.text.Text;
@@ -34,17 +35,34 @@ public class PetEntityImpl extends LivingEntity {
     @Getter
     private boolean goingDown = false;
 
-    public PetEntityImpl(@NotNull SkyBlockPlayer player, @NotNull String url, @NotNull SkyBlockItem pet) {
+    public PetEntityImpl(@NotNull SkyBlockPlayer player, @NotNull SkyBlockItem pet) {
         super(EntityType.ARMOR_STAND);
 
         this.collidesWithEntities = false;
         this.hasPhysics = false;
 
         this.player = player;
-        this.url = url;
         this.pet = pet;
-        this.particle = pet.getComponent(PetComponent.class).getParticleId();
+        PetComponent petComponent = pet.getComponent(PetComponent.class);
+        this.url = player.getInstance() == null
+                ? petComponent.getTexture(pet)
+                : petComponent.getEntityTexture(pet, player.getInstance().getTime());
+        this.particle = petComponent.getParticleId();
 
+        refreshName();
+    }
+
+    public void refreshTexture() {
+        if (getInstance() == null) return;
+
+        String texture = pet.getComponent(PetComponent.class).getEntityTexture(pet, getInstance().getTime());
+        if (texture.equals(url)) return;
+
+        this.url = texture;
+        setHelmet(ItemStacks.head(url, "").build());
+    }
+
+    public void refreshName() {
         var attributeHandler = pet.getAttributeHandler();
         var rarity = attributeHandler.getRarity();
         var level = attributeHandler.getPetData().getAsLevel(rarity);
@@ -58,9 +76,21 @@ public class PetEntityImpl extends LivingEntity {
         });
     }
 
-    public void refreshTexture() {
-        this.url = player.getPetData().getTexture(pet);
-        setHelmet(ItemStacks.head(url, "").build());
+    public boolean isTextureTimeDependent() {
+        return pet.getComponent(PetComponent.class).isTextureTimeDependent(pet);
+    }
+
+    public static void updateTextureLoop(Scheduler scheduler) {
+        scheduler.submitTask(() -> {
+            SkyBlockGenericLoader.getLoadedPlayers().forEach(player -> {
+                PetEntityImpl entity = player.getPetData().getEnabledPetEntityImpl();
+                if (entity == null || entity.isDead() || entity.getInstance() == null) return;
+                if (entity.isTextureTimeDependent()) {
+                    entity.refreshTexture();
+                }
+            });
+            return TaskSchedule.tick(1);
+        });
     }
 
     @Override

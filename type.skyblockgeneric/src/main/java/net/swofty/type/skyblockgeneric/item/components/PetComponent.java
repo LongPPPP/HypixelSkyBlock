@@ -12,6 +12,7 @@ import net.swofty.commons.skyblock.statistics.ItemStatistic;
 import net.swofty.commons.skyblock.statistics.ItemStatistics;
 import net.swofty.commons.text.Text;
 import net.swofty.type.skyblockgeneric.data.datapoints.DatapointPetData;
+import net.swofty.type.skyblockgeneric.gui.inventories.sbmenu.GUIPetSkinVariants;
 import net.swofty.type.skyblockgeneric.item.SkyBlockItem;
 import net.swofty.type.skyblockgeneric.item.SkyBlockItemComponent;
 import net.swofty.type.skyblockgeneric.item.handlers.lore.LoreConfig;
@@ -57,7 +58,7 @@ public class PetComponent extends SkyBlockItemComponent {
 
         addInheritedComponent(new SkullHeadComponent(this::getTexture));
         addInheritedComponent(new TrackedUniqueComponent());
-        addInheritedComponent(new InteractableComponent(this::interact, this::interact, null));
+        addInheritedComponent(new InteractableComponent(this::rightInteract, this::leftInteract, null));
         addInheritedComponent(new LoreUpdateComponent(
                 new LoreConfig((item, player) -> getAbsoluteLore(player, item), (item, player) -> {
                     Rarity rarity = item.getAttributeHandler().getRarity();
@@ -67,7 +68,14 @@ public class PetComponent extends SkyBlockItemComponent {
         );
     }
 
-    private void interact(SkyBlockPlayer player, SkyBlockItem item) {
+    private void leftInteract(SkyBlockPlayer player, SkyBlockItem item) {
+        PetSkinComponent skin = getSkin(item);
+        if (skin == null || skin.getSkinType() != PetSkinComponent.PetSkinType.SELECTABLE) return;
+
+        player.openView(new GUIPetSkinVariants(item, skin));
+    }
+
+    private void rightInteract(SkyBlockPlayer player, SkyBlockItem item) {
         DatapointPetData.UserPetData petData = player.getPetData();
         ItemType type = item.getAttributeHandler().getPotentialType();
         Rarity rarity = item.getAttributeHandler().getRarity();
@@ -148,17 +156,29 @@ public class PetComponent extends SkyBlockItemComponent {
     }
 
     public String getTexture(SkyBlockItem pet) {
+        PetSkinComponent skin = getSkin(pet);
+        return skin == null ? skullTexture : skin.getItemTexture(pet);
+    }
+
+    public String getEntityTexture(SkyBlockItem pet, long time) {
+        PetSkinComponent skin = getSkin(pet);
+        return skin == null ? skullTexture : skin.getTexture(pet, time);
+    }
+
+    public boolean isTextureTimeDependent(SkyBlockItem pet) {
+        PetSkinComponent skin = getSkin(pet);
+        return skin != null && skin.isTimeDependent(pet);
+    }
+
+    public @Nullable PetSkinComponent getSkin(SkyBlockItem pet) {
         ItemType skinId = pet.getAttributeHandler().getPetData().getSkinId();
-        if (skinId == null) return skullTexture;
+        if (skinId == null) return null;
 
-        SkyBlockItem skin = new SkyBlockItem(skinId);
-        if (!skin.hasComponent(PetSkinComponent.class)) return skullTexture;
-
-        PetSkinComponent skinComponent = skin.getComponent(PetSkinComponent.class);
-        if (skinComponent.getApplicablePet() != pet.getAttributeHandler().getPotentialType()) {
-            return skullTexture;
+        PetSkinComponent skin = PetSkinComponent.get(skinId);
+        if (skin == null || skin.getApplicablePet() != pet.getAttributeHandler().getPotentialType()) {
+            return null;
         }
-        return skinComponent.getSkullTexture();
+        return skin;
     }
 
     private static String progressText(String label, double current, double max) {
