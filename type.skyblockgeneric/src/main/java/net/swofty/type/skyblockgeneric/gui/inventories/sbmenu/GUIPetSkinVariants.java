@@ -34,7 +34,7 @@ public class GUIPetSkinVariants extends StatelessView {
 
     @Override
     public ViewConfiguration<DefaultState> configuration() {
-        return new ViewConfiguration<>(skin.getSkinName(), InventoryType.CHEST_5_ROW);
+        return new ViewConfiguration<>("Skin Preview Swapper", InventoryType.CHEST_5_ROW);
     }
 
     @Override

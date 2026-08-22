@@ -19,39 +19,35 @@ public class ItemAttributePetData extends ItemAttribute<ItemAttributePetData.Pet
 
     @Override
     public PetData getDefaultValue(@Nullable ItemStatistics defaultStatistics) {
-        return new PetData(0, null);
+        return new PetData(0, null, null);
     }
 
     @Override
     public PetData loadFromString(String string) {
-        if (string == null || string.isEmpty()) {
-            return new PetData(0, null);
+        if (string == null || string.isEmpty() || string.equals("null")) {
+            return new PetData(0, null, null);
         }
 
-        String[] parts = string.split(":", 3);
-        double experience = Double.parseDouble(parts[0]);
-        if (parts.length == 1 || parts[1].isBlank() || parts[1].equalsIgnoreCase("none")) {
-            return new PetData(experience, null);
-        }
+        String[] parts = string.split(":", -1);
 
-        ItemType skinId = ItemType.get(parts[1]);
-        if (skinId == null) {
-            return new PetData(experience, null);
+        try {
+            double experience = Double.parseDouble(parts[0]);
+            ItemType skinId = parts[1].isBlank() ? null : ItemType.get(parts[1]);
+            String skinVariant = parts[2].isBlank() ? null : parts[2];
+            return new PetData(experience, skinId, skinVariant);
+        } catch (NumberFormatException | ArrayIndexOutOfBoundsException e) {
+            return new PetData(0, null, null);
         }
-
-        String skinVariant = parts.length == 3 && !parts[2].isBlank() && !parts[2].equalsIgnoreCase("none")
-                ? parts[2]
-                : null;
-        return new PetData(experience, skinId, skinVariant);
     }
 
     @Override
     public String saveIntoString() {
         if (getValue() == null) return "null";
         PetData data = getValue();
-        String skinId = data.getSkinId() == null ? "none" : data.getSkinId().name();
-        String serialized = data.getExperience() + ":" + skinId;
-        return data.getSkinVariant() == null ? serialized : serialized + ":" + data.getSkinVariant();
+        String exp = String.valueOf(data.getExperience());
+        String skinId = data.getSkinId() == null ? "" : data.getSkinId().name();
+        String skinVariant = data.getSkinVariant() == null ? "" : data.getSkinVariant();
+        return exp + ":" + skinId + ":" + skinVariant;
     }
 
     @Getter
@@ -60,10 +56,6 @@ public class ItemAttributePetData extends ItemAttribute<ItemAttributePetData.Pet
         private double experience;
         private ItemType skinId;
         private String skinVariant;
-
-        public PetData(double experience, ItemType skinId) {
-            this(experience, skinId, null);
-        }
 
         public PetData(double experience, ItemType skinId, String skinVariant) {
             this.experience = experience;
