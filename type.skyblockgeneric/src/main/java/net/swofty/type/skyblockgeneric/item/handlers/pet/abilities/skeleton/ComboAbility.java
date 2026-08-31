@@ -8,7 +8,7 @@ import net.swofty.type.skyblockgeneric.item.handlers.pet.abstr.PetAbility;
 import net.swofty.type.skyblockgeneric.item.handlers.pet.abstr.PetAbilityRegistration;
 import net.swofty.type.skyblockgeneric.item.handlers.pet.abstr.PetEvent;
 import net.swofty.type.skyblockgeneric.item.handlers.pet.abstr.PetEventHandler;
-import net.swofty.type.skyblockgeneric.user.SkyBlockPlayer;
+import net.swofty.type.skyblockgeneric.user.statistics.TemporaryConditionalStatistic;
 import net.swofty.type.skyblockgeneric.utility.RarityValue;
 
 import java.util.List;
@@ -23,6 +23,7 @@ public final class ComboAbility implements PetAbility {
 
     private int stacks;
     private long lastProc;
+    private long effectGeneration;
 
     @Override
     public String getName() {
@@ -40,29 +41,11 @@ public final class ComboAbility implements PetAbility {
         );
     }
 
-    @Override
-    public ItemStatistics getStatistics(SkyBlockPlayer player, Rarity rarity, int level) {
-        if (stacks <= 0) return ItemStatistics.empty();
-        if (System.currentTimeMillis() - lastProc > STACK_DURATION_MS) {
-            stacks = 0;
-            return ItemStatistics.empty();
-        }
-
-        int maxStacks = maxStacks(rarity, level);
-        if (maxStacks <= 0) {
-            stacks = 0;
-            return ItemStatistics.empty();
-        }
-        stacks = Math.min(stacks, maxStacks);
-        return ItemStatistics.builder()
-                .withBase(ItemStatistic.STRENGTH, stacks * 3D)
-                .build();
-    }
-
     @PetEventHandler
     public void onRangedDamageDealt(PetEvent.RangedDamageDealt event) {
-        Rarity rarity = event.pet().getAttributeHandler().getRarity();
-        int level = event.pet().getAttributeHandler().getPetData().getAsLevel(rarity);
+        var sourcePet = event.pet();
+        Rarity rarity = sourcePet.getAttributeHandler().getRarity();
+        int level = sourcePet.getAttributeHandler().getPetData().getAsLevel(rarity);
         int maxStacks = maxStacks(rarity, level);
         if (maxStacks <= 0) {
             stacks = 0;
@@ -73,6 +56,20 @@ public final class ComboAbility implements PetAbility {
         if (stacks > 0 && now - lastProc > STACK_DURATION_MS) stacks = 0;
         stacks = Math.min(stacks + 1, maxStacks);
         lastProc = now;
+        ItemStatistics snapshot = ItemStatistics.builder()
+                .withBase(ItemStatistic.STRENGTH, stacks * 3D)
+                .build();
+        long generation = ++effectGeneration;
+        long expiresAt = now + STACK_DURATION_MS;
+
+        event.player().getStatistics().boostStatistic(
+                TemporaryConditionalStatistic.builder()
+                        .withStatistics(player -> snapshot)
+                        .withExpiry(player -> player.getPetData().isActive(sourcePet)
+                                && effectGeneration == generation
+                                && System.currentTimeMillis() < expiresAt)
+                        .build()
+        );
     }
 
     private static int maxStacks(Rarity rarity, int level) {

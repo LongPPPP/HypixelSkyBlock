@@ -8,7 +8,7 @@ import net.swofty.type.skyblockgeneric.item.handlers.pet.abstr.PetAbility;
 import net.swofty.type.skyblockgeneric.item.handlers.pet.abstr.PetAbilityRegistration;
 import net.swofty.type.skyblockgeneric.item.handlers.pet.abstr.PetEvent;
 import net.swofty.type.skyblockgeneric.item.handlers.pet.abstr.PetEventHandler;
-import net.swofty.type.skyblockgeneric.user.SkyBlockPlayer;
+import net.swofty.type.skyblockgeneric.user.statistics.TemporaryConditionalStatistic;
 import net.swofty.type.skyblockgeneric.utility.RarityValue;
 
 import java.util.ArrayDeque;
@@ -46,19 +46,26 @@ public final class CamouflageAbility implements PetAbility {
 
     @PetEventHandler
     public void onAbilityCast(PetEvent.AbilityCast event) {
-        window.record(System.currentTimeMillis());
-    }
-
-    @Override
-    public ItemStatistics getStatistics(SkyBlockPlayer player, Rarity rarity, int level) {
-        int active = window.active(System.currentTimeMillis(), BUFF_DURATION_MS);
-        if (active == 0) return ItemStatistics.empty();
-
+        long now = System.currentTimeMillis();
+        int active = window.active(now, BUFF_DURATION_MS);
+        var sourcePet = event.pet();
+        Rarity rarity = sourcePet.getAttributeHandler().getRarity();
+        int level = sourcePet.getAttributeHandler().getPetData().getAsLevel(rarity);
         double perCast = BASE + PER_LEVEL.getForRarity(rarity) * level;
+        if ((active + 1) * perCast > DEFENSE_CAP) return;
 
-        return ItemStatistics.builder()
-                .withBase(ItemStatistic.DEFENSE, Math.min(active * perCast, DEFENSE_CAP))
+        window.record(now);
+        ItemStatistics snapshot = ItemStatistics.builder()
+                .withBase(ItemStatistic.DEFENSE, perCast)
                 .build();
+        long expiresAt = now + BUFF_DURATION_MS;
+        event.player().getStatistics().boostStatistic(
+                TemporaryConditionalStatistic.builder()
+                        .withStatistics(player -> snapshot)
+                        .withExpiry(player -> player.getPetData().isActive(sourcePet)
+                                && System.currentTimeMillis() < expiresAt)
+                        .build()
+        );
     }
 
     private static final class ProcWindow {

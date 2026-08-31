@@ -11,6 +11,7 @@ import net.swofty.type.skyblockgeneric.item.handlers.pet.abstr.PetAbilityRegistr
 import net.swofty.type.skyblockgeneric.item.handlers.pet.abstr.PetEvent;
 import net.swofty.type.skyblockgeneric.item.handlers.pet.abstr.PetEventHandler;
 import net.swofty.type.skyblockgeneric.user.SkyBlockPlayer;
+import net.swofty.type.skyblockgeneric.user.statistics.TemporaryConditionalStatistic;
 
 import java.util.List;
 
@@ -23,7 +24,6 @@ public final class LastStandAbility implements PetAbility {
     private static final long WINDOW_MILLIS = 12_000;
     private static final long COOLDOWN_MILLIS = 60_000;
 
-    private long buffUntil;
     private long lastProc;
 
     @Override
@@ -52,20 +52,24 @@ public final class LastStandAbility implements PetAbility {
         if (now - lastProc < COOLDOWN_MILLIS) return;
 
         lastProc = now;
-        buffUntil = now + WINDOW_MILLIS;
+        var sourcePet = event.pet();
+        ItemStatistics snapshot = ItemStatistics.builder()
+                .withMultiplicative(ItemStatistic.DAMAGE, 1 + DEALT_DAMAGE_BONUS)
+                .build();
+        long expiresAt = now + WINDOW_MILLIS;
+        player.getStatistics().boostStatistic(
+                TemporaryConditionalStatistic.builder()
+                        .withStatistics(current -> snapshot)
+                        .withExpiry(current -> current.getPetData().isActive(sourcePet)
+                                && System.currentTimeMillis() < expiresAt)
+                        .build()
+        );
+
         player.setAdditionalHearts((float) (player.getMaxHealth() * SHIELD_PERCENT));
         MinecraftServer.getSchedulerManager().scheduleTask(
                 () -> {
                     if (player.isOnline()) player.setAdditionalHearts(0);
                 },
                 TaskSchedule.millis(WINDOW_MILLIS), TaskSchedule.stop());
-    }
-
-    @Override
-    public ItemStatistics getStatistics(SkyBlockPlayer player, Rarity rarity, int level) {
-        if (System.currentTimeMillis() >= buffUntil) return ItemStatistics.empty();
-        return ItemStatistics.builder()
-                .withMultiplicative(ItemStatistic.DAMAGE, 1 + DEALT_DAMAGE_BONUS)
-                .build();
     }
 }

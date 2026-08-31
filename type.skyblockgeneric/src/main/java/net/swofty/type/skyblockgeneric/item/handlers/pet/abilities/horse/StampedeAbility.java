@@ -8,7 +8,7 @@ import net.swofty.type.skyblockgeneric.item.handlers.pet.abstr.PetAbility;
 import net.swofty.type.skyblockgeneric.item.handlers.pet.abstr.PetAbilityRegistration;
 import net.swofty.type.skyblockgeneric.item.handlers.pet.abstr.PetEvent;
 import net.swofty.type.skyblockgeneric.item.handlers.pet.abstr.PetEventHandler;
-import net.swofty.type.skyblockgeneric.user.SkyBlockPlayer;
+import net.swofty.type.skyblockgeneric.user.statistics.TemporaryConditionalStatistic;
 import net.swofty.type.skyblockgeneric.utility.RarityValue;
 
 import java.util.List;
@@ -26,6 +26,7 @@ public final class StampedeAbility implements PetAbility {
 
     private int stacks;
     private long lastProc;
+    private long effectGeneration;
 
     @Override
     public String getName() {
@@ -44,26 +45,32 @@ public final class StampedeAbility implements PetAbility {
         );
     }
 
-    @Override
-    public ItemStatistics getStatistics(SkyBlockPlayer player, Rarity rarity, int level) {
-        if (stacks <= 0) return ItemStatistics.empty();
-        if (System.currentTimeMillis() - lastProc > DURATION_MILLIS) {
-            stacks = 0;
-            return ItemStatistics.empty();
-        }
+    @PetEventHandler
+    public void onKilledMob(PetEvent.KilledMob event) {
+        long now = System.currentTimeMillis();
+        var sourcePet = event.pet();
+        Rarity rarity = sourcePet.getAttributeHandler().getRarity();
+        int level = sourcePet.getAttributeHandler().getPetData().getAsLevel(rarity);
+        if (now - lastProc > DURATION_MILLIS) stacks = 0;
 
+        stacks = Math.min(stacks + 1, MAX_STACKS);
+        lastProc = now;
         double speed = (SPEED_BASE.getForRarity(rarity) + SPEED_PER_LEVEL.getForRarity(rarity) * level) * stacks;
         double strength = (STRENGTH_BASE.getForRarity(rarity) + STRENGTH_PER_LEVEL.getForRarity(rarity) * level) * stacks;
-
-        return ItemStatistics.builder()
+        ItemStatistics snapshot = ItemStatistics.builder()
                 .withBase(ItemStatistic.SPEED, speed)
                 .withBase(ItemStatistic.STRENGTH, strength)
                 .build();
-    }
+        long generation = ++effectGeneration;
+        long expiresAt = now + DURATION_MILLIS;
 
-    @PetEventHandler
-    public void onKilledMob(PetEvent.KilledMob event) {
-        stacks = Math.min(stacks + 1, MAX_STACKS);
-        lastProc = System.currentTimeMillis();
+        event.player().getStatistics().boostStatistic(
+                TemporaryConditionalStatistic.builder()
+                        .withStatistics(player -> snapshot)
+                        .withExpiry(player -> player.getPetData().isActive(sourcePet)
+                                && effectGeneration == generation
+                                && System.currentTimeMillis() < expiresAt)
+                        .build()
+        );
     }
 }

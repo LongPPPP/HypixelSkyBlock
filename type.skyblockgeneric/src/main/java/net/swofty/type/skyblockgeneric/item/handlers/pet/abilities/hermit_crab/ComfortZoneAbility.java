@@ -9,7 +9,7 @@ import net.swofty.type.skyblockgeneric.item.handlers.pet.abstr.PetAbility;
 import net.swofty.type.skyblockgeneric.item.handlers.pet.abstr.PetAbilityRegistration;
 import net.swofty.type.skyblockgeneric.item.handlers.pet.abstr.PetEvent;
 import net.swofty.type.skyblockgeneric.item.handlers.pet.abstr.PetEventHandler;
-import net.swofty.type.skyblockgeneric.user.SkyBlockPlayer;
+import net.swofty.type.skyblockgeneric.user.statistics.TemporaryConditionalStatistic;
 import net.swofty.type.skyblockgeneric.utility.RarityValue;
 
 import java.util.List;
@@ -22,8 +22,7 @@ public final class ComfortZoneAbility implements PetAbility {
     private static final long DURATION_MILLIS = 30_000L;
     private static final RarityValue<Double> FISHING_SPEED_PER_LEVEL =
             new RarityValue<>(0.2, 0.3, 0.3, 0.4, 0.4, 0.4, 0.0);
-
-    private long buffUntil;
+    private long effectGeneration;
 
     @Override
     public String getName() {
@@ -40,18 +39,27 @@ public final class ComfortZoneAbility implements PetAbility {
         );
     }
 
-    @Override
-    public ItemStatistics getStatistics(SkyBlockPlayer player, Rarity rarity, int level) {
-        if (buffUntil <= System.currentTimeMillis()) return ItemStatistics.empty();
-
-        return ItemStatistics.builder()
-                .withBase(ItemStatistic.FISHING_SPEED, FISHING_SPEED_PER_LEVEL.getForRarity(rarity) * level)
-                .build();
-    }
-
     @PetEventHandler
     public void onFishCaught(PetEvent.FishCaught event) {
         if (!(event.payload() instanceof CatchPayload.Item item) || !item.fromTreasure()) return;
-        buffUntil = System.currentTimeMillis() + DURATION_MILLIS;
+
+        var sourcePet = event.pet();
+        Rarity rarity = sourcePet.getAttributeHandler().getRarity();
+        int level = sourcePet.getAttributeHandler().getPetData().getAsLevel(rarity);
+        ItemStatistics snapshot = ItemStatistics.builder()
+                .withBase(ItemStatistic.FISHING_SPEED,
+                        FISHING_SPEED_PER_LEVEL.getForRarity(rarity) * level)
+                .build();
+        long generation = ++effectGeneration;
+        long expiresAt = System.currentTimeMillis() + DURATION_MILLIS;
+
+        event.player().getStatistics().boostStatistic(
+                TemporaryConditionalStatistic.builder()
+                        .withStatistics(player -> snapshot)
+                        .withExpiry(player -> player.getPetData().isActive(sourcePet)
+                                && effectGeneration == generation
+                                && System.currentTimeMillis() < expiresAt)
+                        .build()
+        );
     }
 }

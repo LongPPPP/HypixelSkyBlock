@@ -8,7 +8,7 @@ import net.swofty.type.skyblockgeneric.item.handlers.pet.abstr.PetAbility;
 import net.swofty.type.skyblockgeneric.item.handlers.pet.abstr.PetAbilityRegistration;
 import net.swofty.type.skyblockgeneric.item.handlers.pet.abstr.PetEvent;
 import net.swofty.type.skyblockgeneric.item.handlers.pet.abstr.PetEventHandler;
-import net.swofty.type.skyblockgeneric.user.SkyBlockPlayer;
+import net.swofty.type.skyblockgeneric.user.statistics.TemporaryConditionalStatistic;
 
 import java.util.List;
 
@@ -23,6 +23,7 @@ public final class StampedeAbility implements PetAbility {
 
     private int stacks;
     private long lastProc;
+    private long effectGeneration;
 
     @Override
     public String getName() {
@@ -41,23 +42,30 @@ public final class StampedeAbility implements PetAbility {
         );
     }
 
-    @Override
-    public ItemStatistics getStatistics(SkyBlockPlayer player, Rarity rarity, int level) {
-        if (stacks <= 0) return ItemStatistics.empty();
-        if (System.currentTimeMillis() - lastProc > DURATION_MILLIS) {
-            stacks = 0;
-            return ItemStatistics.empty();
-        }
+    @PetEventHandler
+    public void onKilledMob(PetEvent.KilledMob event) {
+        long now = System.currentTimeMillis();
+        var sourcePet = event.pet();
+        Rarity rarity = sourcePet.getAttributeHandler().getRarity();
+        int level = sourcePet.getAttributeHandler().getPetData().getAsLevel(rarity);
+        if (now - lastProc > DURATION_MILLIS) stacks = 0;
 
-        return ItemStatistics.builder()
+        stacks = Math.min(stacks + 1, MAX_STACKS);
+        lastProc = now;
+        ItemStatistics snapshot = ItemStatistics.builder()
                 .withBase(ItemStatistic.BONUS_ATTACK_SPEED, ATTACK_SPEED_PER_LEVEL * level * stacks)
                 .withBase(ItemStatistic.STRENGTH, STRENGTH_PER_LEVEL * level * stacks)
                 .build();
-    }
+        long generation = ++effectGeneration;
+        long expiresAt = now + DURATION_MILLIS;
 
-    @PetEventHandler
-    public void onKilledMob(PetEvent.KilledMob event) {
-        stacks = Math.min(stacks + 1, MAX_STACKS);
-        lastProc = System.currentTimeMillis();
+        event.player().getStatistics().boostStatistic(
+                TemporaryConditionalStatistic.builder()
+                        .withStatistics(player -> snapshot)
+                        .withExpiry(player -> player.getPetData().isActive(sourcePet)
+                                && effectGeneration == generation
+                                && System.currentTimeMillis() < expiresAt)
+                        .build()
+        );
     }
 }

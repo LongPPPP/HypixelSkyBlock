@@ -8,7 +8,7 @@ import net.swofty.type.skyblockgeneric.item.handlers.pet.abstr.PetAbility;
 import net.swofty.type.skyblockgeneric.item.handlers.pet.abstr.PetAbilityRegistration;
 import net.swofty.type.skyblockgeneric.item.handlers.pet.abstr.PetEvent;
 import net.swofty.type.skyblockgeneric.item.handlers.pet.abstr.PetEventHandler;
-import net.swofty.type.skyblockgeneric.user.SkyBlockPlayer;
+import net.swofty.type.skyblockgeneric.user.statistics.TemporaryConditionalStatistic;
 import net.swofty.type.skyblockgeneric.utility.RarityValue;
 
 import java.util.Arrays;
@@ -20,6 +20,7 @@ import static net.swofty.commons.StringUtility.commaify;
 public final class KillComboAbility implements PetAbility {
     private int stacks;
     private long lastProc;
+    private long effectGeneration;
 
     private static final RarityValue<Integer> MAGIC_FIND_5 = new RarityValue<>(1, 1, 2, 2, 3, 3, 0);
     private static final RarityValue<Integer> MAGIC_FIND_15 = new RarityValue<>(1, 1, 2, 2, 3, 3, 0);
@@ -74,25 +75,6 @@ public final class KillComboAbility implements PetAbility {
         );
     }
 
-    @Override
-    public ItemStatistics getStatistics(SkyBlockPlayer player, Rarity rarity, int level) {
-        if (stacks <= 0) return ItemStatistics.empty();
-        if (System.currentTimeMillis() - lastProc > activeDuration(rarity, level, stacks)) {
-            stacks = 0;
-            return ItemStatistics.empty();
-        }
-        double totalMf = 0;
-        int totalWisdom = 0;
-        if (stacks >= 5) totalMf += MAGIC_FIND_5.getForRarity(rarity);
-        if (stacks >= 15) totalMf += MAGIC_FIND_15.getForRarity(rarity);
-        if (stacks >= 25) totalMf += MAGIC_FIND_25.getForRarity(rarity);
-        if (stacks >= 20) totalWisdom += COMBAT_WISDOM_20.getForRarity(rarity);
-        return ItemStatistics.builder()
-                .withAdditivePercentage(ItemStatistic.MAGIC_FIND, totalMf)
-                .withBase(ItemStatistic.COMBAT_WISDOM, (double) totalWisdom)
-                .build();
-    }
-
     private long activeDuration(Rarity rarity, int level, int stacks) {
         double activeDuration = 0;
         for (int i = 0; i < THRESHOLDS.length; i++) {
@@ -105,14 +87,41 @@ public final class KillComboAbility implements PetAbility {
 
     @PetEventHandler
     public void onKillEvent(PetEvent.KilledMob kill) {
+        var sourcePet = kill.pet();
+        Rarity rarity = sourcePet.getAttributeHandler().getRarity();
+        int level = sourcePet.getAttributeHandler().getPetData().getAsLevel(rarity);
+        long now = System.currentTimeMillis();
+        if (stacks > 0 && now - lastProc > activeDuration(rarity, level, stacks)) stacks = 0;
+
         stacks++;
-        lastProc = System.currentTimeMillis();
-        Rarity rarity = kill.pet().getAttributeHandler().getRarity();
+        lastProc = now;
         if (stacks >= 10) {
             kill.player().addCoins(COINS_10.getForRarity(rarity));
         }
         if (stacks >= 30) {
             kill.player().addCoins(COINS_30.getForRarity(rarity));
         }
+
+        double totalMf = 0;
+        int totalWisdom = 0;
+        if (stacks >= 5) totalMf += MAGIC_FIND_5.getForRarity(rarity);
+        if (stacks >= 15) totalMf += MAGIC_FIND_15.getForRarity(rarity);
+        if (stacks >= 25) totalMf += MAGIC_FIND_25.getForRarity(rarity);
+        if (stacks >= 20) totalWisdom += COMBAT_WISDOM_20.getForRarity(rarity);
+        ItemStatistics snapshot = ItemStatistics.builder()
+                .withAdditivePercentage(ItemStatistic.MAGIC_FIND, totalMf)
+                .withBase(ItemStatistic.COMBAT_WISDOM, (double) totalWisdom)
+                .build();
+        long generation = ++effectGeneration;
+        long expiresAt = now + activeDuration(rarity, level, stacks);
+
+        kill.player().getStatistics().boostStatistic(
+                TemporaryConditionalStatistic.builder()
+                        .withStatistics(player -> snapshot)
+                        .withExpiry(player -> player.getPetData().isActive(sourcePet)
+                                && effectGeneration == generation
+                                && System.currentTimeMillis() < expiresAt)
+                        .build()
+        );
     }
 }
