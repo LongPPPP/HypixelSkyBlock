@@ -17,27 +17,32 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
-public sealed interface PetEvent {
-    SkyBlockPlayer player();
+@Getter
+@Accessors(fluent = true)
+public abstract sealed class PetEvent {
+    private final SkyBlockPlayer player;
+    private SkyBlockItem pet;
 
-    SkyBlockItem pet();
+    protected PetEvent(SkyBlockPlayer player, SkyBlockItem pet) {
+        this.player = player;
+        this.pet = pet;
+    }
 
-    PetEvent pet(SkyBlockItem pet);
+    public PetEvent pet(SkyBlockItem pet) {
+        this.pet = pet;
+        return this;
+    }
 
     /**
      * when the mob is killed
      */
     @Getter
     @Accessors(fluent = true)
-    final class KilledMob implements PetEvent {
-        private final SkyBlockPlayer player;
-        @Setter
-        private SkyBlockItem pet;
+    public static final class KilledMob extends PetEvent {
         private final SkyBlockMob mob;
 
         public KilledMob(SkyBlockPlayer player, SkyBlockItem pet, SkyBlockMob mob) {
-            this.player = player;
-            this.pet = pet;
+            super(player, pet);
             this.mob = mob;
         }
     }
@@ -47,14 +52,9 @@ public sealed interface PetEvent {
      */
     @Getter
     @Accessors(fluent = true)
-    final class Jump implements PetEvent {
-        private final SkyBlockPlayer player;
-        @Setter
-        private SkyBlockItem pet;
-
+    public static final class Jump extends PetEvent {
         public Jump(SkyBlockPlayer player, SkyBlockItem pet) {
-            this.player = player;
-            this.pet = pet;
+            super(player, pet);
         }
     }
 
@@ -63,14 +63,9 @@ public sealed interface PetEvent {
      */
     @Getter
     @Accessors(fluent = true)
-    final class AbilityCast implements PetEvent {
-        private final SkyBlockPlayer player;
-        @Setter
-        private SkyBlockItem pet;
-
+    public static final class AbilityCast extends PetEvent {
         public AbilityCast(SkyBlockPlayer player, SkyBlockItem pet) {
-            this.player = player;
-            this.pet = pet;
+            super(player, pet);
         }
     }
 
@@ -79,14 +74,9 @@ public sealed interface PetEvent {
      */
     @Getter
     @Accessors(fluent = true)
-    final class BlockMining implements PetEvent {
-        private final SkyBlockPlayer player;
-        @Setter
-        private SkyBlockItem pet;
-
+    public static final class BlockMining extends PetEvent {
         public BlockMining(SkyBlockPlayer player, SkyBlockItem pet) {
-            this.player = player;
-            this.pet = pet;
+            super(player, pet);
         }
     }
 
@@ -95,10 +85,7 @@ public sealed interface PetEvent {
      */
     @Getter
     @Accessors(fluent = true)
-    final class ManaCost implements PetEvent {
-        private final SkyBlockPlayer player;
-        @Setter
-        private SkyBlockItem pet;
+    public static final class ManaCost extends PetEvent {
         private final RegisteredAbility ability;
         @Setter
         private double cost;
@@ -106,8 +93,7 @@ public sealed interface PetEvent {
         private boolean free;
 
         public ManaCost(SkyBlockPlayer player, SkyBlockItem pet, RegisteredAbility ability, double cost) {
-            this.player = player;
-            this.pet = pet;
+            super(player, pet);
             this.ability = ability;
             this.cost = cost;
         }
@@ -118,16 +104,12 @@ public sealed interface PetEvent {
      */
     @Getter
     @Accessors(fluent = true)
-    final class ManaRegen implements PetEvent {
-        private final SkyBlockPlayer player;
-        @Setter
-        private SkyBlockItem pet;
+    public static final class ManaRegen extends PetEvent {
         @Setter
         private double amount;
 
         public ManaRegen(SkyBlockPlayer player, SkyBlockItem pet, double amount) {
-            this.player = player;
-            this.pet = pet;
+            super(player, pet);
             this.amount = amount;
         }
     }
@@ -137,17 +119,13 @@ public sealed interface PetEvent {
      */
     @Getter
     @Accessors(fluent = true)
-    final class AbilityCooldown implements PetEvent {
-        private final SkyBlockPlayer player;
-        @Setter
-        private SkyBlockItem pet;
+    public static final class AbilityCooldown extends PetEvent {
         private final SkyBlockItem item;
         @Setter
         private double cooldown;  // millis, modified by handlers
 
         public AbilityCooldown(SkyBlockPlayer player, SkyBlockItem pet, SkyBlockItem item, double cooldown) {
-            this.player = player;
-            this.pet = pet;
+            super(player, pet);
             this.item = item;
             this.cooldown = cooldown;
         }
@@ -158,18 +136,14 @@ public sealed interface PetEvent {
      */
     @Getter
     @Accessors(fluent = true)
-    non-sealed class Damaged implements PetEvent {
-        private final SkyBlockPlayer player;
-        @Setter
-        private SkyBlockItem pet;
+    public static non-sealed abstract class Damaged extends PetEvent {
         @Nullable
         private final RegistryKey<@NotNull DamageType> type;
         @Setter
         private double damage;
 
         public Damaged(SkyBlockPlayer player, SkyBlockItem pet, @Nullable RegistryKey<@NotNull DamageType> type, double damage) {
-            this.player = player;
-            this.pet = pet;
+            super(player, pet);
             this.type = type;
             this.damage = damage;
         }
@@ -177,7 +151,7 @@ public sealed interface PetEvent {
 
     @Getter
     @Accessors(fluent = true)
-    final class DamagedByMob extends Damaged {
+    public static final class DamagedByMob extends Damaged {
         private final SkyBlockMob mob;
 
         public DamagedByMob(SkyBlockPlayer player, SkyBlockItem pet, SkyBlockMob mob, double damage) {
@@ -191,7 +165,7 @@ public sealed interface PetEvent {
      */
     @Getter
     @Accessors(fluent = true)
-    final class FallDamage extends Damaged {
+    public static final class FallDamage extends Damaged {
         private final int fallHeight;
 
         public FallDamage(SkyBlockPlayer player, SkyBlockItem pet, double damage, int fallHeight) {
@@ -205,10 +179,7 @@ public sealed interface PetEvent {
      */
     @Getter
     @Accessors(fluent = true)
-    non-sealed class DamageDealt implements PetEvent {
-        private final SkyBlockPlayer player;
-        @Setter
-        private SkyBlockItem pet;
+    public static non-sealed abstract class DamageDealt extends PetEvent {
         private final SkyBlockMob mob;
         @Nullable
         private final SkyBlockItem weapon;
@@ -216,8 +187,7 @@ public sealed interface PetEvent {
 
         public DamageDealt(SkyBlockPlayer player, SkyBlockItem pet, SkyBlockMob mob,
                            @Nullable SkyBlockItem weapon, double damage) {
-            this.player = player;
-            this.pet = pet;
+            super(player, pet);
             this.mob = mob;
             this.weapon = weapon;
             this.damage = damage;
@@ -229,7 +199,7 @@ public sealed interface PetEvent {
      */
     @Getter
     @Accessors(fluent = true)
-    final class MeleeDamageDealt extends DamageDealt {
+    public static final class MeleeDamageDealt extends DamageDealt {
         public MeleeDamageDealt(SkyBlockPlayer player, SkyBlockItem pet, SkyBlockMob mob,
                                 @Nullable SkyBlockItem weapon, double damage) {
             super(player, pet, mob, weapon, damage);
@@ -241,7 +211,7 @@ public sealed interface PetEvent {
      */
     @Getter
     @Accessors(fluent = true)
-    final class RangedDamageDealt extends DamageDealt {
+    public static final class RangedDamageDealt extends DamageDealt {
         public RangedDamageDealt(SkyBlockPlayer player, SkyBlockItem pet, SkyBlockMob mob,
                                  @Nullable SkyBlockItem weapon, double damage) {
             super(player, pet, mob, weapon, damage);
@@ -250,18 +220,14 @@ public sealed interface PetEvent {
 
     @Getter
     @Accessors(fluent = true)
-    final class FishCaught implements PetEvent {
-        private final SkyBlockPlayer player;
-        @Setter
-        private SkyBlockItem pet;
+    public static final class FishCaught extends PetEvent {
         @Setter
         private CatchPayload payload;
         @Nullable
         private final String regionId;
 
         public FishCaught(SkyBlockPlayer player, SkyBlockItem pet, CatchPayload payload, @Nullable String regionId) {
-            this.player = player;
-            this.pet = pet;
+            super(player, pet);
             this.payload = payload;
             this.regionId = regionId;
         }
@@ -269,17 +235,13 @@ public sealed interface PetEvent {
 
     @Getter
     @Accessors(fluent = true)
-    final class CropHarvested implements PetEvent {
-        private final SkyBlockPlayer player;
-        @Setter
-        private SkyBlockItem pet;
+    public static final class CropHarvested extends PetEvent {
         private final Material material;
         @Setter
         private int crops;
 
         public CropHarvested(SkyBlockPlayer player, SkyBlockItem pet, Material material, int crops) {
-            this.player = player;
-            this.pet = pet;
+            super(player, pet);
             this.material = material;
             this.crops = crops;
         }
@@ -290,10 +252,7 @@ public sealed interface PetEvent {
      */
     @Getter
     @Accessors(fluent = true)
-    final class BlockMined implements PetEvent {
-        private final SkyBlockPlayer player;
-        @Setter
-        private SkyBlockItem pet;
+    public static final class BlockMined extends PetEvent {
         private final Material material;
         private final Point point;
         private final SkyBlockItem heldItem;
@@ -302,8 +261,7 @@ public sealed interface PetEvent {
 
         public BlockMined(SkyBlockPlayer player, SkyBlockItem pet, Material material, Point point,
                           SkyBlockItem heldItem, List<SkyBlockItem> drops) {
-            this.player = player;
-            this.pet = pet;
+            super(player, pet);
             this.material = material;
             this.point = point;
             this.heldItem = heldItem;
